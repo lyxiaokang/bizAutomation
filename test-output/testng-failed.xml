@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite guice-stage="DEVELOPMENT" name="Failed suite [Default suite]">
+  <test name="Default test(failed)">
+    <classes>
+      <class name="com.jxrt.test.Team2Test">
+        <methods>
+          <include name="setup_Corp"/>
+          <include name="TestReceivableIssue"/>
+          <include name="tearDown_Corp"/>
+        </methods>
+      </class> <!-- com.jxrt.test.Team2Test -->
+    </classes>
+  </test> <!-- Default test(failed) -->
+</suite> <!-- Failed suite [Default suite] -->

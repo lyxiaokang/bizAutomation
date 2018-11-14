@@ -1,0 +1,13 @@
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
+<suite name="End2EndAutomation" verbose="2">
+	<listeners>
+		<listener class-name="com.jxrt.listener.DotTestListener" />
+		<listener class-name="org.uncommons.reportng.HTMLReporter" />
+	</listeners>
+ 	<test name="Team2Test" preserve-order="true">
+		<classes>
+			<class name="com.jxrt.test.Team2Test">			
+			</class>
+		</classes>
+	</test>	
+</suite>
