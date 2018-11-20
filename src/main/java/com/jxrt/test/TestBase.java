@@ -68,6 +68,104 @@ public class TestBase {
 	public static String className = "";
 	public static List<String> methodList = new ArrayList<String>();
 	public static boolean writeTest = true;
+	
+	//账款核心链条
+	public static String limitPkDetailReceivableTeam2;
+	public static String fkCorpCoreReceivableTeam2;
+	public static String corpNameCoreReceivableTeam2;
+	public static String fkCorpReceivableTeam2;
+	public static String corpNameReceivableTeam2;
+	//产品运营经办主管
+	public static String productOperatorNameTeam2;
+	public static String productOperatorMobileTeam2;
+	public static String productOperatorPasswordTeam2;
+	public static String productManagerNameTeam2;
+	public static String productManagerMobileTeam2;
+	public static String productManagerPasswordTeam2;
+	public static String operateOperatorNameTeam2;
+	public static String operateOperatorMobileTeam2;
+	public static String operateOperatorPasswordTeam2;
+	public static String operateManagerNameTeam2;
+	public static String operateManagerMobileTeam2;
+	public static String operateManagerPasswordTeam2;
+	
+	static{
+		System.out.println("初始化"+PropertiesUtil.getOptValue("server_ip")+"环境企业信息");
+		getCorpReceivable();
+		getProductOperate();
+	}
+	//判断所处环境确认账款所用企业：
+	public static void getCorpReceivable(){
+	switch(PropertiesUtil.getOptValue("server_ip"))
+	{
+		case "test1.ccbscf.com":
+			fkCorpCoreReceivableTeam2 = PropertiesUtil.getOptValue("fkCorpCoreReceivableTeam2_t1");
+			corpNameCoreReceivableTeam2 = PropertiesUtil.getOptValue("corpNameCoreReceivableTeam2_t1");
+			fkCorpReceivableTeam2 = PropertiesUtil.getOptValue("fkCorpReceivableTeam2_t1");
+			corpNameReceivableTeam2 = PropertiesUtil.getOptValue("corpNameReceivableTeam2_t1");
+			break;
+		case "test2.ccbscf.com":
+			fkCorpCoreReceivableTeam2 = PropertiesUtil.getOptValue("fkCorpCoreReceivableTeam2_t2");
+			corpNameCoreReceivableTeam2 = PropertiesUtil.getOptValue("corpNameCoreReceivableTeam2_t2");
+			fkCorpReceivableTeam2 = PropertiesUtil.getOptValue("fkCorpReceivableTeam2_t2");
+			corpNameReceivableTeam2 = PropertiesUtil.getOptValue("corpNameReceivableTeam2_t2");
+			break;
+		case "test4.ccbscf.com":
+			fkCorpCoreReceivableTeam2 = PropertiesUtil.getOptValue("fkCorpCoreReceivableTeam2_t4");
+			corpNameCoreReceivableTeam2 = PropertiesUtil.getOptValue("corpNameCoreReceivableTeam2_t4");
+			fkCorpReceivableTeam2 = PropertiesUtil.getOptValue("fkCorpReceivableTeam2_t4");
+			corpNameReceivableTeam2 = PropertiesUtil.getOptValue("corpNameReceivableTeam2_t4");
+			break;
+		}
+	}
+	//判断所处环境确认运营产品经办主管：
+	public static void getProductOperate(){
+	switch(PropertiesUtil.getOptValue("server_ip"))
+	{
+		case "test1.ccbscf.com":
+			productOperatorNameTeam2 = PropertiesUtil.getOptValue("productOperatorNameTeam2_t1");
+			productOperatorMobileTeam2 = PropertiesUtil.getOptValue("productOperatorMobileTeam2_t1");
+			productOperatorPasswordTeam2 = PropertiesUtil.getOptValue("productOperatorPasswordTeam2_t1");
+			productManagerNameTeam2 = PropertiesUtil.getOptValue("productManagerNameTeam2_t1");
+			productManagerMobileTeam2 = PropertiesUtil.getOptValue("productManagerMobileTeam2_t1");
+			productManagerPasswordTeam2 = PropertiesUtil.getOptValue("productManagerPasswordTeam2_t1");
+			operateOperatorNameTeam2 = PropertiesUtil.getOptValue("operateOperatorNameTeam2_t1");
+			operateOperatorMobileTeam2 = PropertiesUtil.getOptValue("operateOperatorMobileTeam2_t1");
+			operateOperatorPasswordTeam2 = PropertiesUtil.getOptValue("operateOperatorPasswordTeam2_t1");
+			operateManagerNameTeam2 = PropertiesUtil.getOptValue("operateManagerNameTeam2_t1");
+			operateManagerMobileTeam2 = PropertiesUtil.getOptValue("operateManagerMobileTeam2_t1");
+			operateManagerPasswordTeam2 = PropertiesUtil.getOptValue("operateManagerPasswordTeam2_t1");
+			break;
+		case "test2.ccbscf.com":
+			productOperatorNameTeam2 = PropertiesUtil.getOptValue("productOperatorNameTeam2_t2");
+			productOperatorMobileTeam2 = PropertiesUtil.getOptValue("productOperatorMobileTeam2_t2");
+			productOperatorPasswordTeam2 = PropertiesUtil.getOptValue("productOperatorPasswordTeam2_t2");
+			productManagerNameTeam2 = PropertiesUtil.getOptValue("productManagerNameTeam2_t2");
+			productManagerMobileTeam2 = PropertiesUtil.getOptValue("productManagerMobileTeam2_t2");
+			productManagerPasswordTeam2 = PropertiesUtil.getOptValue("productManagerPasswordTeam2_t2");
+			operateOperatorNameTeam2 = PropertiesUtil.getOptValue("operateOperatorNameTeam2_t2");
+			operateOperatorMobileTeam2 = PropertiesUtil.getOptValue("operateOperatorMobileTeam2_t2");
+			operateOperatorPasswordTeam2 = PropertiesUtil.getOptValue("operateOperatorPasswordTeam2_t2");
+			operateManagerNameTeam2 = PropertiesUtil.getOptValue("operateManagerNameTeam2_t2");
+			operateManagerMobileTeam2 = PropertiesUtil.getOptValue("operateManagerMobileTeam2_t2");
+			operateManagerPasswordTeam2 = PropertiesUtil.getOptValue("operateManagerPasswordTeam2_t2");
+			break;
+		case "test4.ccbscf.com":
+			productOperatorNameTeam2 = PropertiesUtil.getOptValue("productOperatorNameTeam2_t4");
+			productOperatorMobileTeam2 = PropertiesUtil.getOptValue("productOperatorMobileTeam2_t4");
+			productOperatorPasswordTeam2 = PropertiesUtil.getOptValue("productOperatorPasswordTeam2_t4");
+			productManagerNameTeam2 = PropertiesUtil.getOptValue("productManagerNameTeam2_t4");
+			productManagerMobileTeam2 = PropertiesUtil.getOptValue("productManagerMobileTeam2_t4");
+			productManagerPasswordTeam2 = PropertiesUtil.getOptValue("productManagerPasswordTeam2_t4");
+			operateOperatorNameTeam2 = PropertiesUtil.getOptValue("operateOperatorNameTeam2_t4");
+			operateOperatorMobileTeam2 = PropertiesUtil.getOptValue("operateOperatorMobileTeam2_t4");
+			operateOperatorPasswordTeam2 = PropertiesUtil.getOptValue("operateOperatorPasswordTeam2_t4");
+			operateManagerNameTeam2 = PropertiesUtil.getOptValue("operateManagerNameTeam2_t4");
+			operateManagerMobileTeam2 = PropertiesUtil.getOptValue("operateManagerMobileTeam2_t4");
+			operateManagerPasswordTeam2 = PropertiesUtil.getOptValue("operateManagerPasswordTeam2_t4");
+			break;
+		}
+	}
 
 	/*
 	 * 浏览器初始化

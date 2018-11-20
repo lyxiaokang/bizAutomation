@@ -89,17 +89,63 @@ public class ReceivableIssuePage extends AbstractPage{
 	@FindBy(xpath="//button/span[contains(text(), '单笔新增')]")
 	private WebElement singleIssueBtn;
 	
-	public void ReceivableIssue() throws InterruptedException{
+	//账款表单
+	@FindBy(xpath="//tbody/tr[@class_name='ivu-table-row'][1]")
+	public WebElement receivableList;
+	//账款表单checkbox
+	@FindBy(xpath="//table/tbody/tr[1]/td[1]/div/label")
+	public WebElement receivableListCheckBox;
+	//账款表单Index
+	@FindBy(xpath="//table/tbody/tr[1]/td[2]/div")
+	public WebElement receivableListIndex;
+	//账款表单Core
+	@FindBy(xpath="//tbody/tr[1]/td[3]/div/p/span[1]")
+	public WebElement receivableListCore;
+	//账款表单LimitSource
+	@FindBy(xpath="//tbody/tr[1]/td[3]/div/p/span[2]")
+	public WebElement receivableListLimitSource;
+	//账款表单产品类型
+	@FindBy(xpath="//table/tbody/tr[1]/td[4]/div/span")
+	public WebElement receivableListProductType;
+	//账款表单供应商名称
+	@FindBy(xpath="//table/tbody/tr[1]/td[5]/div/span")
+	public WebElement receivableListCorpNameAccept;
+	//账款表单商务合同编号
+	@FindBy(xpath="//table/tbody/tr[1]/td[6]/div/span")
+	public WebElement receivableListBusiContractCode;
+	//账款表单应付账款金额
+	@FindBy(xpath="//table/tbody/tr[1]/td[7]/div/span")
+	public WebElement receivableListApplyAmount;
+	//账款表单应付账款到期日
+	@FindBy(xpath="//table/tbody/tr[1]/td[8]/div/span")
+	public WebElement receivableListMaturityDate;
+	//账款表单摘要
+	@FindBy(xpath="//table/tbody/tr[1]/td[10]/div/span")
+	public WebElement receivableListAbstract_;
+	//账款表单校验结果通过
+	@FindBy(xpath="//tbody/tr[1]/td[11]/div/span")
+	public WebElement receivableListVerifyPass;
+	//账款表单校验结果不通过时
+	@FindBy(xpath="//tbody/tr[1]/td[11]/div/i")
+	public WebElement receivableListVerifyFailValue;
+	
+	
+	/*
+	 * 单笔新增账款
+	 */
+	public void ReceivableIssue(String corpNameCore,String corpNameAccept,
+			String busiContractCode,String applyAmount,String maturityDate,
+			String abstract_) throws InterruptedException{
 		corpNameApplySearchBtn.click();
-		searchAndSelectCorpNameCore("上海先荣建筑集团有限公司");
+		searchAndSelectCorpNameCore(corpNameCore);
 		Thread.sleep(1000);
 		corpNameAcceptSearchBtn.click();
-		searchAndSelectCorpName("陕西盛佳建筑装饰有限公司");
+		searchAndSelectCorpName(corpNameAccept);
 		Thread.sleep(1000);
-		busiContractCodeInput.sendKeys("sw");
-		applyAmountInput.sendKeys("100");
-		maturityDateInput.sendKeys("2018-11-30");
-		abstractInput.sendKeys("zy");
+		busiContractCodeInput.sendKeys(busiContractCode);
+		applyAmountInput.sendKeys(applyAmount);
+		maturityDateInput.sendKeys(maturityDate);
+		abstractInput.sendKeys(abstract_);
 		singleIssueBtn.click();
 	}
 	public static void main(String[] args) throws InterruptedException{
