@@ -21,13 +21,12 @@ public class Team2Test extends TestBase {
 	
 	@AfterClass
 	public void tearDown_Corp() {
-		tearDownBiz();
+//		tearDownBiz();
 	}
 	
 	@Test
 	public void TestReceivableIssue() throws InterruptedException {
-		TestBase.biz.bizLoginPage().login(TestBase.operateOperatorMobileTeam2,TestBase.operateOperatorPasswordTeam2);
-		TestBase.biz.homePage().gotoReceivableIssuePage();
+		//初始化数据
 		String corpNameCore=TestBase.corpNameCoreReceivableTeam2;
 		String corpNameAccept=TestBase.corpNameReceivableTeam2;
 		int rand=new Random().nextInt(1000);
@@ -37,17 +36,23 @@ public class Team2Test extends TestBase {
 		String maturityDate=today.plusDays(30).toString();
 		String abstract_="zy"+rand;
 		
-		TestBase.biz.receivableIssuePage().ReceivableIssue(corpNameCore,corpNameAccept,
-				busiContractCode,applyAmount,maturityDate,abstract_);
-		Thread.sleep(3000);
-		Assert.assertEquals(TestBase.biz.receivableIssuePage().receivableListCore.getText(), corpNameCore);
-		Assert.assertEquals(TestBase.biz.receivableIssuePage().receivableListLimitSource.getText(), corpNameCore);
-		Assert.assertEquals(TestBase.biz.receivableIssuePage().receivableListProductType.getText(), "e点通");
-		Assert.assertEquals(TestBase.biz.receivableIssuePage().receivableListCorpNameAccept.getText(), corpNameAccept);
-		Assert.assertEquals(TestBase.biz.receivableIssuePage().receivableListBusiContractCode.getText(), busiContractCode);
-		Assert.assertEquals(TestBase.biz.receivableIssuePage().receivableListApplyAmount.getText(), applyAmount+".00");
-		Assert.assertEquals(TestBase.biz.receivableIssuePage().receivableListMaturityDate.getText(), maturityDate);
-		Assert.assertEquals(TestBase.biz.receivableIssuePage().receivableListAbstract_.getText(), abstract_);
-		Assert.assertNotNull(TestBase.biz.receivableIssuePage().receivableListVerifyPass);
+		TestBase.biz.bizLoginPage().login(TestBase.operateOperatorMobileTeam2,TestBase.operateOperatorPasswordTeam2);
+		TestBase.biz.homePage().gotoReceivableIssuePage();
+//		TestBase.biz.receivableIssuePage().ReceivableIssue(corpNameCore,corpNameAccept,
+//				busiContractCode,applyAmount,maturityDate,abstract_);
+//		Thread.sleep(3000);
+//		
+//		//断言
+//		Assert.assertEquals(TestBase.biz.receivableIssuePage().receivableListCore.getText(), corpNameCore);
+//		Assert.assertEquals(TestBase.biz.receivableIssuePage().receivableListLimitSource.getText(), corpNameCore);
+//		Assert.assertEquals(TestBase.biz.receivableIssuePage().receivableListProductType.getText(), "e点通");
+//		Assert.assertEquals(TestBase.biz.receivableIssuePage().receivableListCorpNameAccept.getText(), corpNameAccept);
+//		Assert.assertEquals(TestBase.biz.receivableIssuePage().receivableListBusiContractCode.getText(), busiContractCode);
+//		Assert.assertEquals(TestBase.biz.receivableIssuePage().receivableListApplyAmount.getText(), applyAmount+".00");
+//		Assert.assertEquals(TestBase.biz.receivableIssuePage().receivableListMaturityDate.getText(), maturityDate);
+//		Assert.assertEquals(TestBase.biz.receivableIssuePage().receivableListAbstract_.getText(), abstract_);
+//		Assert.assertNotNull(TestBase.biz.receivableIssuePage().receivableListVerifyPass);
+		
+		TestBase.biz.receivableIssuePage().receivableListUploadBtn.click();
 	}
 }

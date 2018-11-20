@@ -19,20 +19,20 @@ public class ReceivableIssuePage extends AbstractPage{
 	
 	//核心企业显示框
 	@FindBy(xpath="//label[contains(text(), '核心企业名称：')]/../descendant::input")
-	private WebElement corpNameApplyInput;
+	public WebElement corpNameApplyInput;
 	//核心企业查询按钮
 	@FindBy(xpath="//label[contains(text(), '核心企业名称：')]/../descendant::button")
-	private WebElement corpNameApplySearchBtn;
+	public WebElement corpNameApplySearchBtn;
 	//核心企业弹出框
 	//核心企业输入框
 	@FindBy(xpath="//span[contains(text(), '核心企业：')]/../descendant::input")
-	private WebElement corpNameCoreInput;
+	public WebElement corpNameCoreInput;
 	//核心企业查询按钮
 	@FindBy(xpath="//span[contains(text(), '核心企业：')]/../descendant::button")
-	private WebElement corpNameCoreSearchBtn;
+	public WebElement corpNameCoreSearchBtn;
 	//核心企业列表选择按钮
 	@FindBy(xpath="//button/span[contains(text(), '选择')]")
-	private List<WebElement> corpNameCoreSelectBtns;
+	public List<WebElement> corpNameCoreSelectBtns;
 	/*
 	 * 查找并选择对应核心企业
 	 */
@@ -47,21 +47,21 @@ public class ReceivableIssuePage extends AbstractPage{
 	}
 	//供应商查询按钮
 	@FindBy(xpath="//label[contains(text(), '供应商名称：')]/../descendant::input")
-	private WebElement corpNameAcceptInput;	
+	public WebElement corpNameAcceptInput;	
 	//供应商查询按钮
 	@FindBy(xpath="//label[contains(text(), '供应商名称：')]/../descendant::button")
-	private WebElement corpNameAcceptSearchBtn;
+	public WebElement corpNameAcceptSearchBtn;
 	
 	//供应商企业弹出框
 	//供应商企业输入框
 	@FindBy(xpath="//span[contains(text(), '供应商名称：')]/../descendant::input")
-	private WebElement corpNameInput;
+	public WebElement corpNameInput;
 	//核心企业查询按钮
 	@FindBy(xpath="//span[contains(text(), '供应商名称：')]/../descendant::button")
-	private WebElement corpNameSearchBtn;
+	public WebElement corpNameSearchBtn;
 	//核心企业列表选择按钮
 	@FindBy(xpath="//td[6]/div/div/button/span")
-	private WebElement corpNameSelectBtn;
+	public WebElement corpNameSelectBtn;
 	/*
 	 * 查找并选择对应企业
 	 */
@@ -74,20 +74,20 @@ public class ReceivableIssuePage extends AbstractPage{
 	
 	//商务合同编号
 	@FindBy(xpath="//label[contains(text(), '商务合同编号：')]/../descendant::input")
-	private WebElement busiContractCodeInput;
+	public WebElement busiContractCodeInput;
 	//申请金额
 	@FindBy(xpath="//label[contains(text(), '应付账款金额：')]/../descendant::input")
-	private WebElement applyAmountInput;
+	public WebElement applyAmountInput;
 	//承诺付款日期
 	@FindBy(xpath="//label[contains(text(), '应付账款到期日：')]/../descendant::input")
-	private WebElement maturityDateInput;
+	public WebElement maturityDateInput;
 	//摘要
 	@FindBy(xpath="//label[contains(text(), '摘要：')]/../descendant::input")
-	private WebElement abstractInput;
+	public WebElement abstractInput;
 	
 	//单笔新增按钮
 	@FindBy(xpath="//button/span[contains(text(), '单笔新增')]")
-	private WebElement singleIssueBtn;
+	public WebElement singleIssueBtn;
 	
 	//账款表单
 	@FindBy(xpath="//tbody/tr[@class_name='ivu-table-row'][1]")
@@ -128,6 +128,12 @@ public class ReceivableIssuePage extends AbstractPage{
 	//账款表单校验结果不通过时
 	@FindBy(xpath="//tbody/tr[1]/td[11]/div/i")
 	public WebElement receivableListVerifyFailValue;
+	//账款表单修改按钮
+	@FindBy(xpath="//tbody/tr[1]/td[12]/div/div/button/span")
+	public WebElement receivableListModifyBtn;
+	//账款表单上传按钮
+	@FindBy(xpath="//tbody/tr[1]/td[12]/div/div/div/div/button/span")
+	public WebElement receivableListUploadBtn;
 	
 	
 	/*

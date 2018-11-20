@@ -9,7 +9,7 @@ import java.util.Date;
 
 public class PropertiesUtil {
 
-	public static String filePath = "./src/main/java/system.properties";
+	public static String filePath = "./src/system.properties";
 	public static PropertiesHelper prop = getProperties();
 	
 	public static PropertiesHelper getProperties() {
