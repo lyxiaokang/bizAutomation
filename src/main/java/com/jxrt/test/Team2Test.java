@@ -21,7 +21,7 @@ public class Team2Test extends TestBase {
 	
 	@AfterClass
 	public void tearDown_Corp() {
-//		tearDownBiz();
+		tearDownBiz();
 	}
 	
 	@Test
