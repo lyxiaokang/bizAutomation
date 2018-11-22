@@ -2,8 +2,12 @@ package com.jxrt.biz.page;
 
 import java.util.List;
 
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.ie.InternetExplorerDriver;
+import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.support.FindBy;
 
 import com.jxrt.test.TestBase;
@@ -134,7 +138,19 @@ public class ReceivableIssuePage extends AbstractPage{
 	//账款表单上传按钮
 	@FindBy(xpath="//tbody/tr[1]/td[12]/div/div/div/div/button/span")
 	public WebElement receivableListUploadBtn;
+	//提示框
+	@FindBy(className="ivu-modal-content")
+	public WebElement InstructionWindow;
+	//提示框结果
+	@FindBy(xpath="/html/body/div[6]/div[2]/div/div/div[2]")
+	public WebElement InstructionResult;
+	//提示框确认按钮
+	@FindBy(xpath="/html/body/div[6]/div[2]/div/div/div[3]/div/button/span")
+	public WebElement InstructionWindowConfirmBtn;
 	
+	//账款表单下方提交按钮
+	@FindBy(xpath="/html/body/div[1]/div/div[2]/div[1]/div/div[2]/div/div/div[2]/div/div[4]/div[2]/button/span")
+	public WebElement SubmitBtn;
 	
 	/*
 	 * 单笔新增账款
@@ -154,7 +170,6 @@ public class ReceivableIssuePage extends AbstractPage{
 		abstractInput.sendKeys(abstract_);
 		singleIssueBtn.click();
 	}
-	public static void main(String[] args) throws InterruptedException{
-
-	}
+	public static void main(String[] args) throws Exception {
+    }
 }

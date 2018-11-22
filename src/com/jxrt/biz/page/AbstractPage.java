@@ -1,11 +1,16 @@
 package com.jxrt.biz.page;
 
+import java.time.Duration;
+
 import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.OutputType;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.PageFactory;
 
 import com.jxrt.test.TestBase;
+
 
 public abstract class AbstractPage {
     protected final WebDriver driver;
@@ -24,7 +29,9 @@ public abstract class AbstractPage {
     	JavascriptExecutor js= (JavascriptExecutor)TestBase.driver;
         js.executeScript("arguments[0].setAttribute('style', 'background: yellow; border: 2px solid red;');",element);
     }
-	
+    
+//  
+//	
 //    protected void takeScreenShot(){
 //        driver.getScreenshotAs(OutputType.BASE64);
 //    }
