@@ -6,7 +6,6 @@
       <class name="com.jxrt.test.Team2Test">
         <methods>
           <include name="setup_Biz"/>
-          <include name="TestReceivableIssue"/>
           <include name="TestReceivableApproveNoPassModify"/>
           <include name="tearDown_Biz"/>
           <include name="TestReceivableApprovePass"/>

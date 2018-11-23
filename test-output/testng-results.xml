@@ -1,194 +1,45 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testng-results skipped="2" failed="1" total="4" passed="1">
+<testng-results skipped="0" failed="0" total="3" passed="3">
   <reporter-output>
   </reporter-output>
-  <suite name="Default suite" duration-ms="89934" started-at="2018-11-23T10:16:49Z" finished-at="2018-11-23T10:18:19Z">
+  <suite name="Default suite" duration-ms="164945" started-at="2018-11-23T11:20:53Z" finished-at="2018-11-23T11:23:38Z">
     <groups>
     </groups>
-    <test name="Default test" duration-ms="89934" started-at="2018-11-23T10:16:49Z" finished-at="2018-11-23T10:18:19Z">
+    <test name="Default test" duration-ms="164945" started-at="2018-11-23T11:20:53Z" finished-at="2018-11-23T11:23:38Z">
       <class name="com.jxrt.test.Team2Test">
-        <test-method status="PASS" signature="setup_Biz()[pri:0, instance:com.jxrt.test.Team2Test@5ed828d]" name="setup_Biz" is-config="true" duration-ms="5810" started-at="2018-11-23T18:16:50Z" finished-at="2018-11-23T18:16:55Z">
+        <test-method status="PASS" signature="setup_Biz()[pri:0, instance:com.jxrt.test.Team2Test@5ed828d]" name="setup_Biz" is-config="true" duration-ms="5984" started-at="2018-11-23T19:20:53Z" finished-at="2018-11-23T19:20:59Z">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- setup_Biz -->
-        <test-method status="PASS" signature="TestReceivableApproveNoPass()[pri:0, instance:com.jxrt.test.Team2Test@5ed828d]" name="TestReceivableApproveNoPass" duration-ms="60349" started-at="2018-11-23T18:16:55Z" finished-at="2018-11-23T18:17:56Z">
+        <test-method status="PASS" signature="TestReceivableApproveNoPass()[pri:0, instance:com.jxrt.test.Team2Test@5ed828d]" name="TestReceivableApproveNoPass" duration-ms="60562" started-at="2018-11-23T19:20:59Z" finished-at="2018-11-23T19:22:00Z">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- TestReceivableApproveNoPass -->
-        <test-method status="PASS" signature="tearDown_Biz()[pri:0, instance:com.jxrt.test.Team2Test@5ed828d]" name="tearDown_Biz" is-config="true" duration-ms="669" started-at="2018-11-23T18:17:56Z" finished-at="2018-11-23T18:17:56Z">
+        <test-method status="PASS" signature="tearDown_Biz()[pri:0, instance:com.jxrt.test.Team2Test@5ed828d]" name="tearDown_Biz" is-config="true" duration-ms="702" started-at="2018-11-23T19:22:00Z" finished-at="2018-11-23T19:22:01Z">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- tearDown_Biz -->
-        <test-method status="PASS" signature="setup_Biz()[pri:0, instance:com.jxrt.test.Team2Test@5ed828d]" name="setup_Biz" is-config="true" duration-ms="4839" started-at="2018-11-23T18:17:56Z" finished-at="2018-11-23T18:18:01Z">
+        <test-method status="PASS" signature="setup_Biz()[pri:0, instance:com.jxrt.test.Team2Test@5ed828d]" name="setup_Biz" is-config="true" duration-ms="4674" started-at="2018-11-23T19:22:01Z" finished-at="2018-11-23T19:22:05Z">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- setup_Biz -->
-        <test-method status="FAIL" signature="TestReceivableApproveNoPassModify()[pri:1, instance:com.jxrt.test.Team2Test@5ed828d]" name="TestReceivableApproveNoPassModify" duration-ms="13016" started-at="2018-11-23T18:18:01Z" finished-at="2018-11-23T18:18:14Z">
-          <exception class="org.openqa.selenium.WebDriverException">
-            <message>
-              <![CDATA[unknown error: Element <span>...</span> is not clickable at point (1084, 772). Other element would receive the click: <em index="41">...</em>
-  (Session info: chrome=69.0.3497.100)
-  (Driver info: chromedriver=2.40.565498 (ea082db3280dd6843ebfb08a625e3eb905c4f5ab),platform=Windows NT 10.0.17134 x86_64) (WARNING: The server did not provide any stacktrace information)
-Command duration or timeout: 0 milliseconds
-Build info: version: '3.6.0', revision: '6fbf3ec767', time: '2017-09-27T15:28:36.4Z'
-System info: host: 'CRANE', ip: '172.23.22.49', os.name: 'Windows 10', os.arch: 'amd64', os.version: '10.0', java.version: '1.8.0_131'
-Driver info: org.openqa.selenium.chrome.ChromeDriver
-Capabilities [{mobileEmulationEnabled=false, hasTouchScreen=false, platform=XP, acceptSslCerts=false, acceptInsecureCerts=false, webStorageEnabled=true, browserName=chrome, takesScreenshot=true, javascriptEnabled=true, platformName=XP, setWindowRect=true, unexpectedAlertBehaviour=, applicationCacheEnabled=false, rotatable=false, networkConnectionEnabled=false, chrome={chromedriverVersion=2.40.565498 (ea082db3280dd6843ebfb08a625e3eb905c4f5ab), userDataDir=C:\Users\Crane\AppData\Local\Temp\scoped_dir202536_11206}, takesHeapSnapshot=true, pageLoadStrategy=normal, unhandledPromptBehavior=, databaseEnabled=false, handlesAlerts=true, version=69.0.3497.100, browserConnectionEnabled=false, nativeEvents=true, locationContextEnabled=true, cssSelectorsEnabled=true}]
-Session ID: 4937b7e27fd1bbd925035d6af54dbb21]]>
-            </message>
-            <full-stacktrace>
-              <![CDATA[org.openqa.selenium.WebDriverException: unknown error: Element <span>...</span> is not clickable at point (1084, 772). Other element would receive the click: <em index="41">...</em>
-  (Session info: chrome=69.0.3497.100)
-  (Driver info: chromedriver=2.40.565498 (ea082db3280dd6843ebfb08a625e3eb905c4f5ab),platform=Windows NT 10.0.17134 x86_64) (WARNING: The server did not provide any stacktrace information)
-Command duration or timeout: 0 milliseconds
-Build info: version: '3.6.0', revision: '6fbf3ec767', time: '2017-09-27T15:28:36.4Z'
-System info: host: 'CRANE', ip: '172.23.22.49', os.name: 'Windows 10', os.arch: 'amd64', os.version: '10.0', java.version: '1.8.0_131'
-Driver info: org.openqa.selenium.chrome.ChromeDriver
-Capabilities [{mobileEmulationEnabled=false, hasTouchScreen=false, platform=XP, acceptSslCerts=false, acceptInsecureCerts=false, webStorageEnabled=true, browserName=chrome, takesScreenshot=true, javascriptEnabled=true, platformName=XP, setWindowRect=true, unexpectedAlertBehaviour=, applicationCacheEnabled=false, rotatable=false, networkConnectionEnabled=false, chrome={chromedriverVersion=2.40.565498 (ea082db3280dd6843ebfb08a625e3eb905c4f5ab), userDataDir=C:\Users\Crane\AppData\Local\Temp\scoped_dir202536_11206}, takesHeapSnapshot=true, pageLoadStrategy=normal, unhandledPromptBehavior=, databaseEnabled=false, handlesAlerts=true, version=69.0.3497.100, browserConnectionEnabled=false, nativeEvents=true, locationContextEnabled=true, cssSelectorsEnabled=true}]
-Session ID: 4937b7e27fd1bbd925035d6af54dbb21
-	at sun.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)
-	at sun.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccessorImpl.java:62)
-	at sun.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45)
-	at java.lang.reflect.Constructor.newInstance(Constructor.java:423)
-	at org.openqa.selenium.remote.ErrorHandler.createThrowable(ErrorHandler.java:214)
-	at org.openqa.selenium.remote.ErrorHandler.throwIfResponseFailed(ErrorHandler.java:166)
-	at org.openqa.selenium.remote.http.JsonHttpResponseCodec.reconstructValue(JsonHttpResponseCodec.java:40)
-	at org.openqa.selenium.remote.http.AbstractHttpResponseCodec.decode(AbstractHttpResponseCodec.java:80)
-	at org.openqa.selenium.remote.http.AbstractHttpResponseCodec.decode(AbstractHttpResponseCodec.java:44)
-	at org.openqa.selenium.remote.HttpCommandExecutor.execute(HttpCommandExecutor.java:158)
-	at org.openqa.selenium.remote.service.DriverCommandExecutor.execute(DriverCommandExecutor.java:83)
-	at org.openqa.selenium.remote.RemoteWebDriver.execute(RemoteWebDriver.java:545)
-	at org.openqa.selenium.remote.RemoteWebElement.execute(RemoteWebElement.java:279)
-	at org.openqa.selenium.remote.RemoteWebElement.click(RemoteWebElement.java:83)
-	at sun.reflect.GeneratedMethodAccessor1.invoke(Unknown Source)
-	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
-	at java.lang.reflect.Method.invoke(Method.java:498)
-	at org.openqa.selenium.support.pagefactory.internal.LocatingElementHandler.invoke(LocatingElementHandler.java:51)
-	at com.sun.proxy.$Proxy10.click(Unknown Source)
-	at com.jxrt.test.Team2Test.TestReceivableApproveNoPassModify(Team2Test.java:225)
-	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
-	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
-	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
-	at java.lang.reflect.Method.invoke(Method.java:498)
-	at org.testng.internal.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:85)
-	at org.testng.internal.Invoker.invokeMethod(Invoker.java:639)
-	at org.testng.internal.Invoker.invokeTestMethod(Invoker.java:816)
-	at org.testng.internal.Invoker.invokeTestMethods(Invoker.java:1124)
-	at org.testng.internal.TestMethodWorker.invokeTestMethods(TestMethodWorker.java:125)
-	at org.testng.internal.TestMethodWorker.run(TestMethodWorker.java:108)
-	at org.testng.TestRunner.privateRun(TestRunner.java:774)
-	at org.testng.TestRunner.run(TestRunner.java:624)
-	at org.testng.SuiteRunner.runTest(SuiteRunner.java:359)
-	at org.testng.SuiteRunner.runSequentially(SuiteRunner.java:354)
-	at org.testng.SuiteRunner.privateRun(SuiteRunner.java:312)
-	at org.testng.SuiteRunner.run(SuiteRunner.java:261)
-	at org.testng.SuiteRunnerWorker.runSuite(SuiteRunnerWorker.java:52)
-	at org.testng.SuiteRunnerWorker.run(SuiteRunnerWorker.java:86)
-	at org.testng.TestNG.runSuitesSequentially(TestNG.java:1215)
-	at org.testng.TestNG.runSuitesLocally(TestNG.java:1140)
-	at org.testng.TestNG.run(TestNG.java:1048)
-	at org.testng.remote.AbstractRemoteTestNG.run(AbstractRemoteTestNG.java:114)
-	at org.testng.remote.RemoteTestNG.initAndRun(RemoteTestNG.java:251)
-	at org.testng.remote.RemoteTestNG.main(RemoteTestNG.java:77)
-]]>
-            </full-stacktrace>
-          </exception> <!-- org.openqa.selenium.WebDriverException -->
+        <test-method status="PASS" signature="TestReceivableApproveNoPassModify()[pri:1, instance:com.jxrt.test.Team2Test@5ed828d]" name="TestReceivableApproveNoPassModify" duration-ms="22361" started-at="2018-11-23T19:22:05Z" finished-at="2018-11-23T19:22:28Z">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- TestReceivableApproveNoPassModify -->
-        <test-method status="PASS" signature="tearDown_Biz()[pri:0, instance:com.jxrt.test.Team2Test@5ed828d]" name="tearDown_Biz" is-config="true" duration-ms="661" started-at="2018-11-23T18:18:14Z" finished-at="2018-11-23T18:18:15Z">
+        <test-method status="PASS" signature="tearDown_Biz()[pri:0, instance:com.jxrt.test.Team2Test@5ed828d]" name="tearDown_Biz" is-config="true" duration-ms="702" started-at="2018-11-23T19:22:28Z" finished-at="2018-11-23T19:22:28Z">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- tearDown_Biz -->
-        <test-method status="FAIL" signature="setup_Biz()[pri:0, instance:com.jxrt.test.Team2Test@5ed828d]" name="setup_Biz" is-config="true" duration-ms="0" started-at="2018-11-23T18:18:15Z" finished-at="2018-11-23T18:18:15Z">
-          <exception class="org.openqa.selenium.WebDriverException">
-            <message>
-              <![CDATA[unknown error: unhandled inspector error: {"code":-32000,"message":"Browser window not found"}
-  (Session info: chrome=69.0.3497.100)
-  (Driver info: chromedriver=2.40.565498 (ea082db3280dd6843ebfb08a625e3eb905c4f5ab),platform=Windows NT 10.0.17134 x86_64) (WARNING: The server did not provide any stacktrace information)
-Command duration or timeout: 0 milliseconds
-Build info: version: '3.6.0', revision: '6fbf3ec767', time: '2017-09-27T15:28:36.4Z'
-System info: host: 'CRANE', ip: '172.23.22.49', os.name: 'Windows 10', os.arch: 'amd64', os.version: '10.0', java.version: '1.8.0_131'
-Driver info: org.openqa.selenium.chrome.ChromeDriver
-Capabilities [{mobileEmulationEnabled=false, hasTouchScreen=false, platform=XP, acceptSslCerts=false, acceptInsecureCerts=false, webStorageEnabled=true, browserName=chrome, takesScreenshot=true, javascriptEnabled=true, platformName=XP, setWindowRect=true, unexpectedAlertBehaviour=, applicationCacheEnabled=false, rotatable=false, networkConnectionEnabled=false, chrome={chromedriverVersion=2.40.565498 (ea082db3280dd6843ebfb08a625e3eb905c4f5ab), userDataDir=C:\Users\Crane\AppData\Local\Temp\scoped_dir202024_27487}, takesHeapSnapshot=true, pageLoadStrategy=normal, unhandledPromptBehavior=, databaseEnabled=false, handlesAlerts=true, version=69.0.3497.100, browserConnectionEnabled=false, nativeEvents=true, locationContextEnabled=true, cssSelectorsEnabled=true}]
-Session ID: 4adafb9af00700cdc95f25da0aa71b7f]]>
-            </message>
-            <full-stacktrace>
-              <![CDATA[org.openqa.selenium.WebDriverException: unknown error: unhandled inspector error: {"code":-32000,"message":"Browser window not found"}
-  (Session info: chrome=69.0.3497.100)
-  (Driver info: chromedriver=2.40.565498 (ea082db3280dd6843ebfb08a625e3eb905c4f5ab),platform=Windows NT 10.0.17134 x86_64) (WARNING: The server did not provide any stacktrace information)
-Command duration or timeout: 0 milliseconds
-Build info: version: '3.6.0', revision: '6fbf3ec767', time: '2017-09-27T15:28:36.4Z'
-System info: host: 'CRANE', ip: '172.23.22.49', os.name: 'Windows 10', os.arch: 'amd64', os.version: '10.0', java.version: '1.8.0_131'
-Driver info: org.openqa.selenium.chrome.ChromeDriver
-Capabilities [{mobileEmulationEnabled=false, hasTouchScreen=false, platform=XP, acceptSslCerts=false, acceptInsecureCerts=false, webStorageEnabled=true, browserName=chrome, takesScreenshot=true, javascriptEnabled=true, platformName=XP, setWindowRect=true, unexpectedAlertBehaviour=, applicationCacheEnabled=false, rotatable=false, networkConnectionEnabled=false, chrome={chromedriverVersion=2.40.565498 (ea082db3280dd6843ebfb08a625e3eb905c4f5ab), userDataDir=C:\Users\Crane\AppData\Local\Temp\scoped_dir202024_27487}, takesHeapSnapshot=true, pageLoadStrategy=normal, unhandledPromptBehavior=, databaseEnabled=false, handlesAlerts=true, version=69.0.3497.100, browserConnectionEnabled=false, nativeEvents=true, locationContextEnabled=true, cssSelectorsEnabled=true}]
-Session ID: 4adafb9af00700cdc95f25da0aa71b7f
-	at sun.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)
-	at sun.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccessorImpl.java:62)
-	at sun.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45)
-	at java.lang.reflect.Constructor.newInstance(Constructor.java:423)
-	at org.openqa.selenium.remote.ErrorHandler.createThrowable(ErrorHandler.java:214)
-	at org.openqa.selenium.remote.ErrorHandler.throwIfResponseFailed(ErrorHandler.java:166)
-	at org.openqa.selenium.remote.http.JsonHttpResponseCodec.reconstructValue(JsonHttpResponseCodec.java:40)
-	at org.openqa.selenium.remote.http.AbstractHttpResponseCodec.decode(AbstractHttpResponseCodec.java:80)
-	at org.openqa.selenium.remote.http.AbstractHttpResponseCodec.decode(AbstractHttpResponseCodec.java:44)
-	at org.openqa.selenium.remote.HttpCommandExecutor.execute(HttpCommandExecutor.java:158)
-	at org.openqa.selenium.remote.service.DriverCommandExecutor.execute(DriverCommandExecutor.java:83)
-	at org.openqa.selenium.remote.RemoteWebDriver.execute(RemoteWebDriver.java:545)
-	at org.openqa.selenium.remote.RemoteWebDriver.execute(RemoteWebDriver.java:602)
-	at org.openqa.selenium.remote.RemoteWebDriver$RemoteWebDriverOptions$RemoteWindow.maximize(RemoteWebDriver.java:836)
-	at com.jxrt.util.Browser.getDriver(Browser.java:32)
-	at com.jxrt.test.TestBase.setupBiz(TestBase.java:176)
-	at com.jxrt.test.Team2Test.setup_Biz(Team2Test.java:16)
-	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
-	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
-	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
-	at java.lang.reflect.Method.invoke(Method.java:498)
-	at org.testng.internal.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:85)
-	at org.testng.internal.Invoker.invokeConfigurationMethod(Invoker.java:510)
-	at org.testng.internal.Invoker.invokeConfigurations(Invoker.java:211)
-	at org.testng.internal.Invoker.invokeMethod(Invoker.java:585)
-	at org.testng.internal.Invoker.invokeTestMethod(Invoker.java:816)
-	at org.testng.internal.Invoker.invokeTestMethods(Invoker.java:1124)
-	at org.testng.internal.TestMethodWorker.invokeTestMethods(TestMethodWorker.java:125)
-	at org.testng.internal.TestMethodWorker.run(TestMethodWorker.java:108)
-	at org.testng.TestRunner.privateRun(TestRunner.java:774)
-	at org.testng.TestRunner.run(TestRunner.java:624)
-	at org.testng.SuiteRunner.runTest(SuiteRunner.java:359)
-	at org.testng.SuiteRunner.runSequentially(SuiteRunner.java:354)
-	at org.testng.SuiteRunner.privateRun(SuiteRunner.java:312)
-	at org.testng.SuiteRunner.run(SuiteRunner.java:261)
-	at org.testng.SuiteRunnerWorker.runSuite(SuiteRunnerWorker.java:52)
-	at org.testng.SuiteRunnerWorker.run(SuiteRunnerWorker.java:86)
-	at org.testng.TestNG.runSuitesSequentially(TestNG.java:1215)
-	at org.testng.TestNG.runSuitesLocally(TestNG.java:1140)
-	at org.testng.TestNG.run(TestNG.java:1048)
-	at org.testng.remote.AbstractRemoteTestNG.run(AbstractRemoteTestNG.java:114)
-	at org.testng.remote.RemoteTestNG.initAndRun(RemoteTestNG.java:251)
-	at org.testng.remote.RemoteTestNG.main(RemoteTestNG.java:77)
-]]>
-            </full-stacktrace>
-          </exception> <!-- org.openqa.selenium.WebDriverException -->
+        <test-method status="PASS" signature="setup_Biz()[pri:0, instance:com.jxrt.test.Team2Test@5ed828d]" name="setup_Biz" is-config="true" duration-ms="4713" started-at="2018-11-23T19:22:28Z" finished-at="2018-11-23T19:22:33Z">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- setup_Biz -->
-        <test-method status="SKIP" signature="TestReceivableApprovePass()[pri:2, instance:com.jxrt.test.Team2Test@5ed828d]" name="TestReceivableApprovePass" duration-ms="1" started-at="2018-11-23T18:18:19Z" finished-at="2018-11-23T18:18:19Z">
+        <test-method status="PASS" signature="TestReceivableApprovePass()[pri:2, instance:com.jxrt.test.Team2Test@5ed828d]" name="TestReceivableApprovePass" duration-ms="64506" started-at="2018-11-23T19:22:33Z" finished-at="2018-11-23T19:23:37Z">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- TestReceivableApprovePass -->
-        <test-method status="SKIP" signature="tearDown_Biz()[pri:0, instance:com.jxrt.test.Team2Test@5ed828d]" name="tearDown_Biz" is-config="true" duration-ms="0" started-at="2018-11-23T18:18:19Z" finished-at="2018-11-23T18:18:19Z">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- tearDown_Biz -->
-        <test-method status="SKIP" signature="setup_Biz()[pri:0, instance:com.jxrt.test.Team2Test@5ed828d]" name="setup_Biz" is-config="true" duration-ms="0" started-at="2018-11-23T18:18:19Z" finished-at="2018-11-23T18:18:19Z">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- setup_Biz -->
-        <test-method status="SKIP" signature="TestReceivableIssue()[pri:2, instance:com.jxrt.test.Team2Test@5ed828d]" name="TestReceivableIssue" duration-ms="2" started-at="2018-11-23T18:18:19Z" finished-at="2018-11-23T18:18:19Z">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- TestReceivableIssue -->
-        <test-method status="SKIP" signature="tearDown_Biz()[pri:0, instance:com.jxrt.test.Team2Test@5ed828d]" name="tearDown_Biz" is-config="true" duration-ms="0" started-at="2018-11-23T18:18:19Z" finished-at="2018-11-23T18:18:19Z">
+        <test-method status="PASS" signature="tearDown_Biz()[pri:0, instance:com.jxrt.test.Team2Test@5ed828d]" name="tearDown_Biz" is-config="true" duration-ms="723" started-at="2018-11-23T19:23:37Z" finished-at="2018-11-23T19:23:38Z">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- tearDown_Biz -->

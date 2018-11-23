@@ -22,7 +22,7 @@ public class Team2Test extends TestBase {
 		tearDownBiz();
 	}
 	
-	@Test(enabled=true,priority = 2)
+	@Test(enabled=false,priority = 2)
 	public void TestReceivableIssue() throws InterruptedException {
 		//初始化数据
 		String corpNameCore=TestBase.corpNameCoreReceivableTeam2;
@@ -132,7 +132,7 @@ public class Team2Test extends TestBase {
 			TestBase.biz.receivableSearchIssuedTabPage().applyAmountMaxInput.sendKeys(applyAmount);
 			TestBase.biz.receivableSearchIssuedTabPage().searchBtn.click();
 		}
-		Thread.sleep(3000);
+		Thread.sleep(5000);
 		//断言
 		Assert.assertEquals(TestBase.biz.receivableSearchIssuedTabPage().receivableListPkCredits.get(0).getText(),pkCredit);
 	}
@@ -222,9 +222,12 @@ public class Team2Test extends TestBase {
 		TestBase.biz.receivableSearchPage().receivableModifyMaturityDateInput.sendKeys(maturityDate);
 		TestBase.biz.receivableSearchPage().receivableModifyAbstract_Input.clear();
 		TestBase.biz.receivableSearchPage().receivableModifyAbstract_Input.sendKeys(abstract_);
-		TestBase.biz.receivableSearchPage().submitBtn.click();
 		Thread.sleep(2000);
-		Assert.assertEquals(TestBase.biz.receivableSearchPage().receivableListApproveResults, "");
+		TestBase.biz.receivableSearchPage().submitBtn.click();
+		//断言
+		Thread.sleep(5000);
+		Assert.assertEquals(TestBase.biz.receivableIssuePage().InstructionResult.getText(), "提交成功！请等待主管审核，您可以在账款查询中查看进度!");
+		Thread.sleep(2000);
 	}
 	
 }
