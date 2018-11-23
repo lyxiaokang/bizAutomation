@@ -5,9 +5,11 @@
     <classes>
       <class name="com.jxrt.test.Team2Test">
         <methods>
-          <include name="setup_Corp"/>
+          <include name="setup_Biz"/>
           <include name="TestReceivableIssue"/>
-          <include name="tearDown_Corp"/>
+          <include name="TestReceivableApproveNoPassModify"/>
+          <include name="tearDown_Biz"/>
+          <include name="TestReceivableApprovePass"/>
         </methods>
       </class> <!-- com.jxrt.test.Team2Test -->
     </classes>

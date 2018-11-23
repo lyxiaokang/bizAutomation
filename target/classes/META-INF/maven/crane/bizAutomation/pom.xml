@@ -109,5 +109,10 @@
   		<version>2.4</version>
   		<classifier>jdk15</classifier>
   	</dependency>
+  	<dependency>
+  		<groupId>com.google.inject</groupId>
+  		<artifactId>guice</artifactId>
+  		<version>4.1.0</version>
+  	</dependency>
   </dependencies>
 </project>

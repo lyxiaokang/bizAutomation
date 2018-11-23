@@ -2,15 +2,9 @@ package com.jxrt.biz.page;
 
 import java.util.List;
 
-import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.ie.InternetExplorerDriver;
-import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.support.FindBy;
-
-import com.jxrt.test.TestBase;
 
 /*
  * 平台端-交易管理-账款融资管理-账款新增
@@ -49,7 +43,7 @@ public class ReceivableIssuePage extends AbstractPage{
 			corpNameCoreSelectBtns.get(0).click();
 		}
 	}
-	//供应商查询按钮
+	//供应商查询输入框
 	@FindBy(xpath="//label[contains(text(), '供应商名称：')]/../descendant::input")
 	public WebElement corpNameAcceptInput;	
 	//供应商查询按钮
@@ -94,63 +88,54 @@ public class ReceivableIssuePage extends AbstractPage{
 	public WebElement singleIssueBtn;
 	
 	//账款表单
-	@FindBy(xpath="//tbody/tr[@class_name='ivu-table-row'][1]")
-	public WebElement receivableList;
+	@FindBy(xpath="//table/tbody/tr/td[1]")
+	public List<WebElement> receivableLists;
 	//账款表单checkbox
-	@FindBy(xpath="//table/tbody/tr[1]/td[1]/div/label")
-	public WebElement receivableListCheckBox;
+	@FindBy(xpath="//table/tbody/tr/td[1]/div/label")
+	public List<WebElement> receivableListCheckBoxs;
 	//账款表单Index
-	@FindBy(xpath="//table/tbody/tr[1]/td[2]/div")
-	public WebElement receivableListIndex;
+	@FindBy(xpath="//table/tbody/tr/td[2]/div")
+	public List<WebElement> receivableListIndexs;
 	//账款表单Core
-	@FindBy(xpath="//tbody/tr[1]/td[3]/div/p/span[1]")
-	public WebElement receivableListCore;
+	@FindBy(xpath="//table/tbody/tr/td[3]/div/p/span[1]")
+	public List<WebElement> receivableListCores;
 	//账款表单LimitSource
-	@FindBy(xpath="//tbody/tr[1]/td[3]/div/p/span[2]")
-	public WebElement receivableListLimitSource;
+	@FindBy(xpath="//table/tbody/tr/td[3]/div/p/span[2]")
+	public List<WebElement> receivableListLimitSources;
 	//账款表单产品类型
-	@FindBy(xpath="//table/tbody/tr[1]/td[4]/div/span")
-	public WebElement receivableListProductType;
+	@FindBy(xpath="//table/tbody/tr/td[4]")
+	public List<WebElement> receivableListProductTypes;
 	//账款表单供应商名称
-	@FindBy(xpath="//table/tbody/tr[1]/td[5]/div/span")
-	public WebElement receivableListCorpNameAccept;
+	@FindBy(xpath="//table/tbody/tr/td[5]/div/span")
+	public List<WebElement> receivableListCorpNameAccepts;
 	//账款表单商务合同编号
-	@FindBy(xpath="//table/tbody/tr[1]/td[6]/div/span")
-	public WebElement receivableListBusiContractCode;
+	@FindBy(xpath="//table/tbody/tr/td[6]/div/span")
+	public List<WebElement> receivableListBusiContractCodes;
 	//账款表单应付账款金额
-	@FindBy(xpath="//table/tbody/tr[1]/td[7]/div/span")
-	public WebElement receivableListApplyAmount;
+	@FindBy(xpath="//table/tbody/tr/td[7]/div/span")
+	public List<WebElement> receivableListApplyAmounts;
 	//账款表单应付账款到期日
-	@FindBy(xpath="//table/tbody/tr[1]/td[8]/div/span")
-	public WebElement receivableListMaturityDate;
+	@FindBy(xpath="//table/tbody/tr/td[8]/div/span")
+	public List<WebElement> receivableListMaturityDates;
 	//账款表单摘要
-	@FindBy(xpath="//table/tbody/tr[1]/td[10]/div/span")
-	public WebElement receivableListAbstract_;
+	@FindBy(xpath="//table/tbody/tr/td[10]/div/span")
+	public List<WebElement> receivableListAbstract_s;
 	//账款表单校验结果通过
-	@FindBy(xpath="//tbody/tr[1]/td[11]/div/span")
-	public WebElement receivableListVerifyPass;
+	@FindBy(xpath="//table/tbody/tr/td[11]/div/span")
+	public List<WebElement> receivableListVerifyPasss;
 	//账款表单校验结果不通过时
-	@FindBy(xpath="//tbody/tr[1]/td[11]/div/i")
-	public WebElement receivableListVerifyFailValue;
+	@FindBy(xpath="//table/tbody/tr/td[11]/div/i")
+	public List<WebElement> receivableListVerifyFailValues;
 	//账款表单修改按钮
-	@FindBy(xpath="//tbody/tr[1]/td[12]/div/div/button/span")
-	public WebElement receivableListModifyBtn;
+	@FindBy(xpath="//table/tbody/tr/td[12]/div/div/button/span")
+	public List<WebElement> receivableListModifyBtns;
 	//账款表单上传按钮
-	@FindBy(xpath="//tbody/tr[1]/td[12]/div/div/div/div/button/span")
-	public WebElement receivableListUploadBtn;
-	//提示框
-	@FindBy(className="ivu-modal-content")
-	public WebElement InstructionWindow;
-	//提示框结果
-	@FindBy(xpath="/html/body/div[6]/div[2]/div/div/div[2]")
-	public WebElement InstructionResult;
-	//提示框确认按钮
-	@FindBy(xpath="/html/body/div[6]/div[2]/div/div/div[3]/div/button/span")
-	public WebElement InstructionWindowConfirmBtn;
+	@FindBy(xpath="//table/tbody/tr/td[12]/div/div/div/div/button/span")
+	public List<WebElement> receivableListUploadBtns;
 	
-	//账款表单下方提交按钮
-	@FindBy(xpath="/html/body/div[1]/div/div[2]/div[1]/div/div[2]/div/div/div[2]/div/div[4]/div[2]/button/span")
-	public WebElement SubmitBtn;
+	//账款表单下方提交审核按钮
+	@FindBy(xpath="//button/span[contains(text(), '提交审核')]")
+	public WebElement submitBtn;
 	
 	/*
 	 * 单笔新增账款
@@ -170,6 +155,4 @@ public class ReceivableIssuePage extends AbstractPage{
 		abstractInput.sendKeys(abstract_);
 		singleIssueBtn.click();
 	}
-	public static void main(String[] args) throws Exception {
-    }
 }

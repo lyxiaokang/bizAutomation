@@ -28,9 +28,30 @@ public class Biz {
 	}
 	
 	/*
-	 * 首页初始化
+	 * 账款签发初始化
 	 */
 	public ReceivableIssuePage receivableIssuePage() {
 		return new ReceivableIssuePage(driver);
 	}
+	/*
+	 * 账款查询初始化
+	 */
+	public ReceivableSearchPage receivableSearchPage() {
+		return new ReceivableSearchPage(driver);
+	}
+	/*
+	 * 账款查询已确认初始化
+	 */
+	public ReceivableSearchIssuedTabPage receivableSearchIssuedTabPage() {
+		return new ReceivableSearchIssuedTabPage(driver);
+	}
+	/*
+	 * 账款审核初始化
+	 */
+	public ReceivableApprovePage receivableApprovePage() {
+		return new ReceivableApprovePage(driver);
+	}
+	
+	
+	
 }

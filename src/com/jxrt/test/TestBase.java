@@ -24,7 +24,7 @@ import net.sf.json.JSONObject;
 
 public class TestBase {
 	public static  WebDriver driver = null;
-	public static  String url = PropertiesUtil.getOptValue("host");
+	public static  String BizUrl = "http://"+PropertiesUtil.getOptValue("server_ip")+"/biz/login";
 	public static  String browserType = PropertiesUtil.getOptValue("browserType");
 	public static String baseDir = System.getProperty("user.dir");
 	public static Biz biz;
@@ -167,11 +167,13 @@ public class TestBase {
 		}
 	}
 
+	public static String ReceivableApproveNoPassPkCredit;
+	public static String ReceivableApproveNoPassApplyAmount;
 	/*
 	 * 浏览器初始化
 	 */
 	public static void setupBiz() {
-		driver = Browser.getDriver(browserType,url);
+		driver = Browser.getDriver(browserType,BizUrl);
 		biz = new Biz(driver);
 
 	}
