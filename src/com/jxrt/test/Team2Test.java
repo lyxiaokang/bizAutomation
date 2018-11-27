@@ -39,29 +39,8 @@ public class Team2Test extends TestBase {
 		TestBase.biz.receivableIssuePage().ReceivableIssue(corpNameCore,corpNameAccept,
 				busiContractCode,applyAmount,maturityDate,abstract_);
 		Thread.sleep(3000);
-		//断言
-		Assert.assertEquals(TestBase.biz.receivableIssuePage().receivableListCores.get(0).getText(), corpNameCore);
-		Assert.assertEquals(TestBase.biz.receivableIssuePage().receivableListLimitSources.get(0).getText(), corpNameCore);
-		Assert.assertEquals(TestBase.biz.receivableIssuePage().receivableListProductTypes.get(0).getText(), "e点通");
-		Assert.assertEquals(TestBase.biz.receivableIssuePage().receivableListCorpNameAccepts.get(0).getText(), corpNameAccept);
-		Assert.assertEquals(TestBase.biz.receivableIssuePage().receivableListBusiContractCodes.get(0).getText(), busiContractCode);
-		Assert.assertEquals(TestBase.biz.receivableIssuePage().receivableListApplyAmounts.get(0).getText(), applyAmount+".00");
-		Assert.assertEquals(TestBase.biz.receivableIssuePage().receivableListMaturityDates.get(0).getText(), maturityDate);
-		Assert.assertEquals(TestBase.biz.receivableIssuePage().receivableListAbstract_s.get(0).getText(), abstract_);
-//		Assert.assertNotNull(TestBase.biz.receivableIssuePage().receivableListVerifyPasss.get(0));
 		//上传文件
-		try{ 
-			Runtime.getRuntime().exec("D:\\autoit\\uploadFile.exe");
-
-			}catch(Exception e){ 
-				e.printStackTrace();
-			} 
-		TestBase.biz.receivableIssuePage().receivableListUploadBtns.get(0).click();
-		Thread.sleep(5000);
-		//断言
-		Assert.assertEquals(TestBase.biz.receivableIssuePage().InstructionResult.getText(), "上传成功");
-		TestBase.biz.receivableIssuePage().InstructionWindowConfirmBtn.click();
-		Thread.sleep(2000);
+		TestBase.biz.receivableIssuePage().uploadFile(TestBase.biz.receivableIssuePage().receivableListUploadBtns.get(0),"uploadFileForGoogle.exe");
 		//勾选记录并点击提交
 		TestBase.biz.receivableIssuePage().receivableListCheckBoxs.get(0).click();
 		TestBase.biz.receivableIssuePage().scrollIntoView(TestBase.biz.receivableIssuePage().receivableListCores.get(0));
@@ -132,7 +111,7 @@ public class Team2Test extends TestBase {
 			TestBase.biz.receivableSearchIssuedTabPage().applyAmountMaxInput.sendKeys(applyAmount);
 			TestBase.biz.receivableSearchIssuedTabPage().searchBtn.click();
 		}
-		Thread.sleep(5000);
+		Thread.sleep(8000);
 		//断言
 		Assert.assertEquals(TestBase.biz.receivableSearchIssuedTabPage().receivableListPkCredits.get(0).getText(),pkCredit);
 	}
@@ -178,7 +157,6 @@ public class Team2Test extends TestBase {
 		Thread.sleep(3000);
 		//断言
 		Assert.assertEquals(TestBase.biz.receivableSearchPage().receivableListPkCredits.get(0).getText(),pkCredit);
-		TestBase.biz.receivableSearchPage().sendKeysToPage(Keys.RIGHT,10);
 		Thread.sleep(1000);
 		Assert.assertEquals(TestBase.biz.receivableSearchPage().receivableListApproveResults.get(0).getText(),"不通过");
 
@@ -201,10 +179,8 @@ public class Team2Test extends TestBase {
 		Thread.sleep(3000);
 		//断言
 		Assert.assertEquals(TestBase.biz.receivableSearchPage().receivableListPkCredits.get(0).getText(),TestBase.ReceivableApproveNoPassPkCredit);
-		TestBase.biz.receivableSearchPage().sendKeysToPage(Keys.RIGHT,10);
 		Thread.sleep(1000);
 		Assert.assertEquals(TestBase.biz.receivableSearchPage().receivableListApproveResults.get(0).getText(),"不通过");
-		TestBase.biz.receivableSearchPage().sendKeysToPage(Keys.RIGHT, 10);
 		TestBase.biz.receivableSearchPage().receivableListModiyBtns.get(0).click();
 		Thread.sleep(1000);
 		

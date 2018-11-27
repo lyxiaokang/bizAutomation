@@ -5,6 +5,9 @@ import java.util.List;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+import org.testng.Assert;
+
+import com.jxrt.test.TestBase;
 
 /*
  * 平台端-交易管理-账款融资管理-账款新增
@@ -127,10 +130,10 @@ public class ReceivableIssuePage extends AbstractPage{
 	@FindBy(xpath="//table/tbody/tr/td[11]/div/i")
 	public List<WebElement> receivableListVerifyFailValues;
 	//账款表单修改按钮
-	@FindBy(xpath="//table/tbody/tr/td[12]/div/div/button/span")
+	@FindBy(xpath="//table/tbody/tr/td[12]/descendant::span[contains(text(), '修改')]")
 	public List<WebElement> receivableListModifyBtns;
 	//账款表单上传按钮
-	@FindBy(xpath="//table/tbody/tr/td[12]/div/div/div/div/button/span")
+	@FindBy(xpath="//table/tbody/tr/td[12]/descendant::span[contains(text(), '上传')]")
 	public List<WebElement> receivableListUploadBtns;
 	
 	//账款表单下方提交审核按钮
@@ -154,5 +157,18 @@ public class ReceivableIssuePage extends AbstractPage{
 		maturityDateInput.sendKeys(maturityDate);
 		abstractInput.sendKeys(abstract_);
 		singleIssueBtn.click();
+		
+		Thread.sleep(3000);
+		//断言
+		Assert.assertEquals(receivableListCores.get(0).getText(), corpNameCore);
+		Assert.assertEquals(receivableListLimitSources.get(0).getText(), corpNameCore);
+		Assert.assertEquals(receivableListProductTypes.get(0).getText(), "e点通");
+		Assert.assertEquals(receivableListCorpNameAccepts.get(0).getText(), corpNameAccept);
+		Assert.assertEquals(receivableListBusiContractCodes.get(0).getText(), busiContractCode);
+		Assert.assertEquals(receivableListApplyAmounts.get(0).getText(), applyAmount+".00");
+		Assert.assertEquals(receivableListMaturityDates.get(0).getText(), maturityDate);
+		Assert.assertEquals(receivableListAbstract_s.get(0).getText(), abstract_);
+//		Assert.assertNotNull(receivableListVerifyPasss.get(0));
 	}
+	
 }

@@ -4,6 +4,9 @@ import java.util.List;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.ie.InternetExplorerDriver;
+import org.openqa.selenium.ie.InternetExplorerDriverService;
+import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.support.FindBy;
 import org.testng.Assert;
 
@@ -177,8 +180,6 @@ public class ReceivableSearchPage extends AbstractPage{
 	//账款修改弹出框关闭按钮
 	@FindBy(xpath="/html/body/div[3]/div[2]/div/div/div[3]/div/button[2]/span")
 	public WebElement closeBtn;
-	
 	public static void main(String[] args) throws Exception {
-
 	}
 }

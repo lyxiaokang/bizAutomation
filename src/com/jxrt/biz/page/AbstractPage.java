@@ -7,9 +7,12 @@ import org.openqa.selenium.Keys;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.ie.InternetExplorerDriver;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+import org.testng.Assert;
 
 import com.jxrt.test.TestBase;
 
@@ -52,11 +55,12 @@ public abstract class AbstractPage {
     }
     
     /*
-     * 移动元素实现滑动
+     * 移动元素实现滑动，IE执行时会报错
      */
-    public void moveToElement(WebElement source,WebElement target){
+    public void moveToElement(WebElement target){
     	Actions action = new Actions(TestBase.driver);
-    	action.dragAndDrop(source, target).perform();
+    	action.moveToElement(target)
+    	.perform();
     }
     /*
      * 页面输入特殊按钮n次，实现滚动功能
@@ -68,7 +72,45 @@ public abstract class AbstractPage {
     	}
     	action.perform();
     }
+	/*
+	 * 上传文件
+	 */
+	public void uploadFile(WebElement element,String exeFileName) throws InterruptedException{
+		String replacement=null;
+		String exeFileNameNew=null;
+		switch (TestBase.browserType) {
+		case "Chrome":
+			replacement = "ForGoogle";
+			exeFileNameNew=exeFileName.replaceAll("ForIE", replacement);
+			break;
+		case "IE":
+			replacement = "ForIE";
+			exeFileNameNew=exeFileName.replaceAll("ForGoogle", replacement);
+			break;
+		default:
+			try {
+				throw new Exception("非法浏览器配置！");
+			} catch (Exception e1) {
+				e1.printStackTrace();
+			}
+		}
+		
+		
+		try{ 
+			Runtime.getRuntime().exec("D:\\autoit\\"+exeFileNameNew);
 
+			}catch(Exception e){ 
+				e.printStackTrace();
+			} 
+		element.click();
+		Thread.sleep(5000);
+		//断言
+		if(InstructionResult.isDisplayed()){
+			Assert.assertEquals(InstructionResult.getText(), "上传成功");
+			InstructionWindowConfirmBtn.click();
+		}
+		Thread.sleep(2000);
+	}
 //  
 //	
 //    protected void takeScreenShot(){

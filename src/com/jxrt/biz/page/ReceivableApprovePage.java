@@ -3,6 +3,7 @@ package com.jxrt.biz.page;
 import java.time.LocalDate;
 import java.util.List;
 
+import org.openqa.selenium.Dimension;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
@@ -140,7 +141,7 @@ public class ReceivableApprovePage extends AbstractPage{
 		 */
 		public void approvePass(int n) throws InterruptedException{
 			receivableListCheckBoxs.get(n-1).click();
-			sendKeysToPage(Keys.END,1);
+			scrollIntoView(receivableListPkCredits.get(n-1));
 			Thread.sleep(1000);
 			approvePassBtn.click();
 			Thread.sleep(5000);
@@ -156,12 +157,13 @@ public class ReceivableApprovePage extends AbstractPage{
 			receivableListCheckBoxs.get(n-1).click();
 
 			Thread.sleep(1000);
-			sendKeysToPage(Keys.RIGHT,15);
+//			左移，IE无法兼容
+//			sendKeysToPage(Keys.RIGHT,15);
 			Thread.sleep(1000);
 			receivableListNotPassReasonInputs.get(0).click();
 			Thread.sleep(1000);
 			receivableListCorpNameCoreWrong.click();
-			sendKeysToPage(Keys.END,1);
+			scrollIntoView(receivableListPkCredits.get(0));
 			approveNoPassBtn.click();
 			Thread.sleep(2000);
 			//断言
@@ -171,7 +173,6 @@ public class ReceivableApprovePage extends AbstractPage{
 		public static void main(String[] args) throws Exception {
 			TestBase.setupBiz();
 			TestBase.biz.bizLoginPage().login(TestBase.operateManagerMobileTeam2,TestBase.operateOperatorPasswordTeam2);
-			//进入账款审核
 			TestBase.biz.homePage().gotoReceivableApprovePage();
 			String corpNameCore=TestBase.corpNameCoreReceivableTeam2;
 			String corpNameAccept=TestBase.corpNameReceivableTeam2;
@@ -179,9 +180,12 @@ public class ReceivableApprovePage extends AbstractPage{
 			TestBase.biz.receivableApprovePage().corpNameAcceptInput.sendKeys(corpNameAccept);
 			TestBase.biz.receivableApprovePage().searchBtn.click();
 			Thread.sleep(2000);
-			String pkCredit=TestBase.biz.receivableApprovePage().receivableListPkCredits.get(0).getText();
-			LocalDate today=LocalDate.now();
-			String applyAmount=TestBase.biz.receivableApprovePage().receivableListApplyAmounts.get(0).getText();
-			TestBase.biz.receivableApprovePage().approveNoPass(1);
+			TestBase.biz.receivableApprovePage().receivableListNotPassReasonInputs.get(0).click();
+			Thread.sleep(1000);
+			TestBase.biz.receivableApprovePage().receivableListCorpNameCoreWrong.click();
+			TestBase.biz.receivableApprovePage().receivableListNotPassReasonInputs.get(0).click();
+			Thread.sleep(1000);
+//			TestBase.biz.receivableApprovePage().scrollIntoView(TestBase.biz.receivableApprovePage().receivableListPkCredits.get(0));
+			TestBase.biz.receivableApprovePage().approveNoPassBtn.click();			
 		}
 }

@@ -25,7 +25,6 @@ public class Browser {
 			break;
 		default:
 			System.out.println("非法浏览器配置！");
-			;
 		}
 		webdriver.get(url);
 		// 放大浏览器
