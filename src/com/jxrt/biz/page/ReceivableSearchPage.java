@@ -1,6 +1,8 @@
 package com.jxrt.biz.page;
 
+import java.time.LocalDate;
 import java.util.List;
+import java.util.Random;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -139,12 +141,15 @@ public class ReceivableSearchPage extends AbstractPage{
 	//重新上传按钮
 	@FindBy(xpath="//table/tbody/tr/td[13]/descendant::span[contains(text(), '重新上传')]")
 	public List<WebElement> receivableListReUploadBtns;
-	//修改按钮
+	//进度修改按钮
 	@FindBy(xpath="//table/tbody/tr/td[13]/descendant::span[contains(text(), '进度')]")
 	public List<WebElement> receivableListWorkflowBtns;
-	//修改按钮
+	//查看承诺付款函按钮
 	@FindBy(xpath="//table/tbody/tr/td[13]/descendant::span[contains(text(), '查看付款承诺函')]")
 	public List<WebElement> receivableListCheckFileBtns;
+	//删除按钮
+	@FindBy(xpath="//table/tbody/tr/td[13]/descendant::span[contains(text(), '删除')]")
+	public List<WebElement> receivableListDeleteBtns;
 	
 	//账款修改弹出框
 	//核心企业名称
@@ -180,6 +185,42 @@ public class ReceivableSearchPage extends AbstractPage{
 	//账款修改弹出框关闭按钮
 	@FindBy(xpath="/html/body/div[3]/div[2]/div/div/div[3]/div/button[2]/span")
 	public WebElement closeBtn;
+	
+	//提示框结果
+	@FindBy(xpath="/html/body/div[6]/div[2]/div/div/div[2]")
+	public WebElement InstructionResultSencond;
+	//提示框确认按钮
+	@FindBy(xpath="/html/body/div[6]/div[2]/div/div/div[3]/div/button[1]/span")
+	public WebElement InstructionWindowConfirmBtnSencond;
+	//提示框取消按钮
+	@FindBy(xpath="/html/body/div[6]/div[2]/div/div/div[3]/div/button[2]/span")
+	public WebElement InstructionWindowCancelBtnSencond;
+	/*
+	 * 账款查询修改
+	 */
+	public void  receivableModify() throws InterruptedException{
+		int rand=new Random().nextInt(1000);
+		String busiContractCode="sw"+rand+"xg";
+		String applyAmount=String.valueOf(rand);
+		LocalDate today=LocalDate.now();
+		String maturityDate=today.plusDays(31).toString();
+		String abstract_="zy"+rand+"xg";
+		receivableModifyBusiContractCodeInput.clear();
+		receivableModifyBusiContractCodeInput.sendKeys(busiContractCode);
+		receivableModifyApplyAmount.clear();
+		receivableModifyApplyAmount.sendKeys(applyAmount);
+		receivableModifyMaturityDateInput.clear();
+		receivableModifyMaturityDateInput.sendKeys(maturityDate);
+		receivableModifyAbstract_Input.clear();
+		receivableModifyAbstract_Input.sendKeys(abstract_);
+		Thread.sleep(2000);
+		submitBtn.click();
+		//断言
+		Thread.sleep(5000);
+		Assert.assertEquals(InstructionResult.getText(), "提交成功！请等待主管审核，您可以在账款查询中查看进度!");
+		Thread.sleep(2000);
+	}
+	
 	public static void main(String[] args) throws Exception {
 	}
 }

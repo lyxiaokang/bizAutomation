@@ -1,6 +1,8 @@
 package com.jxrt.biz.page;
 
+import java.time.LocalDate;
 import java.util.List;
+import java.util.Random;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -140,6 +142,59 @@ public class ReceivableIssuePage extends AbstractPage{
 	@FindBy(xpath="//button/span[contains(text(), '提交审核')]")
 	public WebElement submitBtn;
 	
+	//账款修改弹出框
+	//核心企业名称
+	@FindBy(xpath="//form/div[1]/descendant::input")
+	public WebElement receivableModifyCorpNameCoreInput;
+	//产品类型
+	@FindBy(xpath="//form/div[2]/descendant::input")
+	public WebElement receivableModifyProductType;
+	//额度占用方
+	@FindBy(xpath="//form/div[3]/descendant::input")
+	public WebElement receivableModifyLimitSource;
+	//供应商名称
+	@FindBy(xpath="//form/div[4]/descendant::input")
+	public WebElement receivableModifyCorpNameInput;
+	//商务合同编号
+	@FindBy(xpath="/html/body/div[4]/div[2]/div/div/div[2]/form/div[5]/descendant::input")
+	public WebElement receivableModifyBusiContractCodeInput;
+	//应付账款金额
+	@FindBy(xpath="//form/div[6]/descendant::input")
+	public WebElement receivableModifyApplyAmount;
+	//应付账款到期日
+	@FindBy(xpath="//form/div[7]/descendant::input")
+	public WebElement receivableModifyMaturityDateInput;
+	//自主定价
+	@FindBy(xpath="//form/div[8]/descendant::input")
+	public WebElement receivableModifyPriceAddInput;
+	//摘要
+	@FindBy(xpath="//form/div[9]/descendant::input")
+	public WebElement receivableModifyAbstract_Input;
+	//账款修改弹出框提交审核按钮
+	@FindBy(xpath="/html/body/div[4]/div[2]/div/div/div[3]/div/button[1]/span")
+	public WebElement receivableModifyConfirmBtn;
+	//账款修改弹出框关闭按钮
+	@FindBy(xpath="/html/body/div[4]/div[2]/div/div/div[3]/div/button[2]/span")
+	public WebElement receivableModifyCancelBtn;
+	
+	
+	//全选按钮
+	@FindBy(xpath="//button/span[contains(text(), '全选')]")
+	public WebElement selectAllBtn;
+	//删除按钮
+	@FindBy(xpath="//button/span[contains(text(), '删除')]")
+	public WebElement deleteBtn;
+	
+	//提示框结果
+	@FindBy(xpath="/html/body/div[7]/div[2]/div/div/div[2]")
+	public WebElement InstructionResultSencond;
+	//提示框确认按钮
+	@FindBy(xpath="/html/body/div[7]/div[2]/div/div/div[3]/div/button[1]/span")
+	public WebElement InstructionWindowConfirmBtnSencond;
+	//提示框取消按钮
+	@FindBy(xpath="/html/body/div[7]/div[2]/div/div/div[3]/div/button[2]/span")
+	public WebElement InstructionWindowCancelBtnSencond;
+	
 	/*
 	 * 单笔新增账款
 	 */
@@ -171,4 +226,36 @@ public class ReceivableIssuePage extends AbstractPage{
 //		Assert.assertNotNull(receivableListVerifyPasss.get(0));
 	}
 	
+	/*
+	 * 账款新增修改
+	 */
+	public void  receivableModify() throws InterruptedException{
+		int rand=new Random().nextInt(1000);
+		String busiContractCode="sw"+rand+"xg";
+		String applyAmount=String.valueOf(rand);
+		LocalDate today=LocalDate.now();
+		String maturityDate=today.plusDays(31).toString();
+		String abstract_="zy"+rand+"xg";
+		
+		receivableModifyBusiContractCodeInput.clear();
+		receivableModifyBusiContractCodeInput.sendKeys(busiContractCode);
+		receivableModifyApplyAmount.clear();
+		receivableModifyApplyAmount.sendKeys(applyAmount);
+		receivableModifyMaturityDateInput.clear();
+		receivableModifyMaturityDateInput.sendKeys(maturityDate);
+		receivableModifyAbstract_Input.clear();
+		receivableModifyAbstract_Input.sendKeys(abstract_);
+		Thread.sleep(2000);
+		receivableModifyConfirmBtn.click();
+		//断言
+		Thread.sleep(3000);
+		Assert.assertEquals(receivableListCores.get(0).getText(),TestBase.corpNameCoreReceivableTeam2);
+		Assert.assertEquals(receivableListCores.get(0).getText(),TestBase.corpNameCoreReceivableTeam2);
+		Assert.assertEquals(receivableListProductTypes.get(0).getText(),"e点通");
+		Assert.assertEquals(receivableListCorpNameAccepts.get(0).getText(),TestBase.corpNameReceivableTeam2);
+		Assert.assertEquals(receivableListBusiContractCodes.get(0).getText(),busiContractCode);
+		Assert.assertEquals(receivableListApplyAmounts.get(0).getText(),applyAmount+".00");
+		Assert.assertEquals(receivableListMaturityDates.get(0).getText(),maturityDate);
+		Assert.assertEquals(receivableListAbstract_s.get(0).getText(),abstract_);
+	}
 }

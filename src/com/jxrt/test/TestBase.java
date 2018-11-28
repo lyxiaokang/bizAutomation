@@ -2,7 +2,9 @@ package com.jxrt.test;
 
 import java.io.File;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Properties;
 import java.util.concurrent.TimeUnit;
 
@@ -169,6 +171,10 @@ public class TestBase {
 
 	public static String ReceivableApproveNoPassPkCredit;
 	public static String ReceivableApproveNoPassApplyAmount;
+	
+	//用于存储白条申请号和白条号
+	public static String pkApplys=null;
+	public static String pkCredit=null;
 	/*
 	 * 浏览器初始化
 	 */
@@ -185,5 +191,15 @@ public class TestBase {
 			driver.quit();
 		}
 	}
+	
+	// json header
+	public static Map<String, String> jsonheader = new HashMap<String, String>() {
+		private static final long serialVersionUID = 1L;
+
+		{
+			put("Content-Type", "application/json");
+			put("charset", "UTF-8");
+		}
+	};
 
 }

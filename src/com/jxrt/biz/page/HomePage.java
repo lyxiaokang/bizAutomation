@@ -24,23 +24,26 @@ public class HomePage extends AbstractPage {
 	/*
 	 * 进入账款新增菜单
 	 */
-	public void gotoReceivableIssuePage(){
+	public void gotoReceivableIssuePage() throws InterruptedException{
 		tradeManagementTab.click();
+		Thread.sleep(1000);
 		ReceivableIssueTab.click();
 	}
 	
 	/*
 	 * 进入账款新查询菜单
 	 */
-	public void gotoReceivableSearchPage(){
+	public void gotoReceivableSearchPage() throws InterruptedException{
 		tradeManagementTab.click();
+		Thread.sleep(1000);
 		ReceivableSearchTab.click();
 	}
 	/*
 	 * 进入账款新审核菜单
 	 */
-	public void gotoReceivableApprovePage(){
+	public void gotoReceivableApprovePage() throws InterruptedException{
 		tradeManagementTab.click();
+		Thread.sleep(1000);
 		ReceivableApproveTab.click();
 	}
 }

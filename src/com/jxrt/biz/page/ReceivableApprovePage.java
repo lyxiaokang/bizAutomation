@@ -2,13 +2,16 @@ package com.jxrt.biz.page;
 
 import java.time.LocalDate;
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 
 import org.openqa.selenium.Dimension;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.ie.InternetExplorerDriver;
 import org.openqa.selenium.interactions.Actions;
+import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.support.FindBy;
 import org.testng.Assert;
 
@@ -120,7 +123,7 @@ public class ReceivableApprovePage extends AbstractPage{
 		public List<WebElement> receivableListNotPassReasonInputs;
 		//账款表单不通过原因核心企业名称有误
 		@FindBy(xpath="//table/tbody/tr/td[15]/descendant::li[contains(text(), '核心企业名称有误')]")
-		public WebElement receivableListCorpNameCoreWrong;
+		public List<WebElement> receivableListCorpNameCoreWrongs;
 		
 		//账款表单查看承诺付款函操作按钮
 		@FindBy(xpath="//table/tbody/tr/td[16]/div/span")
@@ -162,7 +165,7 @@ public class ReceivableApprovePage extends AbstractPage{
 			Thread.sleep(1000);
 			receivableListNotPassReasonInputs.get(0).click();
 			Thread.sleep(1000);
-			receivableListCorpNameCoreWrong.click();
+			receivableListCorpNameCoreWrongs.get(0).click();
 			scrollIntoView(receivableListPkCredits.get(0));
 			approveNoPassBtn.click();
 			Thread.sleep(2000);
@@ -171,21 +174,46 @@ public class ReceivableApprovePage extends AbstractPage{
 			InstructionWindowConfirmBtn.click();
 		}
 		public static void main(String[] args) throws Exception {
-			TestBase.setupBiz();
-			TestBase.biz.bizLoginPage().login(TestBase.operateManagerMobileTeam2,TestBase.operateOperatorPasswordTeam2);
-			TestBase.biz.homePage().gotoReceivableApprovePage();
-			String corpNameCore=TestBase.corpNameCoreReceivableTeam2;
-			String corpNameAccept=TestBase.corpNameReceivableTeam2;
-			TestBase.biz.receivableApprovePage().corpNameCoreInput.sendKeys(corpNameCore);
-			TestBase.biz.receivableApprovePage().corpNameAcceptInput.sendKeys(corpNameAccept);
-			TestBase.biz.receivableApprovePage().searchBtn.click();
-			Thread.sleep(2000);
-			TestBase.biz.receivableApprovePage().receivableListNotPassReasonInputs.get(0).click();
-			Thread.sleep(1000);
-			TestBase.biz.receivableApprovePage().receivableListCorpNameCoreWrong.click();
-			TestBase.biz.receivableApprovePage().receivableListNotPassReasonInputs.get(0).click();
-			Thread.sleep(1000);
-//			TestBase.biz.receivableApprovePage().scrollIntoView(TestBase.biz.receivableApprovePage().receivableListPkCredits.get(0));
-			TestBase.biz.receivableApprovePage().approveNoPassBtn.click();			
+//			TestBase.setupBiz();
+//			TestBase.biz.bizLoginPage().login(TestBase.operateManagerMobileTeam2,TestBase.operateOperatorPasswordTeam2);
+//			TestBase.biz.homePage().gotoReceivableApprovePage();
+//			String corpNameCore=TestBase.corpNameCoreReceivableTeam2;
+//			String corpNameAccept=TestBase.corpNameReceivableTeam2;
+//			TestBase.biz.receivableApprovePage().corpNameCoreInput.sendKeys(corpNameCore);
+//			TestBase.biz.receivableApprovePage().corpNameAcceptInput.sendKeys(corpNameAccept);
+//			TestBase.biz.receivableApprovePage().searchBtn.click();
+//			Thread.sleep(2000);
+//			TestBase.biz.receivableApprovePage().receivableListNotPassReasonInputs.get(0).click();
+//			Thread.sleep(1000);
+//			TestBase.biz.receivableApprovePage().receivableListCorpNameCoreWrong.click();
+//			TestBase.biz.receivableApprovePage().receivableListNotPassReasonInputs.get(0).click();
+//			Thread.sleep(1000);
+////			TestBase.biz.receivableApprovePage().scrollIntoView(TestBase.biz.receivableApprovePage().receivableListPkCredits.get(0));
+//			TestBase.biz.receivableApprovePage().approveNoPassBtn.click();	
+		
+			
+//	        System.setProperty("webdriver.ie.driver", ".\\Tools\\IEDriverServer.exe");  
+	          
+	        
+			DesiredCapabilities dc = DesiredCapabilities.internetExplorer();
+	        dc.setCapability(InternetExplorerDriver.INTRODUCE_FLAKINESS_BY_IGNORING_SECURITY_DOMAINS, true);
+	        dc.setCapability("ignoreProtectedModeSettings", true);
+//	        把加载关闭配置加载到IE浏览器
+
+			//初始化一个IE浏览器实例，实例名称叫driver  
+	        WebDriver driver = new  InternetExplorerDriver(dc); 
+	        //最大化窗口  
+	        driver.manage().window().maximize();  
+	        //设置隐性等待时间  
+	        driver.manage().timeouts().implicitlyWait(8, TimeUnit.SECONDS);  
+	          
+	        // get()打开一个站点  
+	        driver.get("https://www.baidu.com");  
+	        //getTitle()获取当前页面title的值  
+	        System.out.println("当前打开页面的标题是： "+ driver.getTitle());  
+	          
+	        //关闭并退出浏览器  
+	        driver.quit();  
+	          
 		}
 }

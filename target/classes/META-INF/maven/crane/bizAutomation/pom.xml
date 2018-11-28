@@ -114,5 +114,10 @@
   		<artifactId>selenium-ie-driver</artifactId>
   		<version>3.11.0</version>
   	</dependency>
+  	<dependency>
+  		<groupId>org.apache.httpcomponents</groupId>
+  		<artifactId>httpmime</artifactId>
+  		<version>4.5.2</version>
+  	</dependency>
   </dependencies>
 </project>

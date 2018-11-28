@@ -31,6 +31,10 @@ public abstract class AbstractPage {
 	//提示框确认按钮
 	@FindBy(xpath="//div[contains(text(), '提示信息')]/../../descendant::button/span[contains(text(), '确认')]")
 	public WebElement InstructionWindowConfirmBtn;
+	//提示框取消按钮
+	@FindBy(xpath="//div[contains(text(), '提示信息')]/../../descendant::button/span[contains(text(), '取消')]")
+	public WebElement InstructionWindowCancelBtn;
+	
 
     public AbstractPage(WebDriver driver) {
         this.driver = driver;
