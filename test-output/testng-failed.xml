@@ -7,7 +7,7 @@
         <methods>
           <include name="setup_Biz"/>
           <include name="tearDown_Biz"/>
-          <include name="TestReceivableApproveNoPassBath"/>
+          <include name="TestFinanceDataOpeApproveNoPass"/>
         </methods>
       </class> <!-- com.jxrt.test.Team2Test -->
     </classes>

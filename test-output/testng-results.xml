@@ -2,20 +2,20 @@
 <testng-results skipped="0" failed="0" total="1" passed="1">
   <reporter-output>
   </reporter-output>
-  <suite name="Default suite" duration-ms="68114" started-at="2018-11-28T06:54:15Z" finished-at="2018-11-28T06:55:23Z">
+  <suite name="Default suite" duration-ms="81373" started-at="2018-11-30T11:52:14Z" finished-at="2018-11-30T11:53:36Z">
     <groups>
     </groups>
-    <test name="Default test" duration-ms="68114" started-at="2018-11-28T06:54:15Z" finished-at="2018-11-28T06:55:23Z">
+    <test name="Default test" duration-ms="81373" started-at="2018-11-30T11:52:14Z" finished-at="2018-11-30T11:53:36Z">
       <class name="com.jxrt.test.Team2Test">
-        <test-method status="PASS" signature="setup_Biz()[pri:0, instance:com.jxrt.test.Team2Test@ed9d034]" name="setup_Biz" is-config="true" duration-ms="5335" started-at="2018-11-28T14:54:15Z" finished-at="2018-11-28T14:54:20Z">
+        <test-method status="PASS" signature="setup_Biz()[pri:0, instance:com.jxrt.test.Team2Test@77f99a05]" name="setup_Biz" is-config="true" duration-ms="6114" started-at="2018-11-30T19:52:14Z" finished-at="2018-11-30T19:52:21Z">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- setup_Biz -->
-        <test-method status="PASS" signature="TestReceivableApproveNoPassBath()[pri:0, instance:com.jxrt.test.Team2Test@ed9d034]" name="TestReceivableApproveNoPassBath" duration-ms="62109" started-at="2018-11-28T14:54:20Z" finished-at="2018-11-28T14:55:22Z">
+        <test-method status="PASS" signature="TestFinanceDataOpeApproveNoPass()[pri:0, instance:com.jxrt.test.Team2Test@77f99a05]" name="TestFinanceDataOpeApproveNoPass" duration-ms="74526" started-at="2018-11-30T19:52:21Z" finished-at="2018-11-30T19:53:35Z">
           <reporter-output>
           </reporter-output>
-        </test-method> <!-- TestReceivableApproveNoPassBath -->
-        <test-method status="PASS" signature="tearDown_Biz()[pri:0, instance:com.jxrt.test.Team2Test@ed9d034]" name="tearDown_Biz" is-config="true" duration-ms="659" started-at="2018-11-28T14:55:22Z" finished-at="2018-11-28T14:55:23Z">
+        </test-method> <!-- TestFinanceDataOpeApproveNoPass -->
+        <test-method status="PASS" signature="tearDown_Biz()[pri:0, instance:com.jxrt.test.Team2Test@77f99a05]" name="tearDown_Biz" is-config="true" duration-ms="716" started-at="2018-11-30T19:53:35Z" finished-at="2018-11-30T19:53:36Z">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- tearDown_Biz -->

@@ -40,6 +40,7 @@ public class ReceivableIssuePage extends AbstractPage{
 	 * 查找并选择对应核心企业
 	 */
 	public void searchAndSelectCorpNameCore(String corpNameCore) throws InterruptedException{
+		Thread.sleep(2000);
 		if(corpNameCoreSelectBtns.get(0).isDisplayed())
 		{
 			corpNameCoreInput.sendKeys(corpNameCore);
@@ -59,16 +60,17 @@ public class ReceivableIssuePage extends AbstractPage{
 	//供应商企业输入框
 	@FindBy(xpath="//span[contains(text(), '供应商名称：')]/../descendant::input")
 	public WebElement corpNameInput;
-	//核心企业查询按钮
+	//供应商查询按钮
 	@FindBy(xpath="//span[contains(text(), '供应商名称：')]/../descendant::button")
 	public WebElement corpNameSearchBtn;
-	//核心企业列表选择按钮
+	//供应商列表选择按钮
 	@FindBy(xpath="//td[6]/div/div/button/span")
 	public WebElement corpNameSelectBtn;
 	/*
 	 * 查找并选择对应企业
 	 */
 	public void searchAndSelectCorpName(String corpName) throws InterruptedException{
+		Thread.sleep(2000);
 		corpNameInput.sendKeys(corpName);
 		corpNameSearchBtn.click();
 		Thread.sleep(2000);

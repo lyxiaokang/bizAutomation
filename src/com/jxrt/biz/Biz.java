@@ -52,6 +52,13 @@ public class Biz {
 		return new ReceivableApprovePage(driver);
 	}
 	
+	/*
+	 * 融资资料审核初始化
+	 */
+	public FinanceDataApprovePage financeDataApprove() {
+		return new FinanceDataApprovePage(driver);
+	}
+	
 	
 	
 }

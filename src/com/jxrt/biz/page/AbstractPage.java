@@ -1,6 +1,7 @@
 package com.jxrt.biz.page;
 
 import java.time.Duration;
+import java.util.List;
 
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.Keys;
@@ -34,7 +35,18 @@ public abstract class AbstractPage {
 	//提示框取消按钮
 	@FindBy(xpath="//div[contains(text(), '提示信息')]/../../descendant::button/span[contains(text(), '取消')]")
 	public WebElement InstructionWindowCancelBtn;
-	
+	//页码
+	@FindBy(xpath="//ul[@class='ivu-page mini']/li[@class='ivu-page-item' or @class='ivu-page-item ivu-page-item-active']/a")
+	public List<WebElement> pageNums;
+	//活动页码
+	@FindBy(xpath="//ul[@class='ivu-page mini']/li[@class='ivu-page-item ivu-page-item-active']/a")
+	public WebElement activePageNum;
+	//活动页码
+	@FindBy(xpath="//ul[@class='ivu-page mini']/li[contains(@class,'ivu-page-prev')]")
+	public WebElement prevPageNum;
+	//活动页码
+	@FindBy(xpath="//ul[@class='ivu-page mini']/li[contains(@class,'ivu-page-next')]")
+	public WebElement nextPageNum;
 
     public AbstractPage(WebDriver driver) {
         this.driver = driver;

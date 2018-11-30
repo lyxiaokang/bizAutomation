@@ -90,6 +90,9 @@ public class TestBase {
 	public static String operateManagerNameTeam2;
 	public static String operateManagerMobileTeam2;
 	public static String operateManagerPasswordTeam2;
+	public static String operateQueryNameTeam2;
+	public static String operateQueryMobileTeam2;
+	public static String operateQueryPasswordTeam2;
 	
 	static{
 		System.out.println("初始化"+PropertiesUtil.getOptValue("server_ip")+"环境企业信息");
@@ -165,6 +168,9 @@ public class TestBase {
 			operateManagerNameTeam2 = PropertiesUtil.getOptValue("operateManagerNameTeam2_t4");
 			operateManagerMobileTeam2 = PropertiesUtil.getOptValue("operateManagerMobileTeam2_t4");
 			operateManagerPasswordTeam2 = PropertiesUtil.getOptValue("operateManagerPasswordTeam2_t4");
+			operateQueryNameTeam2 = PropertiesUtil.getOptValue("operateQueryNameTeam2_t4");
+			operateQueryMobileTeam2 = PropertiesUtil.getOptValue("operateQueryMobileTeam2_t4");
+			operateQueryPasswordTeam2 = PropertiesUtil.getOptValue("operateQueryPasswordTeam2_t4");
 			break;
 		}
 	}
@@ -175,6 +181,10 @@ public class TestBase {
 	//用于存储白条申请号和白条号
 	public static String pkApplys=null;
 	public static String pkCredit=null;
+	
+	//融资资料审核初始化数据
+	public static String FinanceDataApproveCorpName="太平链条企业一";
+	public static String FinanceDataApproveCorpNameCore="盛世集团成员二";
 	/*
 	 * 浏览器初始化
 	 */
