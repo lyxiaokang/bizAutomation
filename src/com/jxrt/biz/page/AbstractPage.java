@@ -125,7 +125,7 @@ public abstract class AbstractPage {
 			Assert.assertEquals(InstructionResult.getText(), "上传成功");
 			InstructionWindowConfirmBtn.click();
 		}
-		Thread.sleep(2000);
+		Thread.sleep(4000);
 	}
 //  
 //	

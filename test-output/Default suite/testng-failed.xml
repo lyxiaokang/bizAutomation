@@ -5,9 +5,20 @@
     <classes>
       <class name="com.jxrt.test.Team2Test">
         <methods>
-          <include name="setup_Biz"/>
+          <include name="TestReceivableIssueModifyDelete"/>
+          <include name="TestReceivableIssue"/>
+          <include name="TestReceivableApproveNoPass"/>
+          <include name="TestFinanceDataManApproveNoPass"/>
+          <include name="TestReceivableApproveNoPassModify"/>
           <include name="tearDown_Biz"/>
+          <include name="TestReceivableApproveNoPassBath"/>
+          <include name="TestReceivableApprovePassSigle"/>
+          <include name="TestReceivableApprovePassBath"/>
+          <include name="setup_Biz"/>
+          <include name="TestFinanceDataOpeApprovePass"/>
           <include name="TestFinanceDataOpeApproveNoPass"/>
+          <include name="TestReceivableApproveNoPassDelete"/>
+          <include name="TestFinanceDataModifyAndInvalid"/>
         </methods>
       </class> <!-- com.jxrt.test.Team2Test -->
     </classes>

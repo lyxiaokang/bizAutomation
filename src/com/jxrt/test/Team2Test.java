@@ -432,7 +432,7 @@ public class Team2Test extends TestBase {
 		int modifyNum=TestBase.biz.financeDataApprove().dataLisModifyBtns.size()-1;
 		TestBase.biz.financeDataApprove().dataLisModifyBtns.get(modifyNum).click();
 		TestBase.biz.financeDataApprove().financeDataModify();
-		int invalidNum=TestBase.biz.financeDataApprove().dataLisModifyBtns.size()-1;
+		int invalidNum=TestBase.biz.financeDataApprove().dataLisInvalidBtns.size()-1;
 		TestBase.biz.financeDataApprove().dataLisInvalidBtns.get(invalidNum).click();
 		TestBase.biz.financeDataApprove().financeDataInvalid();
 		Assert.assertEquals(TestBase.biz.financeDataApprove().dataListWorkFlows.get(num).getText(), "失效");

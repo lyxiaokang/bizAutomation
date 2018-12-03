@@ -759,8 +759,6 @@ public class FinanceDataApprovePage extends AbstractPage{
 		Assert.assertEquals(message.getText(), "审核成功");
 		messageConfirmBtn.click();
 		Thread.sleep(2000);
-		Assert.assertEquals(dataListChildQTOpeResult.getText(), "审核不通过");
-		Assert.assertEquals(dataListChildQTOpeReason.getText(), "1. 其它1描述1");
 	}
 	/*
 	 * 初审审核其它不通过
@@ -774,6 +772,8 @@ public class FinanceDataApprovePage extends AbstractPage{
 		Assert.assertEquals(message.getText(), "审核成功");
 		messageConfirmBtn.click();
 		Thread.sleep(2000);
+		Assert.assertEquals(dataListChildQTOpeResult.getText(), "审核不通过");
+		Assert.assertEquals(dataListChildQTOpeReason.getText(), "1. 其它1描述1");
 	}
 	/*
 	 * 初审审核经营异常证明文件通过
@@ -787,8 +787,6 @@ public class FinanceDataApprovePage extends AbstractPage{
 		Assert.assertEquals(message.getText(), "审核成功");
 		messageConfirmBtn.click();
 		Thread.sleep(2000);
-		Assert.assertEquals(dataListChildZMWJOpeResult.getText(), "审核不通过");
-		Assert.assertEquals(dataListChildZMWJOpeReason.getText(), "1. 工商网信息无异常");
 	}
 	/*
 	 * 初审审核经营异常证明文件不通过
@@ -802,6 +800,8 @@ public class FinanceDataApprovePage extends AbstractPage{
 		Assert.assertEquals(message.getText(), "审核成功");
 		messageConfirmBtn.click();
 		Thread.sleep(2000);
+		Assert.assertEquals(dataListChildZMWJOpeResult.getText(), "审核不通过");
+		Assert.assertEquals(dataListChildZMWJOpeReason.getText(), "1. 工商网信息无异常");
 	}
 	public static void main(String[] args) throws InterruptedException{
 		//客服新增
