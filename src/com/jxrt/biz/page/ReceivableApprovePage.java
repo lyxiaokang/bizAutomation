@@ -16,7 +16,9 @@ import org.openqa.selenium.support.FindBy;
 import org.testng.Assert;
 
 import com.jxrt.test.TestBase;
-
+/*
+ * 平台端-白条管理-账款融资管理-账款审核
+ */
 public class ReceivableApprovePage extends AbstractPage{
 
 	public ReceivableApprovePage(WebDriver driver) {

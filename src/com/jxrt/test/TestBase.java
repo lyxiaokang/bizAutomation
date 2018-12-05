@@ -140,6 +140,9 @@ public class TestBase {
 			operateManagerNameTeam2 = PropertiesUtil.getOptValue("operateManagerNameTeam2_t1");
 			operateManagerMobileTeam2 = PropertiesUtil.getOptValue("operateManagerMobileTeam2_t1");
 			operateManagerPasswordTeam2 = PropertiesUtil.getOptValue("operateManagerPasswordTeam2_t1");
+			operateQueryNameTeam2 = PropertiesUtil.getOptValue("operateQueryNameTeam2_t1");
+			operateQueryMobileTeam2 = PropertiesUtil.getOptValue("operateQueryMobileTeam2_t1");
+			operateQueryPasswordTeam2 = PropertiesUtil.getOptValue("operateQueryPasswordTeam2_t1");
 			break;
 		case "test2.ccbscf.com":
 			productOperatorNameTeam2 = PropertiesUtil.getOptValue("productOperatorNameTeam2_t2");
@@ -154,6 +157,9 @@ public class TestBase {
 			operateManagerNameTeam2 = PropertiesUtil.getOptValue("operateManagerNameTeam2_t2");
 			operateManagerMobileTeam2 = PropertiesUtil.getOptValue("operateManagerMobileTeam2_t2");
 			operateManagerPasswordTeam2 = PropertiesUtil.getOptValue("operateManagerPasswordTeam2_t2");
+			operateQueryNameTeam2 = PropertiesUtil.getOptValue("operateQueryNameTeam2_t2");
+			operateQueryMobileTeam2 = PropertiesUtil.getOptValue("operateQueryMobileTeam2_t2");
+			operateQueryPasswordTeam2 = PropertiesUtil.getOptValue("operateQueryPasswordTeam2_t2");
 			break;
 		case "test4.ccbscf.com":
 			productOperatorNameTeam2 = PropertiesUtil.getOptValue("productOperatorNameTeam2_t4");

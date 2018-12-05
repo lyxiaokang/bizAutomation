@@ -36,9 +36,9 @@ public class Team2Test extends TestBase {
 		String abstract_="zy"+rand;
 		//登录并新增账款
 		TestBase.biz.bizLoginPage().login(TestBase.operateOperatorMobileTeam2,TestBase.operateOperatorPasswordTeam2);
-		Thread.sleep(1000);
+		Thread.sleep(2000);
 		TestBase.biz.homePage().gotoReceivableIssuePage();
-		Thread.sleep(1000);
+		Thread.sleep(2000);
 		TestBase.biz.receivableIssuePage().ReceivableIssue(corpNameCore,corpNameAccept,
 				busiContractCode,applyAmount,maturityDate,abstract_);
 		Thread.sleep(3000);
@@ -54,8 +54,8 @@ public class Team2Test extends TestBase {
 		TestBase.biz.receivableIssuePage().InstructionWindowConfirmBtn.click();
 		
 		//菜单归位
-		Thread.sleep(1000);
-		TestBase.biz.homePage().tradeManagementTab.click();
+		Thread.sleep(2000);
+		TestBase.biz.homePage().creditManagementTab.click();
 		//进入账款查询
 		TestBase.biz.homePage().gotoReceivableSearchPage();
 		if(TestBase.biz.receivableSearchPage().receivableListCores.get(0).isDisplayed())
@@ -88,7 +88,7 @@ public class Team2Test extends TestBase {
 		TestBase.setupBiz();
 		TestBase.biz.bizLoginPage().login(TestBase.operateManagerMobileTeam2,TestBase.operateOperatorPasswordTeam2);
 		//进入账款审核
-		Thread.sleep(1000);
+		Thread.sleep(2000);
 		TestBase.biz.homePage().gotoReceivableApprovePage();
 		String corpNameCore=TestBase.corpNameCoreReceivableTeam2;
 		String corpNameAccept=TestBase.corpNameReceivableTeam2;
@@ -102,8 +102,8 @@ public class Team2Test extends TestBase {
 		TestBase.biz.receivableApprovePage().approvePass(1);
 		
 		//菜单归位
-		Thread.sleep(1000);
-		TestBase.biz.homePage().tradeManagementTab.click();
+		Thread.sleep(2000);
+		TestBase.biz.homePage().creditManagementTab.click();
 		//进入账款查询
 		TestBase.biz.homePage().gotoReceivableSearchPage();
 		Thread.sleep(3000);
@@ -149,8 +149,8 @@ public class Team2Test extends TestBase {
 		TestBase.biz.receivableApprovePage().approveNoPass(1);
 		
 		//菜单归位
-		Thread.sleep(1000);
-		TestBase.biz.homePage().tradeManagementTab.click();
+		Thread.sleep(2000);
+		TestBase.biz.homePage().creditManagementTab.click();
 		//进入账款查询
 		TestBase.biz.homePage().gotoReceivableSearchPage();
 		if(TestBase.biz.receivableSearchPage().receivableListCores.get(0).isDisplayed())
@@ -165,7 +165,7 @@ public class Team2Test extends TestBase {
 		Thread.sleep(3000);
 		//断言
 		Assert.assertEquals(TestBase.biz.receivableSearchPage().receivableListPkCredits.get(0).getText(),pkCredit);
-		Thread.sleep(1000);
+		Thread.sleep(2000);
 		Assert.assertEquals(TestBase.biz.receivableSearchPage().receivableListApproveResults.get(0).getText(),"不通过");
 
 	}
@@ -180,7 +180,7 @@ public class Team2Test extends TestBase {
 		TestBase.setupBiz();
 		TestBase.biz.bizLoginPage().login(TestBase.operateOperatorMobileTeam2,TestBase.operateOperatorPasswordTeam2);
 		//进入账款查询
-		Thread.sleep(1000);
+		Thread.sleep(2000);
 		TestBase.biz.homePage().gotoReceivableSearchPage();
 		if(TestBase.biz.receivableSearchPage().receivableListCores.get(0).isDisplayed())
 		{
@@ -194,12 +194,12 @@ public class Team2Test extends TestBase {
 		Thread.sleep(3000);
 		//断言
 		Assert.assertEquals(TestBase.biz.receivableSearchPage().receivableListPkCredits.get(0).getText(),TestBase.ReceivableApproveNoPassPkCredit);
-		Thread.sleep(1000);
+		Thread.sleep(2000);
 		Assert.assertEquals(TestBase.biz.receivableSearchPage().receivableListApproveResults.get(0).getText(),"不通过");
 		
 		TestBase.biz.receivableSearchPage().uploadFile(TestBase.biz.receivableSearchPage().receivableListReUploadBtns.get(0), "reUploadFileForGoogle.exe");
 		TestBase.biz.receivableSearchPage().receivableListModiyBtns.get(0).click();
-		Thread.sleep(1000);
+		Thread.sleep(2000);
 		
 		TestBase.biz.receivableSearchPage().receivableModify();
 	}
@@ -215,7 +215,7 @@ public class Team2Test extends TestBase {
 		TestBase.setupBiz();
 		TestBase.biz.bizLoginPage().login(TestBase.operateOperatorMobileTeam2,TestBase.operateOperatorPasswordTeam2);
 		//进入账款查询
-		Thread.sleep(1000);
+		Thread.sleep(2000);
 		TestBase.biz.homePage().gotoReceivableSearchPage();
 		if(TestBase.biz.receivableSearchPage().receivableListCores.get(0).isDisplayed())
 		{
@@ -229,7 +229,7 @@ public class Team2Test extends TestBase {
 		Thread.sleep(3000);
 		//断言
 		Assert.assertEquals(TestBase.biz.receivableSearchPage().receivableListPkCredits.get(0).getText(),TestBase.ReceivableApproveNoPassPkCredit);
-		Thread.sleep(1000);
+		Thread.sleep(2000);
 		Assert.assertEquals(TestBase.biz.receivableSearchPage().receivableListApproveResults.get(0).getText(),"不通过");
 		
 		TestBase.biz.receivableSearchPage().receivableListDeleteBtns.get(0).click();
@@ -257,9 +257,9 @@ public class Team2Test extends TestBase {
 		String abstract_="zy"+rand;
 		//登录并新增账款
 		TestBase.biz.bizLoginPage().login(TestBase.operateOperatorMobileTeam2,TestBase.operateOperatorPasswordTeam2);
-		Thread.sleep(1000);
+		Thread.sleep(2000);
 		TestBase.biz.homePage().gotoReceivableIssuePage();
-		Thread.sleep(1000);
+		Thread.sleep(2000);
 		TestBase.biz.receivableIssuePage().ReceivableIssue(corpNameCore,corpNameAccept,
 				busiContractCode,applyAmount,maturityDate,abstract_);
 		Thread.sleep(3000);
@@ -291,9 +291,9 @@ public class Team2Test extends TestBase {
 		String abstract_="zy"+rand;
 		//登录并新增账款
 		TestBase.biz.bizLoginPage().login(TestBase.operateOperatorMobileTeam2,TestBase.operateOperatorPasswordTeam2);
-		Thread.sleep(1000);
+		Thread.sleep(2000);
 		TestBase.biz.homePage().gotoReceivableIssuePage();
-		Thread.sleep(1000);
+		Thread.sleep(2000);
 		TestBase.biz.receivableIssuePage().ReceivableIssue(corpNameCore,corpNameAccept,
 				busiContractCode,applyAmount,maturityDate,abstract_);
 		Thread.sleep(3000);
@@ -314,7 +314,7 @@ public class Team2Test extends TestBase {
 		TestBase.setupBiz();
 		TestBase.biz.bizLoginPage().login(TestBase.operateManagerMobileTeam2,TestBase.operateOperatorPasswordTeam2);
 		//进入账款审核
-		Thread.sleep(1000);
+		Thread.sleep(2000);
 		TestBase.biz.homePage().gotoReceivableApprovePage();
 		TestBase.biz.receivableApprovePage().corpNameCoreInput.sendKeys(corpNameCore);
 		TestBase.biz.receivableApprovePage().corpNameAcceptInput.sendKeys(corpNameAccept);
@@ -323,7 +323,7 @@ public class Team2Test extends TestBase {
 
 		TestBase.biz.receivableApprovePage().receivableListCheckBoxs.get(0).click();
 		TestBase.biz.receivableApprovePage().receivableListCheckBoxs.get(1).click();
-		Thread.sleep(1000);
+		Thread.sleep(2000);
 		TestBase.biz.receivableApprovePage().approvePassBtn.click();
 		Thread.sleep(10000);
 		//断言
@@ -347,9 +347,9 @@ public class Team2Test extends TestBase {
 		String abstract_="zy"+rand;
 		//登录并新增账款
 		TestBase.biz.bizLoginPage().login(TestBase.operateOperatorMobileTeam2,TestBase.operateOperatorPasswordTeam2);
-		Thread.sleep(1000);
+		Thread.sleep(2000);
 		TestBase.biz.homePage().gotoReceivableIssuePage();
-		Thread.sleep(1000);
+		Thread.sleep(2000);
 		TestBase.biz.receivableIssuePage().ReceivableIssue(corpNameCore,corpNameAccept,
 				busiContractCode,applyAmount,maturityDate,abstract_);
 		Thread.sleep(3000);
@@ -370,7 +370,7 @@ public class Team2Test extends TestBase {
 		TestBase.setupBiz();
 		TestBase.biz.bizLoginPage().login(TestBase.operateManagerMobileTeam2,TestBase.operateOperatorPasswordTeam2);
 		//进入账款审核
-		Thread.sleep(1000);
+		Thread.sleep(2000);
 		TestBase.biz.homePage().gotoReceivableApprovePage();
 		TestBase.biz.receivableApprovePage().corpNameCoreInput.sendKeys(corpNameCore);
 		TestBase.biz.receivableApprovePage().corpNameAcceptInput.sendKeys(corpNameAccept);
@@ -379,14 +379,14 @@ public class Team2Test extends TestBase {
 
 		TestBase.biz.receivableApprovePage().receivableListCheckBoxs.get(0).click();
 		TestBase.biz.receivableApprovePage().receivableListCheckBoxs.get(1).click();
-		Thread.sleep(1000);
+		Thread.sleep(2000);
 
 		TestBase.biz.receivableApprovePage().receivableListNotPassReasonInputs.get(0).click();
-		Thread.sleep(1000);
+		Thread.sleep(2000);
 		TestBase.biz.receivableApprovePage().receivableListCorpNameCoreWrongs.get(0).click();
 		
 		TestBase.biz.receivableApprovePage().receivableListNotPassReasonInputs.get(1).click();
-		Thread.sleep(1000);
+		Thread.sleep(2000);
 		TestBase.biz.receivableApprovePage().receivableListCorpNameCoreWrongs.get(1).click();
 		TestBase.biz.receivableApprovePage().approveNoPassBtn.click();
 		Thread.sleep(2000);
@@ -402,7 +402,7 @@ public class Team2Test extends TestBase {
 	@Test(enabled=true,priority = 0)
 	public void TestFinanceDataAdd() throws InterruptedException {
 		TestBase.biz.bizLoginPage().login(TestBase.operateQueryMobileTeam2, TestBase.operateQueryPasswordTeam2);
-		TestBase.biz.homePage().gotofinanceDataApprovePage();
+		TestBase.biz.homePage().gotoFinanceDataApprovePage();
 		Thread.sleep(5000);
 		TestBase.biz.financeDataApprove().financeDataAdd();
 		Thread.sleep(5000);
@@ -422,7 +422,7 @@ public class Team2Test extends TestBase {
 	@Test(enabled=true,priority = 0)
 	public void TestFinanceDataModifyAndInvalid() throws InterruptedException {
 		TestBase.biz.bizLoginPage().login(TestBase.operateQueryMobileTeam2, TestBase.operateQueryPasswordTeam2);
-		TestBase.biz.homePage().gotofinanceDataApprovePage();
+		TestBase.biz.homePage().gotoFinanceDataApprovePage();
 		Thread.sleep(5000);
 		TestBase.biz.financeDataApprove().financeDataAdd();
 		Thread.sleep(5000);
@@ -442,16 +442,15 @@ public class Team2Test extends TestBase {
 	 */
 	@Test(enabled=true,priority = 0)
 	public void TestFinanceDataOpeApprovePass() throws InterruptedException {
-		TestBase.setupBiz();
 		TestBase.biz.bizLoginPage().login(TestBase.operateQueryMobileTeam2, TestBase.operateQueryPasswordTeam2);
-		TestBase.biz.homePage().gotofinanceDataApprovePage();
+		TestBase.biz.homePage().gotoFinanceDataApprovePage();
 		Thread.sleep(5000);
 		TestBase.biz.financeDataApprove().financeDataAdd();
 		TestBase.tearDownBiz();
 		
 		TestBase.setupBiz();
 		TestBase.biz.bizLoginPage().login(TestBase.operateOperatorMobileTeam2, TestBase.operateOperatorPasswordTeam2);
-		TestBase.biz.homePage().gotofinanceDataApprovePage();
+		TestBase.biz.homePage().gotoFinanceDataApprovePage();
 		Thread.sleep(8000);
 		TestBase.biz.financeDataApprove().pageNums.get(TestBase.biz.financeDataApprove().pageNums.size()-1).click();
 		Thread.sleep(5000);
@@ -475,10 +474,10 @@ public class Team2Test extends TestBase {
 		//确认初审完成
 		int operatorApproveDoneBtnNum=TestBase.biz.financeDataApprove().operatorApproveDoneBtns.size()-1;
 		TestBase.biz.financeDataApprove().operatorApproveDoneBtns.get(operatorApproveDoneBtnNum).click();
-		Thread.sleep(1000);
+		Thread.sleep(2000);
 		Assert.assertEquals(TestBase.biz.financeDataApprove().message.getText(), "初审完成");
 		TestBase.biz.financeDataApprove().messageConfirmBtn.click();
-		Thread.sleep(1000);
+		Thread.sleep(2000);
 		
 		Assert.assertEquals(TestBase.biz.financeDataApprove().dataListWorkFlows.get(num).getText(), "初审审核完成");
 		Assert.assertEquals(TestBase.biz.financeDataApprove().dataListApproveResults.get(num).getText(), "审核通过");
@@ -491,7 +490,7 @@ public class Team2Test extends TestBase {
 	public void TestFinanceDataAfterBackToOpeManApprovePass() throws InterruptedException {
 		//客服新增
 		TestBase.biz.bizLoginPage().login(TestBase.operateQueryMobileTeam2, TestBase.operateQueryPasswordTeam2);
-		TestBase.biz.homePage().gotofinanceDataApprovePage();
+		TestBase.biz.homePage().gotoFinanceDataApprovePage();
 		Thread.sleep(5000);
 		TestBase.biz.financeDataApprove().financeDataAdd();
 		TestBase.tearDownBiz();
@@ -499,7 +498,7 @@ public class Team2Test extends TestBase {
 		//初审审核
 		TestBase.setupBiz();
 		TestBase.biz.bizLoginPage().login(TestBase.operateOperatorMobileTeam2, TestBase.operateOperatorPasswordTeam2);
-		TestBase.biz.homePage().gotofinanceDataApprovePage();
+		TestBase.biz.homePage().gotoFinanceDataApprovePage();
 		Thread.sleep(8000);
 		TestBase.biz.financeDataApprove().pageNums.get(TestBase.biz.financeDataApprove().pageNums.size()-1).click();
 		Thread.sleep(5000);
@@ -534,7 +533,7 @@ public class Team2Test extends TestBase {
 		//复审审核 
 		TestBase.setupBiz();
 		TestBase.biz.bizLoginPage().login(TestBase.operateManagerMobileTeam2, TestBase.operateManagerPasswordTeam2);
-		TestBase.biz.homePage().gotofinanceDataApprovePage();
+		TestBase.biz.homePage().gotoFinanceDataApprovePage();
 		Thread.sleep(8000);
 		TestBase.biz.financeDataApprove().pageNums.get(TestBase.biz.financeDataApprove().pageNums.size()-1).click();
 		Thread.sleep(5000);
@@ -552,7 +551,7 @@ public class Team2Test extends TestBase {
 		//初审再次审核提交
 		TestBase.setupBiz();
 		TestBase.biz.bizLoginPage().login(TestBase.operateOperatorMobileTeam2, TestBase.operateOperatorPasswordTeam2);
-		TestBase.biz.homePage().gotofinanceDataApprovePage();
+		TestBase.biz.homePage().gotoFinanceDataApprovePage();
 		Thread.sleep(8000);
 		TestBase.biz.financeDataApprove().pageNums.get(TestBase.biz.financeDataApprove().pageNums.size()-1).click();
 		Thread.sleep(5000);
@@ -574,7 +573,7 @@ public class Team2Test extends TestBase {
 		//复审审核
 		TestBase.setupBiz();
 		TestBase.biz.bizLoginPage().login(TestBase.operateManagerMobileTeam2, TestBase.operateManagerPasswordTeam2);
-		TestBase.biz.homePage().gotofinanceDataApprovePage();
+		TestBase.biz.homePage().gotoFinanceDataApprovePage();
 		Thread.sleep(8000);
 		TestBase.biz.financeDataApprove().pageNums.get(TestBase.biz.financeDataApprove().pageNums.size()-1).click();
 		Thread.sleep(5000);
@@ -596,7 +595,7 @@ public class Team2Test extends TestBase {
 	public void TestFinanceDataManApproveNoPass() throws InterruptedException {
 		//客服新增
 		TestBase.biz.bizLoginPage().login(TestBase.operateQueryMobileTeam2, TestBase.operateQueryPasswordTeam2);
-		TestBase.biz.homePage().gotofinanceDataApprovePage();
+		TestBase.biz.homePage().gotoFinanceDataApprovePage();
 		Thread.sleep(5000);
 		TestBase.biz.financeDataApprove().financeDataAdd();
 		TestBase.tearDownBiz();
@@ -604,7 +603,7 @@ public class Team2Test extends TestBase {
 		//初审审核
 		TestBase.setupBiz();
 		TestBase.biz.bizLoginPage().login(TestBase.operateOperatorMobileTeam2, TestBase.operateOperatorPasswordTeam2);
-		TestBase.biz.homePage().gotofinanceDataApprovePage();
+		TestBase.biz.homePage().gotoFinanceDataApprovePage();
 		Thread.sleep(8000);
 		TestBase.biz.financeDataApprove().pageNums.get(TestBase.biz.financeDataApprove().pageNums.size()-1).click();
 		Thread.sleep(5000);
@@ -639,7 +638,7 @@ public class Team2Test extends TestBase {
 		//复审审核 
 		TestBase.setupBiz();
 		TestBase.biz.bizLoginPage().login(TestBase.operateManagerMobileTeam2, TestBase.operateManagerPasswordTeam2);
-		TestBase.biz.homePage().gotofinanceDataApprovePage();
+		TestBase.biz.homePage().gotoFinanceDataApprovePage();
 		Thread.sleep(8000);
 		TestBase.biz.financeDataApprove().pageNums.get(TestBase.biz.financeDataApprove().pageNums.size()-1).click();
 		Thread.sleep(5000);
@@ -662,7 +661,7 @@ public class Team2Test extends TestBase {
 	public void TestFinanceDataOpeApproveNoPass() throws InterruptedException {
 		//客服新增
 		TestBase.biz.bizLoginPage().login(TestBase.operateQueryMobileTeam2, TestBase.operateQueryPasswordTeam2);
-		TestBase.biz.homePage().gotofinanceDataApprovePage();
+		TestBase.biz.homePage().gotoFinanceDataApprovePage();
 		Thread.sleep(5000);
 		TestBase.biz.financeDataApprove().financeDataAdd();
 		TestBase.tearDownBiz();
@@ -670,7 +669,7 @@ public class Team2Test extends TestBase {
 		//初审审核
 		TestBase.setupBiz();
 		TestBase.biz.bizLoginPage().login(TestBase.operateOperatorMobileTeam2, TestBase.operateOperatorPasswordTeam2);
-		TestBase.biz.homePage().gotofinanceDataApprovePage();
+		TestBase.biz.homePage().gotoFinanceDataApprovePage();
 		Thread.sleep(8000);
 		TestBase.biz.financeDataApprove().pageNums.get(TestBase.biz.financeDataApprove().pageNums.size()-1).click();
 		Thread.sleep(5000);
@@ -704,7 +703,7 @@ public class Team2Test extends TestBase {
 		//客服修改
 		TestBase.setupBiz();
 		TestBase.biz.bizLoginPage().login(TestBase.operateQueryMobileTeam2, TestBase.operateQueryPasswordTeam2);
-		TestBase.biz.homePage().gotofinanceDataApprovePage();
+		TestBase.biz.homePage().gotoFinanceDataApprovePage();
 		Thread.sleep(5000);
 		TestBase.biz.financeDataApprove().pageNums.get(TestBase.biz.financeDataApprove().pageNums.size()-1).click();
 		Thread.sleep(8000);

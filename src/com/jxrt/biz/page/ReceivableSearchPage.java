@@ -14,7 +14,7 @@ import org.testng.Assert;
 
 import com.jxrt.test.TestBase;
 /*
- * 平台端-交易管理-账款融资管理-账款查询
+ * 平台端-白条管理-账款融资管理-账款查询
  */
 public class ReceivableSearchPage extends AbstractPage{
 

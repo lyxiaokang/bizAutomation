@@ -4,14 +4,16 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
+import com.jxrt.test.TestBase;
+
 public class HomePage extends AbstractPage {
 
 	public HomePage(WebDriver driver) {
 		super(driver);
 	}
-	//交易管理菜单
-	@FindBy(xpath="//div[@class='ivu-menu-submenu-title' and contains(text(),'交易管理')]")
-	public WebElement tradeManagementTab;
+	//白条管理菜单
+	@FindBy(xpath="//div[@class='ivu-menu-submenu-title' and contains(text(),'白条管理')]")
+	public WebElement creditManagementTab;
 	//账款新增菜单
 	@FindBy(xpath="//li[@class='ivu-menu-item' and contains(text(), '账款新增')]")
 	public WebElement ReceivableIssueTab;
@@ -22,20 +24,41 @@ public class HomePage extends AbstractPage {
 	@FindBy(xpath="//li[@class='ivu-menu-item' and contains(text(), '账款查询')]")
 	public WebElement ReceivableSearchTab;
 	
+	//白条信息查询
+	@FindBy(xpath="//li[@class='ivu-menu-item' and contains(text(), '白条信息查询')]")
+	public WebElement creditInstructionSearchTab;
+	//代发工资申请查询
+	@FindBy(xpath="//li[@class='ivu-menu-item' and contains(text(), '代发工资申请查询')]")
+	public WebElement payrollCreditApplySearchTab;
+	//融资交互查询（e信通和e点通高级版)
+	@FindBy(xpath="//li[@class='ivu-menu-item' and contains(text(), '融资交互查询（e信通和e点通高级版）')]")
+	public WebElement financeInteractiveEXTTab;
 	
-	//融资资料管理菜单
-	@FindBy(xpath="//div[@class='ivu-menu-submenu-title' and contains(text(),'融资资料管理')]")
-	public WebElement finaceDataManagementTab;
+	
+	
+	//菜单
+	@FindBy(xpath="//div[@class='ivu-menu-submenu-title' and contains(text(),'白条融资审核')]")
+	public WebElement creditFinaceAppoveTab;
 	//融资资料审核菜单
 	@FindBy(xpath="//li[@class='ivu-menu-item' and contains(text(), '融资资料审核')]")
 	public WebElement finaceDataApproveTab;
-	
+
+	/*
+	 * 使账款菜单可见
+	 */
+	private void setReceivableTabView() throws InterruptedException{
+		scrollIntoView(creditInstructionSearchTab);
+		Thread.sleep(1000);
+		scrollIntoView(payrollCreditApplySearchTab);
+	}
 	/*
 	 * 进入账款新增菜单
 	 */
 	public void gotoReceivableIssuePage() throws InterruptedException{
 		Thread.sleep(1000);
-		tradeManagementTab.click();
+		creditManagementTab.click();
+		Thread.sleep(1000);
+		setReceivableTabView();
 		Thread.sleep(1000);
 		ReceivableIssueTab.click();
 	}
@@ -45,7 +68,9 @@ public class HomePage extends AbstractPage {
 	 */
 	public void gotoReceivableSearchPage() throws InterruptedException{
 		Thread.sleep(1000);
-		tradeManagementTab.click();
+		creditManagementTab.click();
+		Thread.sleep(1000);
+		setReceivableTabView();
 		Thread.sleep(1000);
 		ReceivableSearchTab.click();
 	}
@@ -54,7 +79,9 @@ public class HomePage extends AbstractPage {
 	 */
 	public void gotoReceivableApprovePage() throws InterruptedException{
 		Thread.sleep(1000);
-		tradeManagementTab.click();
+		creditManagementTab.click();
+		Thread.sleep(1000);
+		setReceivableTabView();
 		Thread.sleep(1000);
 		ReceivableApproveTab.click();
 	}
@@ -62,10 +89,16 @@ public class HomePage extends AbstractPage {
 	/*
 	 * 进入融资资料审核菜单
 	 */
-	public void gotofinanceDataApprovePage() throws InterruptedException{
+	public void gotoFinanceDataApprovePage() throws InterruptedException{
 		Thread.sleep(1000);
-		finaceDataManagementTab.click();
+		creditFinaceAppoveTab.click();
 		Thread.sleep(1000);
 		finaceDataApproveTab.click();
+	}
+	
+	public static void main(String[] args) throws Exception {
+		TestBase.setupBiz();
+		TestBase.biz.bizLoginPage().login(TestBase.operateOperatorMobileTeam2, TestBase.operateOperatorPasswordTeam2);
+		TestBase.biz.homePage().gotoReceivableIssuePage();
 	}
 }

@@ -12,7 +12,7 @@ import org.testng.Assert;
 import com.jxrt.test.TestBase;
 
 /*
- * 平台端-交易管理-账款融资管理-账款新增
+ * 平台端-白条管理-账款融资管理-账款新增
  */
 public class ReceivableIssuePage extends AbstractPage{
 

@@ -12,7 +12,7 @@ import com.jxrt.test.TestBase;
 
 public class FinanceDataApprovePage extends AbstractPage{
 	/*
-	 * 平台端-融资资料管理-融资资料审核
+	 * 平台端-白条融资管理-融资资料审核
 	 */
 	public FinanceDataApprovePage(WebDriver driver) {
 		super(driver);
@@ -195,7 +195,6 @@ public class FinanceDataApprovePage extends AbstractPage{
 	public WebElement downloadQTBtn;
 	@FindBy(xpath="//span[contains(text(), '经营异常证明文件:')]/../descendant::button/span[contains(text(), '下载')]")
 	public WebElement downloadZMWJBtn;
-	
 	@FindBy(xpath="/html/body/div[23]/div[2]/div/div/div/div/div[2]/div[2]")
 	public WebElement message;
 	@FindBy(xpath="/html/body/div[23]/div[2]/div/div/div/div/div[3]/button/span")
@@ -582,19 +581,19 @@ public class FinanceDataApprovePage extends AbstractPage{
 		Assert.assertNotNull(downloadFPBtn);
 		Assert.assertNotNull(downloadQTBtn);
 		Assert.assertNotNull(downloadZMWJBtn);
-		uploadFile(reUploadGSZCBtn, "uploadFileForGoogle.exe");
-		uploadFile(reUploadGRZXBtn, "uploadFileForGoogle.exe");
-		uploadFile(reUploadQYZXBtn, "uploadFileForGoogle.exe");
-		uploadFile(reUploadSWHTBtn, "uploadFileForGoogle.exe");
-		uploadFile(reUploadFPBtn, "uploadFileForGoogle.exe");
-		uploadFile(reUploadQTBtn, "uploadFileForGoogle.exe");
-		uploadFile(reUploadZMWJBtn, "uploadFileForGoogle.exe");
+		uploadFile(reUploadGSZCBtn, "reUploadFileForGoogle.exe");
+		uploadFile(reUploadGRZXBtn, "reUploadFileForGoogle.exe");
+		uploadFile(reUploadQYZXBtn, "reUploadFileForGoogle.exe");
+		uploadFile(reUploadSWHTBtn, "reUploadFileForGoogle.exe");
+		uploadFile(reUploadFPBtn, "reUploadFileForGoogle.exe");
+		uploadFile(reUploadQTBtn, "reUploadFileForGoogle.exe");
+		uploadFile(reUploadZMWJBtn, "reUploadFileForGoogle.exe");
 		
 		saveBtn.click();
 		Thread.sleep(2000);
 		Assert.assertEquals(message.getText(), "融资资料审核记录修改成功");
 		messageConfirmBtn.click();
-		Thread.sleep(2000);
+		Thread.sleep(5000);
 	}
 	
 	/*
@@ -807,14 +806,14 @@ public class FinanceDataApprovePage extends AbstractPage{
 		//客服新增
 		TestBase.setupBiz();
 		TestBase.biz.bizLoginPage().login(TestBase.operateQueryMobileTeam2, TestBase.operateQueryPasswordTeam2);
-		TestBase.biz.homePage().gotofinanceDataApprovePage();
+		TestBase.biz.homePage().gotoFinanceDataApprovePage();
 		Thread.sleep(5000);
 		TestBase.biz.financeDataApprove().financeDataAdd();
 		TestBase.tearDownBiz();
 		//初审审核
 		TestBase.setupBiz();
 		TestBase.biz.bizLoginPage().login(TestBase.operateOperatorMobileTeam2, TestBase.operateOperatorPasswordTeam2);
-		TestBase.biz.homePage().gotofinanceDataApprovePage();
+		TestBase.biz.homePage().gotoFinanceDataApprovePage();
 		Thread.sleep(8000);
 		TestBase.biz.financeDataApprove().pageNums.get(TestBase.biz.financeDataApprove().pageNums.size()-1).click();
 		Thread.sleep(5000);
