@@ -35,6 +35,13 @@ public class HomePage extends AbstractPage {
 	public WebElement financeInteractiveEXTTab;
 	
 	
+	//付款管理（白条）
+	@FindBy(xpath="//div[@class='ivu-menu-submenu-title' and contains(text(),'付款管理（白条）')]")
+	public WebElement redeemManagementTab;
+	//付款通知书
+	@FindBy(xpath="//li[@class='ivu-menu-item' and contains(text(), '付款通知书')]")
+	public WebElement redeemNoticeTab;
+	
 	
 	//菜单
 	@FindBy(xpath="//div[@class='ivu-menu-submenu-title' and contains(text(),'白条融资审核')]")
@@ -96,9 +103,21 @@ public class HomePage extends AbstractPage {
 		finaceDataApproveTab.click();
 	}
 	
+	/*
+	 * 进入付款通知书菜单
+	 */
+	public void gotoRedeemNoticePage() throws InterruptedException{
+		Thread.sleep(1000);
+		redeemManagementTab.click();
+		Thread.sleep(1000);
+		redeemNoticeTab.click();
+	}
+	
 	public static void main(String[] args) throws Exception {
 		TestBase.setupBiz();
-		TestBase.biz.bizLoginPage().login(TestBase.operateOperatorMobileTeam2, TestBase.operateOperatorPasswordTeam2);
-		TestBase.biz.homePage().gotoReceivableIssuePage();
+		TestBase.biz.bizLoginPage().login(TestBase.productManagerMobileTeam2, TestBase.productManagerPasswordTeam2);
+		TestBase.biz.homePage().gotoRedeemNoticePage();
+		Thread.sleep(1000);
+		
 	}
 }

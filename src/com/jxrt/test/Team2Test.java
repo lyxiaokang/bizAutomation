@@ -23,7 +23,7 @@ public class Team2Test extends TestBase {
 	/*
 	 * 平台端账款签发新增（单笔）
 	 */
-	@Test(enabled=true,priority = 2)
+	@Test(enabled=false,priority = 0)
 	public void TestReceivableIssue() throws InterruptedException {
 		//初始化数据
 		String corpNameCore=TestBase.corpNameCoreReceivableTeam2;
@@ -58,15 +58,12 @@ public class Team2Test extends TestBase {
 		TestBase.biz.homePage().creditManagementTab.click();
 		//进入账款查询
 		TestBase.biz.homePage().gotoReceivableSearchPage();
-		if(TestBase.biz.receivableSearchPage().receivableListCores.get(0).isDisplayed())
-		{
-			TestBase.biz.receivableSearchPage().corpNameCoreInput.sendKeys(corpNameCore);
-			TestBase.biz.receivableSearchPage().corpNameAcceptInput.sendKeys(corpNameAccept);
-			TestBase.biz.receivableSearchPage().searchBtn.click();
-		}
+		Thread.sleep(2000);
+		TestBase.biz.receivableSearchPage().corpNameCoreInput.sendKeys(corpNameCore);
+		TestBase.biz.receivableSearchPage().corpNameAcceptInput.sendKeys(corpNameAccept);
+		TestBase.biz.receivableSearchPage().searchBtn.click();
 		//断言
 		Thread.sleep(3000);
-		Assert.assertEquals(TestBase.biz.receivableSearchPage().receivableListCores.get(0).getText(),corpNameCore);
 		Assert.assertEquals(TestBase.biz.receivableSearchPage().receivableListCores.get(0).getText(),corpNameCore);
 		Assert.assertEquals(TestBase.biz.receivableSearchPage().receivableListProductTypes.get(0).getText(),"e点通");
 		Assert.assertEquals(TestBase.biz.receivableSearchPage().receivableListCorpNameAccepts.get(0).getText(),corpNameAccept);
@@ -80,7 +77,7 @@ public class Team2Test extends TestBase {
 	/*
 	 * 平台端账款签发审核通过（单条）
 	 */
-	@Test(enabled=true,priority = 2)
+	@Test(enabled=true,priority = 0)
 	public void TestReceivableApprovePassSigle() throws InterruptedException {
 		//调用签发
 		TestReceivableIssue();
@@ -108,15 +105,13 @@ public class Team2Test extends TestBase {
 		TestBase.biz.homePage().gotoReceivableSearchPage();
 		Thread.sleep(3000);
 		TestBase.biz.receivableSearchPage().IssuedTab.click();
-		if(TestBase.biz.receivableSearchIssuedTabPage().receivableListCores.get(0).isDisplayed())
-		{
-			TestBase.biz.receivableSearchIssuedTabPage().corpNameCoreInput.sendKeys(corpNameCore);
-			TestBase.biz.receivableSearchIssuedTabPage().corpNameAcceptInput.sendKeys(corpNameAccept);
-			TestBase.biz.receivableSearchIssuedTabPage().approveDateBeginInput.sendKeys(today.toString());
-			TestBase.biz.receivableSearchIssuedTabPage().applyAmountMinInput.sendKeys(applyAmount);
-			TestBase.biz.receivableSearchIssuedTabPage().applyAmountMaxInput.sendKeys(applyAmount);
-			TestBase.biz.receivableSearchIssuedTabPage().searchBtn.click();
-		}
+		Thread.sleep(2000);
+		TestBase.biz.receivableSearchIssuedTabPage().corpNameCoreInput.sendKeys(corpNameCore);
+		TestBase.biz.receivableSearchIssuedTabPage().corpNameAcceptInput.sendKeys(corpNameAccept);
+		TestBase.biz.receivableSearchIssuedTabPage().approveDateBeginInput.sendKeys(today.toString());
+		TestBase.biz.receivableSearchIssuedTabPage().applyAmountMinInput.sendKeys(applyAmount);
+		TestBase.biz.receivableSearchIssuedTabPage().applyAmountMaxInput.sendKeys(applyAmount);
+		TestBase.biz.receivableSearchIssuedTabPage().searchBtn.click();
 		Thread.sleep(8000);
 		//断言
 		Assert.assertEquals(TestBase.biz.receivableSearchIssuedTabPage().receivableListPkCredits.get(0).getText(),pkCredit);
@@ -124,7 +119,7 @@ public class Team2Test extends TestBase {
 	/*
 	 * 平台端账款签发审核不通过（单笔）
 	 */
-	@Test(enabled=true,priority = 1)
+	@Test(enabled=true,priority = 0)
 	public void TestReceivableApproveNoPass() throws InterruptedException {
 		//调用签发
 		TestReceivableIssue();
@@ -153,15 +148,13 @@ public class Team2Test extends TestBase {
 		TestBase.biz.homePage().creditManagementTab.click();
 		//进入账款查询
 		TestBase.biz.homePage().gotoReceivableSearchPage();
-		if(TestBase.biz.receivableSearchPage().receivableListCores.get(0).isDisplayed())
-		{
-			TestBase.biz.receivableSearchPage().corpNameCoreInput.sendKeys(corpNameCore);
-			TestBase.biz.receivableSearchPage().corpNameAcceptInput.sendKeys(corpNameAccept);
-			TestBase.biz.receivableSearchPage().submitDateBeginInput.sendKeys(today.toString());
-			TestBase.biz.receivableSearchPage().applyAmountMinInput.sendKeys(applyAmount);
-			TestBase.biz.receivableSearchPage().applyAmountMaxInput.sendKeys(applyAmount);
-			TestBase.biz.receivableSearchPage().searchBtn.click();
-		}
+		Thread.sleep(2000);
+		TestBase.biz.receivableSearchPage().corpNameCoreInput.sendKeys(corpNameCore);
+		TestBase.biz.receivableSearchPage().corpNameAcceptInput.sendKeys(corpNameAccept);
+		TestBase.biz.receivableSearchPage().submitDateBeginInput.sendKeys(today.toString());
+		TestBase.biz.receivableSearchPage().applyAmountMinInput.sendKeys(applyAmount);
+		TestBase.biz.receivableSearchPage().applyAmountMaxInput.sendKeys(applyAmount);
+		TestBase.biz.receivableSearchPage().searchBtn.click();
 		Thread.sleep(3000);
 		//断言
 		Assert.assertEquals(TestBase.biz.receivableSearchPage().receivableListPkCredits.get(0).getText(),pkCredit);
@@ -172,7 +165,7 @@ public class Team2Test extends TestBase {
 	/*
 	 * 平台端账款签发审核不通过修改
 	 */
-	@Test(enabled=true,priority = 1)
+	@Test(enabled=true,priority = 0)
 	public void TestReceivableApproveNoPassModify() throws InterruptedException {
 		TestReceivableApproveNoPass();
 		tearDownBiz();
@@ -182,15 +175,13 @@ public class Team2Test extends TestBase {
 		//进入账款查询
 		Thread.sleep(2000);
 		TestBase.biz.homePage().gotoReceivableSearchPage();
-		if(TestBase.biz.receivableSearchPage().receivableListCores.get(0).isDisplayed())
-		{
-			TestBase.biz.receivableSearchPage().corpNameCoreInput.sendKeys(TestBase.corpNameCoreReceivableTeam2);
-			TestBase.biz.receivableSearchPage().corpNameAcceptInput.sendKeys(TestBase.corpNameReceivableTeam2);
-			TestBase.biz.receivableSearchPage().submitDateBeginInput.sendKeys(LocalDate.now().toString());
-			TestBase.biz.receivableSearchPage().applyAmountMinInput.sendKeys(TestBase.ReceivableApproveNoPassApplyAmount);
-			TestBase.biz.receivableSearchPage().applyAmountMaxInput.sendKeys(TestBase.ReceivableApproveNoPassApplyAmount);
-			TestBase.biz.receivableSearchPage().searchBtn.click();
-		}
+		Thread.sleep(2000);
+		TestBase.biz.receivableSearchPage().corpNameCoreInput.sendKeys(TestBase.corpNameCoreReceivableTeam2);
+		TestBase.biz.receivableSearchPage().corpNameAcceptInput.sendKeys(TestBase.corpNameReceivableTeam2);
+		TestBase.biz.receivableSearchPage().submitDateBeginInput.sendKeys(LocalDate.now().toString());
+		TestBase.biz.receivableSearchPage().applyAmountMinInput.sendKeys(TestBase.ReceivableApproveNoPassApplyAmount);
+		TestBase.biz.receivableSearchPage().applyAmountMaxInput.sendKeys(TestBase.ReceivableApproveNoPassApplyAmount);
+		TestBase.biz.receivableSearchPage().searchBtn.click();
 		Thread.sleep(3000);
 		//断言
 		Assert.assertEquals(TestBase.biz.receivableSearchPage().receivableListPkCredits.get(0).getText(),TestBase.ReceivableApproveNoPassPkCredit);
@@ -217,15 +208,13 @@ public class Team2Test extends TestBase {
 		//进入账款查询
 		Thread.sleep(2000);
 		TestBase.biz.homePage().gotoReceivableSearchPage();
-		if(TestBase.biz.receivableSearchPage().receivableListCores.get(0).isDisplayed())
-		{
-			TestBase.biz.receivableSearchPage().corpNameCoreInput.sendKeys(TestBase.corpNameCoreReceivableTeam2);
-			TestBase.biz.receivableSearchPage().corpNameAcceptInput.sendKeys(TestBase.corpNameReceivableTeam2);
-			TestBase.biz.receivableSearchPage().submitDateBeginInput.sendKeys(LocalDate.now().toString());
-			TestBase.biz.receivableSearchPage().applyAmountMinInput.sendKeys(TestBase.ReceivableApproveNoPassApplyAmount);
-			TestBase.biz.receivableSearchPage().applyAmountMaxInput.sendKeys(TestBase.ReceivableApproveNoPassApplyAmount);
-			TestBase.biz.receivableSearchPage().searchBtn.click();
-		}
+		Thread.sleep(2000);
+		TestBase.biz.receivableSearchPage().corpNameCoreInput.sendKeys(TestBase.corpNameCoreReceivableTeam2);
+		TestBase.biz.receivableSearchPage().corpNameAcceptInput.sendKeys(TestBase.corpNameReceivableTeam2);
+		TestBase.biz.receivableSearchPage().submitDateBeginInput.sendKeys(LocalDate.now().toString());
+		TestBase.biz.receivableSearchPage().applyAmountMinInput.sendKeys(TestBase.ReceivableApproveNoPassApplyAmount);
+		TestBase.biz.receivableSearchPage().applyAmountMaxInput.sendKeys(TestBase.ReceivableApproveNoPassApplyAmount);
+		TestBase.biz.receivableSearchPage().searchBtn.click();
 		Thread.sleep(3000);
 		//断言
 		Assert.assertEquals(TestBase.biz.receivableSearchPage().receivableListPkCredits.get(0).getText(),TestBase.ReceivableApproveNoPassPkCredit);
@@ -399,7 +388,7 @@ public class Team2Test extends TestBase {
 	/*
 	 * 平台端融资资料审核添加
 	 */
-	@Test(enabled=true,priority = 0)
+	@Test(enabled=false,priority = 1)
 	public void TestFinanceDataAdd() throws InterruptedException {
 		TestBase.biz.bizLoginPage().login(TestBase.operateQueryMobileTeam2, TestBase.operateQueryPasswordTeam2);
 		TestBase.biz.homePage().gotoFinanceDataApprovePage();
@@ -419,7 +408,7 @@ public class Team2Test extends TestBase {
 	/*
 	 * 平台端融资资料审核-修改和失效
 	 */
-	@Test(enabled=true,priority = 0)
+	@Test(enabled=true,priority = 1)
 	public void TestFinanceDataModifyAndInvalid() throws InterruptedException {
 		TestBase.biz.bizLoginPage().login(TestBase.operateQueryMobileTeam2, TestBase.operateQueryPasswordTeam2);
 		TestBase.biz.homePage().gotoFinanceDataApprovePage();
@@ -440,7 +429,7 @@ public class Team2Test extends TestBase {
 	/*
 	 * 平台端融资资料审核-初审领取任务并审核通过
 	 */
-	@Test(enabled=true,priority = 0)
+	@Test(enabled=true,priority = 1)
 	public void TestFinanceDataOpeApprovePass() throws InterruptedException {
 		TestBase.biz.bizLoginPage().login(TestBase.operateQueryMobileTeam2, TestBase.operateQueryPasswordTeam2);
 		TestBase.biz.homePage().gotoFinanceDataApprovePage();
@@ -486,7 +475,7 @@ public class Team2Test extends TestBase {
 	/*
 	 * 平台端融资资料审核-复审退回经办，经办重新提交，复审通过
 	 */
-	@Test(enabled=true,priority = 0)
+	@Test(enabled=true,priority = 1)
 	public void TestFinanceDataAfterBackToOpeManApprovePass() throws InterruptedException {
 		//客服新增
 		TestBase.biz.bizLoginPage().login(TestBase.operateQueryMobileTeam2, TestBase.operateQueryPasswordTeam2);
@@ -591,7 +580,7 @@ public class Team2Test extends TestBase {
 	/*
 	 * 平台端融资资料审核-复审审核不通过
 	 */
-	@Test(enabled=true,priority = 0)
+	@Test(enabled=true,priority = 1)
 	public void TestFinanceDataManApproveNoPass() throws InterruptedException {
 		//客服新增
 		TestBase.biz.bizLoginPage().login(TestBase.operateQueryMobileTeam2, TestBase.operateQueryPasswordTeam2);
@@ -657,7 +646,7 @@ public class Team2Test extends TestBase {
 	/*
 	 * 平台端融资资料审核-初审审核不通过-客服修改
 	 */
-	@Test(enabled=true,priority = 0)
+	@Test(enabled=true,priority = 1)
 	public void TestFinanceDataOpeApproveNoPass() throws InterruptedException {
 		//客服新增
 		TestBase.biz.bizLoginPage().login(TestBase.operateQueryMobileTeam2, TestBase.operateQueryPasswordTeam2);

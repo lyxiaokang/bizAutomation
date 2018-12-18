@@ -215,7 +215,7 @@ public class ReceivableIssuePage extends AbstractPage{
 		abstractInput.sendKeys(abstract_);
 		singleIssueBtn.click();
 		
-		Thread.sleep(3000);
+		Thread.sleep(5000);
 		//断言
 		Assert.assertEquals(receivableListCores.get(0).getText(), corpNameCore);
 		Assert.assertEquals(receivableListLimitSources.get(0).getText(), corpNameCore);

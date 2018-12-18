@@ -59,6 +59,13 @@ public class Biz {
 		return new FinanceDataApprovePage(driver);
 	}
 	
+	/*
+	 * 付款通知书页面初始化
+	 */
+	public RedeemNoticePage redeemNoticePage() {
+		return new RedeemNoticePage(driver);
+	}
+	
 	
 	
 }

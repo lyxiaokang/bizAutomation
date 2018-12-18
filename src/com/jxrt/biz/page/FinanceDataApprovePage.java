@@ -195,9 +195,9 @@ public class FinanceDataApprovePage extends AbstractPage{
 	public WebElement downloadQTBtn;
 	@FindBy(xpath="//span[contains(text(), '经营异常证明文件:')]/../descendant::button/span[contains(text(), '下载')]")
 	public WebElement downloadZMWJBtn;
-	@FindBy(xpath="/html/body/div[23]/div[2]/div/div/div/div/div[2]/div[2]")
+	@FindBy(xpath="/html/body/div[25]/div[2]/div/div/div/div/div[2]/div[2]")
 	public WebElement message;
-	@FindBy(xpath="/html/body/div[23]/div[2]/div/div/div/div/div[3]/button/span")
+	@FindBy(xpath="/html/body/div[25]/div[2]/div/div/div/div/div[3]/button/span")
 	public WebElement messageConfirmBtn;
 	
 	//页码
@@ -213,7 +213,6 @@ public class FinanceDataApprovePage extends AbstractPage{
 	@FindBy(xpath="/html/body/div[1]/div/div[2]/div[1]/div/div[2]/div/div/div[2]/div/div[2]/ul[@class='ivu-page mini']/li[contains(@class,'ivu-page-next')]")
 	public WebElement nextPageNum;
 	
-	//下拉按钮
 	@FindBy(xpath="/html/body/div[1]/div/div[2]/div[1]/div/div[2]/div/div/div[2]/div/div[2]/div/div/div[2]/table/tbody/tr/td[1]")
 	public List<WebElement> dataListDropDownBtns;
 	//序号
@@ -256,13 +255,13 @@ public class FinanceDataApprovePage extends AbstractPage{
 	@FindBy(xpath="/html/body/div[1]/div/div[2]/div[1]/div/div[2]/div/div/div[2]/div/div[2]/div/div/div[2]/table/tbody/tr/td[13]//button/span[contains(text(),'失效')]")
 	public List<WebElement> dataLisInvalidBtns;
 	
-	//失效提示框
-	@FindBy(xpath="/html/body/div[22]/div[2]/div/div/div[2]/div/button[1]/span")
+	//失效提示框               
+	@FindBy(xpath="/html/body/div[24]/div[2]/div/div/div[2]/div/button[1]/span")
 	public WebElement invalidConfirmBtn;
-	@FindBy(xpath="/html/body/div[22]/div[2]/div/div/div[2]/div/button[2]/span")
+	@FindBy(xpath="/html/body/div[24]/div[2]/div/div/div[2]/div/button[2]/span")
 	public WebElement invalidCancelBtn;
 	
-	//初审审核按钮
+	//初审审核按钮 
 	@FindBy(xpath="/html/body/div[1]/div/div[2]/div[1]/div/div[2]/div/div/div[2]/div/div[2]/div/div/div[2]/table/tbody/tr/td[13]/div/div/button/span[contains(text(),'审核')]")
 	public List<WebElement> operatorApproveBtns;
 	//初审审核完成按钮
@@ -273,11 +272,11 @@ public class FinanceDataApprovePage extends AbstractPage{
 	public List<WebElement> managerApproveBtns;
 	
 	//认领任务提示框
-	@FindBy(xpath="/html/body/div[21]/div[2]/div/div/div[2]")
+	@FindBy(xpath="/html/body/div[23]/div[2]/div/div/div[2]")
 	public WebElement operatorClaimTaskMessge;
-	@FindBy(xpath="/html/body/div[21]/div[2]/div/div/div[3]/div/button[1]/span")
+	@FindBy(xpath="/html/body/div[23]/div[2]/div/div/div[3]/div/button[1]/span")
 	public WebElement operatorClaimTaskConfirmBtn;
-	@FindBy(xpath="/html/body/div[21]/div[2]/div/div/div[3]/div/button[2]/span")
+	@FindBy(xpath="/html/body/div[23]/div[2]/div/div/div[3]/div/button[2]/span")
 	public WebElement operatorClaimTaskCancelBtn;
 	
 	//子Tab
@@ -366,13 +365,13 @@ public class FinanceDataApprovePage extends AbstractPage{
 	public WebElement opeApproveSWHTCpSearchBtn;
 	//交易对手弹出框
 	//交易对手输入框
-	@FindBy(xpath="/html/body/div[14]/div[2]/div/div/div[2]/div[1]/div/div/input")
+	@FindBy(xpath="/html/body/div[16]/div[2]/div/div/div[2]/div[1]/div/div/input")
 	public WebElement corpNameInput;
 	//交易对手查询按钮
-	@FindBy(xpath="/html/body/div[14]/div[2]/div/div/div[2]/div[1]/div/div/div/button/span")
+	@FindBy(xpath="/html/body/div[16]/div[2]/div/div/div[2]/div[1]/div/div/div/button/span")
 	public WebElement corpNameSearchBtn;
 	//交易对手列表选择按钮
-	@FindBy(xpath="/html/body/div[14]/div[2]/div/div/div[2]/div[2]/div/div/div[2]/table/tbody/tr/td[4]/div/div/button/span")
+	@FindBy(xpath="/html/body/div[16]/div[2]/div/div/div[2]/div[2]/div/div/div[2]/table/tbody/tr/td[4]/div/div/button/span")
 	public WebElement corpNameSelectBtn;
 	/*
 	 * 查找并选择对应企业
@@ -392,9 +391,9 @@ public class FinanceDataApprovePage extends AbstractPage{
 	@FindBy(xpath="//div[contains(text(),'商务合同')]/../../div[@class='ivu-modal-body']//form//label[contains(text(),'商务合同编号：')]/..//input")
 	public WebElement opeApproveSWHTBusiContractCodeInput;
 	
-	@FindBy(xpath="/html/body/div[15]/div[2]/div/div/div[3]/div/button[1]/span")
+	@FindBy(xpath="/html/body/div[17]/div[2]/div/div/div[3]/div/button[1]/span")
 	public WebElement opeApproveSWHTSubmitBtn;
-	@FindBy(xpath="/html/body/div[15]/div[2]/div/div/div[3]/div/button[2]/span")
+	@FindBy(xpath="/html/body/div[17]/div[2]/div/div/div[3]/div/button[2]/span")
 	public WebElement opeApproveSWHTCloseBtn;
 	
 	@FindBy(xpath="//table/tbody/tr/td/div/span[contains(text(),'发票')]")
@@ -409,7 +408,7 @@ public class FinanceDataApprovePage extends AbstractPage{
 	public WebElement dataListChildFPManReason;
 	@FindBy(xpath="//table/tbody/tr/td/div/span[contains(text(),'发票')]/../../../td[6]//button/span[contains(text(),'审核')]")
 	public WebElement dataListChildFPApproveBtn;
-	//发票审核界面
+	//发票审核界面           /html/body/div[10]/div[2]/div/div/div[3]/div/button[1]/span
 	@FindBy(xpath="/html/body/div[10]/div[2]/div/div/div[2]/div[5]/div[1]/button/span")
 	public WebElement opeApproveFPDeleteAllBtn;
 	@FindBy(xpath="/html/body/div[10]/div[2]/div/div/div[3]/div/button[1]/span")
@@ -521,7 +520,7 @@ public class FinanceDataApprovePage extends AbstractPage{
 				e.printStackTrace();
 			} 
 		element.click();
-		Thread.sleep(6000);
+		Thread.sleep(4000);
 	}
 	/*
 	 * 添加融资资料

@@ -25,7 +25,7 @@ public class ReceivableApprovePage extends AbstractPage{
 		super(driver);
 	}
 	
-	//核心企业名称输入框
+		//核心企业名称输入框
 		@FindBy(xpath="//span[contains(text(), '核心企业名称：')]/../descendant::input")
 		public WebElement corpNameCoreInput;
 		

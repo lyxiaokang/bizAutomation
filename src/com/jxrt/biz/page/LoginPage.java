@@ -1,5 +1,7 @@
 package com.jxrt.biz.page;
 
+import java.util.List;
+
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -16,8 +18,10 @@ public class LoginPage extends AbstractPage {
 	@FindBy(name="mobile")
 	private WebElement mobileInput;
 	
-	@FindBy(name="bizPass")
-	private WebElement bizPassInput;
+//	@FindBy(name="bizPass")
+//	private WebElement bizPassInput;
+	@FindBy(xpath="//*[@id='form']/div[3]/input[1]")
+	public WebElement bizPassInput;
 	
 	@FindBy(id="submitBtn")
 	private WebElement submitBtn;

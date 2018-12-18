@@ -6,6 +6,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Random;
 
+import com.jxrt.api.BizCorpApi;
 import com.jxrt.api.UaaApi;
 import com.jxrt.dbutil.*;
 import com.jxrt.test.TestBase;
@@ -104,9 +105,11 @@ public class BizCredit extends TestBase{
 	 * test主类
 	 */	
 	public static void main(String[] args) throws SQLException{
-		UaaApi.login("17710253335", "111111", "CCBSCF_BUSINESS_WEB");
-		String params="{\"corpNameApply\":\"#CorpNameCoreReceivableTeam2#\",\"corpNameAccept\":\"#CorpNameReceivableTeam2#\",\"busiContractCode\":\"#busiContractCode#\",\"applyAmount\":\"#applyAmount#\",\"maturityDateString\":\"#maturityDateString#\",\"marketingBrand\":\"e点通\",\"markupRate\":\"0.00\",\"abstract\":\"#abstract#\",\"fkApplySource\":\"#fkApplySource#\",\"corpApplySource\":\"#corpApplySource#\",\"productTypeCcbscf\":\"RECEIVABLE\"}";
-		BizCredit.bizCreditIssue(params);
+		//UaaApi.login("17710253335", "a1111111", "CCBSCF_BUSINESS_WEB");
+		UaaApi.loginCorp("陕西盛佳建筑装饰有限公司", "13520171677", "a1111111", "CCBSCF_CORP_WEB");
+		ArrayList<String> list = new ArrayList<>();
+		list.add("XRJT-20180904-006-000001");
+		BizCredit.getFinanceScheduleInfo(list);
 	}
 	
 

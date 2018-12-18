@@ -3,6 +3,8 @@ package com.jxrt.api;
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
+import java.security.NoSuchAlgorithmException;
+import java.security.spec.InvalidKeySpecException;
 import java.util.List;
 
 import org.apache.http.HttpResponse;
@@ -12,6 +14,7 @@ import org.apache.http.cookie.Cookie;
 import org.apache.http.impl.client.DefaultHttpClient;
 
 import com.jxrt.test.TestBase;
+import com.jxrt.util.RSAUtils;
 import com.jxrt.util.ResultHelper;
 public class UaaApi extends TestBase  {
 	public static List<Cookie> cookies; 
@@ -21,7 +24,7 @@ public class UaaApi extends TestBase  {
 //		CorpApi.queryProductState();
 //		String corpId = BizCorpApi.searchCorp("你拉开松井大辅");
 //		logoutCorp();
-//		login("13581978538", "111111", "CCBSCF_BUSINESS_WEB");
+//		login("13581978538", "a1111111", "CCBSCF_BUSINESS_WEB");
 //		String corpInfo = BizCorpApi.searchCorp("你拉开松井大辅");
 //		BizCorpApi.authResiteredCorp(corpInfo);
 //		logout("/biz/login");
@@ -37,13 +40,38 @@ public class UaaApi extends TestBase  {
         HttpResponse response;
 		try {
 			response = httpclient.execute(httpget);
+			//System.out.println(response.getAllHeaders());
 		} catch (ClientProtocolException e) {
+			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} catch (IOException e) {
+			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
         List<Cookie> cookies = httpclient.getCookieStore().getCookies();
         return cookies;
+	}
+	
+	/**
+	 * 获取public key
+	 * 
+	 * 
+	 * @return csrf token
+	 */
+	public static String getPubkey() {
+		String csrfToken = "";
+		String request = requestUrl + "api/web/v1/auth/passwords/public-keys";
+
+		String result = "";
+
+		result = ResultHelper.sendGetRequest(protocolType, request, null, null);
+		String code = ResultHelper.getJsonValueByKey(result, "returnCode");
+		if ("200".equals(code)) {
+			System.out.println(result);
+			String data = ResultHelper.getJsonValueByKey(result, "data");
+			result = data;
+		}
+		return result;
 	}
 	
 	
@@ -74,13 +102,33 @@ public class UaaApi extends TestBase  {
 		return csrfToken;
 	}
 	
+	
 	/**
 	 * 登陆平台端
+	 * @throws UnsupportedEncodingException 
 	 */
+	@SuppressWarnings("deprecation")
 	public static void login(String mobile, String bizpass, String type) {
 		String csrfToken = getToken();
 		String request = requestUrl + "uaa/login";
-		String params = "mobile=" + mobile + "&bizPass="+ bizpass + "&redirect_uri=" + "&_csrf=" + csrfToken + "&type=" + type;
+		String params = "";
+		if(type.equals("CCBSCF_BUSINESS_WEB")) {
+			String pubKey = getPubkey();
+			String password = "";
+			try {
+				password = RSAUtils.encryptByPublicKey(pubKey, bizpass);
+			} catch (NoSuchAlgorithmException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (InvalidKeySpecException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			params = "mobile=" + mobile + "&bizPass="+ URLEncoder.encode(password) + "&redirect_uri=" + "&_csrf=" + csrfToken + "&type=" + type;
+		}else {
+			params = "mobile=" + mobile + "&bizPass="+ bizpass + "&redirect_uri=" + "&_csrf=" + csrfToken + "&type=" + type;
+		}
+		
 		String result = "";
 
 		result = ResultHelper.sendPostRequest(protocolType, request, params, null);
