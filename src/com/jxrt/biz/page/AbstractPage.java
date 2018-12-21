@@ -41,12 +41,25 @@ public abstract class AbstractPage {
 	//活动页码
 	@FindBy(xpath="//ul[@class='ivu-page mini']/li[@class='ivu-page-item ivu-page-item-active']/a")
 	public WebElement activePageNum;
-	//活动页码
+	//上一页按钮
 	@FindBy(xpath="//ul[@class='ivu-page mini']/li[contains(@class,'ivu-page-prev')]")
 	public WebElement prevPageNum;
-	//活动页码
+	//下一页按钮
 	@FindBy(xpath="//ul[@class='ivu-page mini']/li[contains(@class,'ivu-page-next')]")
 	public WebElement nextPageNum;
+	
+	/*
+	 * 获取最后一页页码
+	 */
+	public int getLastPageNum(){
+		return Integer.parseInt(pageNums.get(pageNums.size()-1).getText());
+	}
+	/*
+	 * 获取最后一页元素
+	 */
+	public WebElement getLastPageElement(){
+		return pageNums.get(pageNums.size()-1);
+	}
 
     public AbstractPage(WebDriver driver) {
         this.driver = driver;

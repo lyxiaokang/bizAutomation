@@ -106,10 +106,8 @@ public class BizCredit extends TestBase{
 	 */	
 	public static void main(String[] args) throws SQLException{
 		//UaaApi.login("17710253335", "a1111111", "CCBSCF_BUSINESS_WEB");
-		UaaApi.loginCorp("陕西盛佳建筑装饰有限公司", "13520171677", "a1111111", "CCBSCF_CORP_WEB");
-		ArrayList<String> list = new ArrayList<>();
-		list.add("XRJT-20180904-006-000001");
-		BizCredit.getFinanceScheduleInfo(list);
+		UaaApi.login("17710253335", "a1111111", "CCBSCF_CORP_WEB");
+		bizCreditSubmit("");
 	}
 	
 

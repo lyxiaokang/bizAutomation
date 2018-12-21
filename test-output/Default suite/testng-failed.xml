@@ -5,14 +5,9 @@
     <classes>
       <class name="com.jxrt.test.Team2Test">
         <methods>
-          <include name="TestFinanceDataAdd"/>
           <include name="setup_Biz"/>
-          <include name="TestFinanceDataManApproveNoPass"/>
-          <include name="TestFinanceDataOpeApprovePass"/>
-          <include name="TestFinanceDataAfterBackToOpeManApprovePass"/>
+          <include name="TestRedeemNoticeCreditNum"/>
           <include name="tearDown_Biz"/>
-          <include name="TestFinanceDataOpeApproveNoPass"/>
-          <include name="TestFinanceDataModifyAndInvalid"/>
         </methods>
       </class> <!-- com.jxrt.test.Team2Test -->
     </classes>

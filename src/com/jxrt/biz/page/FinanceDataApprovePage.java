@@ -206,10 +206,10 @@ public class FinanceDataApprovePage extends AbstractPage{
 	//活动页码
 	@FindBy(xpath="/html/body/div[1]/div/div[2]/div[1]/div/div[2]/div/div/div[2]/div/div[2]/ul[@class='ivu-page mini']/li[@class='ivu-page-item ivu-page-item-active']/a")
 	public WebElement activePageNum;
-	//活动页码
+	//上一页
 	@FindBy(xpath="/html/body/div[1]/div/div[2]/div[1]/div/div[2]/div/div/div[2]/div/div[2]/ul[@class='ivu-page mini']/li[contains(@class,'ivu-page-prev')]")
 	public WebElement prevPageNum;
-	//活动页码
+	//下一页
 	@FindBy(xpath="/html/body/div[1]/div/div[2]/div[1]/div/div[2]/div/div/div[2]/div/div[2]/ul[@class='ivu-page mini']/li[contains(@class,'ivu-page-next')]")
 	public WebElement nextPageNum;
 	

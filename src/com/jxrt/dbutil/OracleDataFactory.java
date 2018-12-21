@@ -430,13 +430,120 @@ public class OracleDataFactory implements DataFactory {
 		}
 		return null;
 	}
+	
+	
+	/**
+	 * 查询给定状态的白条数量
+	 * @author 邱刚
+	 * @return
+	 * @throws SQLException 
+	 */
+	public static int countCredit(List<String> creditStateList,String corpNameCore,
+			String corpName,String productTypeCcbscf,LocalDate reddemDateBegin,LocalDate reddemDateEnd) throws SQLException{
+		Connection connection=DBUtil.getConnection();
+		StringBuffer sqlBuffer = new StringBuffer();
+		sqlBuffer.append("select count(*) from "+DBUtil.schema+"t_credit");
+		sqlBuffer.append(" where  credit_state in (");
+		for (String creditState:creditStateList){
+			sqlBuffer.append("'"+creditState+"',");
+		}
+		sqlBuffer.deleteCharAt(sqlBuffer.length()-1);
+		sqlBuffer.append(")");
+		if(corpNameCore!=null){
+			sqlBuffer.append(" and corp_name_core ='"+corpNameCore+"'");
+		}
+		if(corpName!=null){
+			sqlBuffer.append(" and corp_name_accept ='"+corpName+"'");
+		}
+		if(productTypeCcbscf!=null){
+			sqlBuffer.append(" and PRODUCT_TYPE_CCBSCF ='"+productTypeCcbscf+"'");
+		}
+		if(reddemDateBegin!=null){
+			sqlBuffer.append(" and (maturity_date + GRACE_PERIOD) >=date'"+reddemDateBegin+"'");
+		}
+		if(reddemDateEnd!=null){
+			sqlBuffer.append(" and (maturity_date + GRACE_PERIOD) <=date'"+reddemDateEnd+"'");
+		}
+		sqlBuffer.append(" and delete_flag !=1");
+		String sql=sqlBuffer.toString();
+		System.out.println(sql);
+		PreparedStatement pstm=connection.prepareStatement(sql);
+	    ResultSet rs=pstm.executeQuery(sql);
+		while(rs.next()){
+			int count=rs.getInt(1);
+			return count;
+		}
+		return 0 ;
+	}
 
+	/**
+	 * 查询付款通知书的白条list
+	 * @author 邱刚
+	 * @return
+	 * @throws SQLException 
+	 */
+	public static List<Map<String, String>> listRedeemCredit(List<String> creditStateList,String corpNameCore,
+			String corpName,String productTypeCcbscf,LocalDate reddemDateBegin,LocalDate reddemDateEnd) throws SQLException{
+		List<Map<String, String>> list=new ArrayList<Map<String, String>>();
+		Connection connection=DBUtil.getConnection();
+		StringBuffer sqlBuffer = new StringBuffer();
+		sqlBuffer.append("select pk_credit,corp_name_core,corp_name_accept,product_type_ccbscf,issue_time,maturity_amount,(maturity_date+GRACE_PERIOD) as redeem_date,"
+				+ "REDEEM_AMOUNT_SUM,(maturity_amount-REDEEM_AMOUNT_SUM) as redeem_amount,credit_state from "+DBUtil.schema+"t_credit");
+		sqlBuffer.append(" where  credit_state in (");
+		for (String creditState:creditStateList){
+			sqlBuffer.append("'"+creditState+"',");
+		}
+		sqlBuffer.deleteCharAt(sqlBuffer.length()-1);
+		sqlBuffer.append(")");
+		if(corpNameCore!=null){
+			sqlBuffer.append(" and corp_name_core ='"+corpNameCore+"'");
+		}
+		if(corpName!=null){
+			sqlBuffer.append(" and corp_name_accept ='"+corpName+"'");
+		}
+		if(productTypeCcbscf!=null){
+			sqlBuffer.append(" and PRODUCT_TYPE_CCBSCF ='"+productTypeCcbscf+"'");
+		}
+		if(reddemDateBegin!=null){
+			sqlBuffer.append(" and (maturity_date + GRACE_PERIOD) >=date'"+reddemDateBegin+"'");
+		}
+		if(reddemDateEnd!=null){
+			sqlBuffer.append(" and (maturity_date + GRACE_PERIOD) <=date'"+reddemDateEnd+"'");
+		}
+		sqlBuffer.append(" and delete_flag !=1 order by maturity_date nulls last,sequence_no desc");
+		String sql=sqlBuffer.toString();
+		System.out.println(sql);
+		PreparedStatement pstm=connection.prepareStatement(sql);
+	    ResultSet rs=pstm.executeQuery(sql);
+		while(rs.next()){
+			Map<String, String> map=new HashMap<String, String>();
+			map.put("pkCredit",rs.getString("pk_credit"));
+			map.put("corpNameCore",rs.getString("corp_name_core"));
+			map.put("corpName",rs.getString("corp_name_accept"));
+			map.put("productTypeCcbscf",rs.getString("product_type_ccbscf"));
+			map.put("issueTime",rs.getString("issue_time").substring(0,10));
+			map.put("maturityAmount",rs.getBigDecimal("maturity_amount").setScale(2, BigDecimal.ROUND_HALF_UP).toString());
+			map.put("redeemDate",rs.getString("redeem_date").substring(0,10));
+			map.put("redeemedAmount",rs.getBigDecimal("REDEEM_AMOUNT_SUM").setScale(2, BigDecimal.ROUND_HALF_UP).toString());
+			map.put("redeemAmount",rs.getBigDecimal("redeem_amount").setScale(2, BigDecimal.ROUND_HALF_UP).toString());
+			map.put("creditState",rs.getString("credit_state"));
+			list.add(map);
+		}
+		return list;
+	}
 	public static void main(String[] args) throws SQLException {
 		OracleDataFactory oracleDataFactory = new OracleDataFactory();
-		int j=new Random().nextInt(7-1);
-		System.out.println(j);
-//		System.out.println(OracleDataFactory.getFNLCoreSelectFkcorpByDepartment("All").split(",").length);
-//		System.out.println(OracleDataFactory.getSNFCoreSelectFkcorpByDepartment("陕西盛佳建筑装饰有限公司"));
+		List creditList=new ArrayList<String>();
+		creditList.add("ISD");
+		creditList.add("RD0");
+		creditList.add("RD1");
+		creditList.add("RD9");
+		LocalDate today=LocalDate.now();
+		LocalDate reddemDateBegin=today.minusDays(20);
+		LocalDate reddemDateEnd=today.plusDays(20);
+//		LocalDate reddemDateBegin=LocalDate.of(2018,11,22);
+//		LocalDate reddemDateEnd=LocalDate.of(2018,11,22);
+		System.out.println(oracleDataFactory.listRedeemCredit(creditList,"盛世集团成员二","太平链条企业一","CREDIT",null, null));
 		}
 		
 

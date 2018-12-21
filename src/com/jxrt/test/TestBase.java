@@ -1,6 +1,9 @@
 package com.jxrt.test;
 
 import java.io.File;
+import java.io.IOException;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -8,9 +11,12 @@ import java.util.Map;
 import java.util.Properties;
 import java.util.concurrent.TimeUnit;
 
+import org.apache.commons.io.FileUtils;
 import org.apache.http.client.CookieStore;
 import org.apache.http.cookie.Cookie;
 import org.apache.http.impl.client.BasicCookieStore;
+import org.openqa.selenium.OutputType;
+import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
 
 import com.jxrt.biz.Biz;
@@ -217,5 +223,31 @@ public class TestBase {
 			put("charset", "UTF-8");
 		}
 	};
+	
+	public static String generateDateTime() {
+		DateFormat dt = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+		return dt.format(System.currentTimeMillis());
+	}
+	
+	public static String generateDateTime2() {
+		DateFormat dt = new SimpleDateFormat("yyyyMMddHHmmss");
+		return dt.format(System.currentTimeMillis());
+	}
+
+	public static String generateDateTime(int delay) {
+		DateFormat dt = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+		return dt.format(System.currentTimeMillis() + delay * 60 * 1000);
+	}
+	
+    public static void getScreenShot(String cls, String methd) {
+    	File srcFile = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
+    String fileName = cls + "_" + methd + "_" + caseId  + "_"  +  TestBase.generateDateTime2() + ".jpg";
+            try {
+                FileUtils.copyFile(srcFile, new File(TestBase.baseDir + "/screenshots" + "/"+fileName));
+            } catch (IOException e) {
+                // TODO Auto-generated catch block
+                e.printStackTrace();
+            }
+    }
 
 }
