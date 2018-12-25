@@ -531,6 +531,64 @@ public class OracleDataFactory implements DataFactory {
 		}
 		return list;
 	}
+	
+	/**
+	 * 查询付款通知书的白条list
+	 * @author 邱刚
+	 * @return
+	 * @throws SQLException 
+	 */
+	public static List<Map<String, String>> listRedeemCreditFinanced(List<String> creditStateList,String corpNameCore,
+			String corpName,String productTypeCcbscf,LocalDate reddemDateBegin,LocalDate reddemDateEnd) throws SQLException{
+		List<Map<String, String>> list=new ArrayList<Map<String, String>>();
+		Connection connection=DBUtil.getConnection();
+		StringBuffer sqlBuffer = new StringBuffer();
+		sqlBuffer.append("select pk_credit,corp_name_core,corp_name_accept,product_type_ccbscf,issue_time,maturity_amount,(maturity_date+GRACE_PERIOD) as redeem_date,"
+				+ "REDEEM_AMOUNT_SUM,(maturity_amount-REDEEM_AMOUNT_SUM) as redeem_amount,credit_state from "+DBUtil.schema+"t_credit");
+		sqlBuffer.append(" where  credit_state in (");
+		for (String creditState:creditStateList){
+			sqlBuffer.append("'"+creditState+"',");
+		}
+		sqlBuffer.deleteCharAt(sqlBuffer.length()-1);
+		sqlBuffer.append(")");
+		if(corpNameCore!=null){
+			sqlBuffer.append(" and corp_name_core ='"+corpNameCore+"'");
+		}
+		if(corpName!=null){
+			sqlBuffer.append(" and corp_name_accept ='"+corpName+"'");
+		}
+		if(productTypeCcbscf!=null){
+			sqlBuffer.append(" and PRODUCT_TYPE_CCBSCF ='"+productTypeCcbscf+"'");
+		}
+		if(reddemDateBegin!=null){
+			sqlBuffer.append(" and (maturity_date + GRACE_PERIOD) >=date'"+reddemDateBegin+"'");
+		}
+		if(reddemDateEnd!=null){
+			sqlBuffer.append(" and (maturity_date + GRACE_PERIOD) <=date'"+reddemDateEnd+"'");
+		}
+		//第一级子条必须是已融资状态
+		sqlBuffer.append(" and pk_credit in(select fk_credit_parent from "+DBUtil.schema+"t_credit where credit_state ='FID')");
+		sqlBuffer.append(" and delete_flag !=1 order by maturity_date nulls last,sequence_no desc");
+		String sql=sqlBuffer.toString();
+		System.out.println(sql);
+		PreparedStatement pstm=connection.prepareStatement(sql);
+	    ResultSet rs=pstm.executeQuery(sql);
+		while(rs.next()){
+			Map<String, String> map=new HashMap<String, String>();
+			map.put("pkCredit",rs.getString("pk_credit"));
+			map.put("corpNameCore",rs.getString("corp_name_core"));
+			map.put("corpName",rs.getString("corp_name_accept"));
+			map.put("productTypeCcbscf",rs.getString("product_type_ccbscf"));
+			map.put("issueTime",rs.getString("issue_time").substring(0,10));
+			map.put("maturityAmount",rs.getBigDecimal("maturity_amount").setScale(2, BigDecimal.ROUND_HALF_UP).toString());
+			map.put("redeemDate",rs.getString("redeem_date").substring(0,10));
+			map.put("redeemedAmount",rs.getBigDecimal("REDEEM_AMOUNT_SUM").setScale(2, BigDecimal.ROUND_HALF_UP).toString());
+			map.put("redeemAmount",rs.getBigDecimal("redeem_amount").setScale(2, BigDecimal.ROUND_HALF_UP).toString());
+			map.put("creditState",rs.getString("credit_state"));
+			list.add(map);
+		}
+		return list;
+	}
 	public static void main(String[] args) throws SQLException {
 		OracleDataFactory oracleDataFactory = new OracleDataFactory();
 		List creditList=new ArrayList<String>();

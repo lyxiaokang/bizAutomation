@@ -16,13 +16,13 @@ public class HomePage extends AbstractPage {
 	public WebElement creditManagementTab;
 	//账款新增菜单
 	@FindBy(xpath="//li[@class='ivu-menu-item' and contains(text(), '账款新增')]")
-	public WebElement ReceivableIssueTab;
+	public WebElement receivableIssueTab;
 	//账款审核菜单
 	@FindBy(xpath="//li[@class='ivu-menu-item' and contains(text(), '账款审核')]")
-	public WebElement ReceivableApproveTab;
+	public WebElement receivableApproveTab;
 	//账款查询菜单
 	@FindBy(xpath="//li[@class='ivu-menu-item' and contains(text(), '账款查询')]")
-	public WebElement ReceivableSearchTab;
+	public WebElement receivableSearchTab;
 	
 	//白条信息查询
 	@FindBy(xpath="//li[@class='ivu-menu-item' and contains(text(), '白条信息查询')]")
@@ -59,6 +59,13 @@ public class HomePage extends AbstractPage {
 		scrollIntoView(payrollCreditApplySearchTab);
 	}
 	/*
+	 * 使代发工资菜单可见
+	 */
+	private void setPayrollCreditTabView() throws InterruptedException{
+		scrollIntoView(creditInstructionSearchTab);
+		Thread.sleep(1000);
+	}
+	/*
 	 * 进入账款新增菜单
 	 */
 	public void gotoReceivableIssuePage() throws InterruptedException{
@@ -67,7 +74,7 @@ public class HomePage extends AbstractPage {
 		Thread.sleep(1000);
 		setReceivableTabView();
 		Thread.sleep(1000);
-		ReceivableIssueTab.click();
+		receivableIssueTab.click();
 	}
 	
 	/*
@@ -79,7 +86,7 @@ public class HomePage extends AbstractPage {
 		Thread.sleep(1000);
 		setReceivableTabView();
 		Thread.sleep(1000);
-		ReceivableSearchTab.click();
+		receivableSearchTab.click();
 	}
 	/*
 	 * 进入账款新审核菜单
@@ -90,7 +97,19 @@ public class HomePage extends AbstractPage {
 		Thread.sleep(1000);
 		setReceivableTabView();
 		Thread.sleep(1000);
-		ReceivableApproveTab.click();
+		receivableApproveTab.click();
+	}
+	
+	/*
+	 * 进入代发工资申请查询菜单
+	 */
+	public void gotoPayrollCreditApplySearchPage() throws InterruptedException{
+		Thread.sleep(1000);
+		creditManagementTab.click();
+		Thread.sleep(1000);
+		setPayrollCreditTabView();
+		Thread.sleep(1000);
+		payrollCreditApplySearchTab.click();
 	}
 	
 	/*

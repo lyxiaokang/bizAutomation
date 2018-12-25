@@ -6,7 +6,7 @@
       <class name="com.jxrt.test.Team2Test">
         <methods>
           <include name="setup_Biz"/>
-          <include name="TestRedeemNoticeCreditNum"/>
+          <include name="TestRedeemNotice1208SendEmailBatch"/>
           <include name="tearDown_Biz"/>
         </methods>
       </class> <!-- com.jxrt.test.Team2Test -->

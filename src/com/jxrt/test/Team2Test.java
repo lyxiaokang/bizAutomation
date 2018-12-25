@@ -1,13 +1,19 @@
 package com.jxrt.test;
 
+import java.math.BigDecimal;
 import java.sql.SQLException;
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
 import java.util.Random;
 
 import org.testng.Assert;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
+
+import com.jxrt.dbutil.OracleDataFactory;
 
 public class Team2Test extends TestBase {
 
@@ -86,7 +92,7 @@ public class Team2Test extends TestBase {
 			Assert.assertEquals(TestBase.biz.receivableSearchPage().receivableListSubmitDates.get(0).getText(),
 					today.toString());
 			Assert.assertEquals(TestBase.biz.receivableSearchPage().receivableListApproveResults.get(0).getText(), "");
-		} catch (AssertionError e) {
+		} catch (Exception e) {
 			String cls = this.getClass().getName();
 			String method = Thread.currentThread().getStackTrace()[1].getMethodName();
 			System.out.println(cls + "--" + method);
@@ -139,7 +145,7 @@ public class Team2Test extends TestBase {
 			// 断言
 			Assert.assertEquals(TestBase.biz.receivableSearchIssuedTabPage().receivableListPkCredits.get(0).getText(),
 					pkCredit);
-		} catch (AssertionError e) {
+		} catch (Exception e) {
 			String cls = this.getClass().getName();
 			String method = Thread.currentThread().getStackTrace()[1].getMethodName();
 			System.out.println(cls + "--" + method);
@@ -195,7 +201,7 @@ public class Team2Test extends TestBase {
 			Assert.assertEquals(TestBase.biz.receivableSearchPage().receivableListApproveResults.get(0).getText(),
 					"不通过");
 
-		} catch (AssertionError e) {
+		} catch (Exception e) {
 			String cls = this.getClass().getName();
 			String method = Thread.currentThread().getStackTrace()[1].getMethodName();
 			System.out.println(cls + "--" + method);
@@ -242,7 +248,7 @@ public class Team2Test extends TestBase {
 			Thread.sleep(2000);
 
 			TestBase.biz.receivableSearchPage().receivableModify();
-		} catch (AssertionError e) {
+		} catch (Exception e) {
 			String cls = this.getClass().getName();
 			String method = Thread.currentThread().getStackTrace()[1].getMethodName();
 			System.out.println(cls + "--" + method);
@@ -291,7 +297,7 @@ public class Team2Test extends TestBase {
 			Thread.sleep(2000);
 			Assert.assertEquals(TestBase.biz.receivableSearchPage().InstructionResult.getText(), "删除成功");
 			TestBase.biz.receivableSearchPage().InstructionWindowConfirmBtn.click();
-		} catch (AssertionError e) {
+		} catch (Exception e) {
 			String cls = this.getClass().getName();
 			String method = Thread.currentThread().getStackTrace()[1].getMethodName();
 			System.out.println(cls + "--" + method);
@@ -335,7 +341,7 @@ public class Team2Test extends TestBase {
 					"是否确认删除选中的应付账款信息？");
 			TestBase.biz.receivableIssuePage().InstructionWindowConfirmBtnSencond.click();
 			Thread.sleep(2000);
-		} catch (AssertionError e) {
+		} catch (Exception e) {
 			String cls = this.getClass().getName();
 			String method = Thread.currentThread().getStackTrace()[1].getMethodName();
 			System.out.println(cls + "--" + method);
@@ -404,7 +410,7 @@ public class Team2Test extends TestBase {
 			// 断言
 			Assert.assertEquals(TestBase.biz.receivableApprovePage().InstructionResult.getText(), "审核通过！账款已发送至供应商。");
 			TestBase.biz.receivableApprovePage().InstructionWindowConfirmBtn.click();
-		} catch (AssertionError e) {
+		} catch (Exception e) {
 			String cls = this.getClass().getName();
 			String method = Thread.currentThread().getStackTrace()[1].getMethodName();
 			System.out.println(cls + "--" + method);
@@ -482,7 +488,7 @@ public class Team2Test extends TestBase {
 			// 断言
 			Assert.assertEquals(TestBase.biz.receivableApprovePage().InstructionResult.getText(), "审核不通过，已退回至经办。");
 			TestBase.biz.receivableApprovePage().InstructionWindowConfirmBtn.click();
-		} catch (AssertionError e) {
+		} catch (Exception e) {
 			String cls = this.getClass().getName();
 			String method = Thread.currentThread().getStackTrace()[1].getMethodName();
 			System.out.println(cls + "--" + method);
@@ -515,7 +521,7 @@ public class Team2Test extends TestBase {
 			Assert.assertTrue(TestBase.biz.financeDataApprove().dataListSubmitDates.get(num).getText()
 					.contains(LocalDate.now().toString()));
 			Assert.assertEquals(TestBase.biz.financeDataApprove().dataListWorkFlows.get(num).getText(), "待审核");
-		} catch (AssertionError e) {
+		} catch (Exception e) {
 			String cls = this.getClass().getName();
 			String method = Thread.currentThread().getStackTrace()[1].getMethodName();
 			System.out.println(cls + "--" + method);
@@ -548,7 +554,7 @@ public class Team2Test extends TestBase {
 			TestBase.biz.financeDataApprove().dataLisInvalidBtns.get(invalidNum).click();
 			TestBase.biz.financeDataApprove().financeDataInvalid();
 			Assert.assertEquals(TestBase.biz.financeDataApprove().dataListWorkFlows.get(num).getText(), "失效");
-		} catch (AssertionError e) {
+		} catch (Exception e) {
 			String cls = this.getClass().getName();
 			String method = Thread.currentThread().getStackTrace()[1].getMethodName();
 			System.out.println(cls + "--" + method);
@@ -605,7 +611,7 @@ public class Team2Test extends TestBase {
 
 			Assert.assertEquals(TestBase.biz.financeDataApprove().dataListWorkFlows.get(num).getText(), "初审审核完成");
 			Assert.assertEquals(TestBase.biz.financeDataApprove().dataListApproveResults.get(num).getText(), "审核通过");
-		} catch (AssertionError e) {
+		} catch (Exception e) {
 			String cls = this.getClass().getName();
 			String method = Thread.currentThread().getStackTrace()[1].getMethodName();
 			System.out.println(cls + "--" + method);
@@ -727,7 +733,7 @@ public class Team2Test extends TestBase {
 			Assert.assertEquals(TestBase.biz.financeDataApprove().dataListWorkFlows.get(manNumNew).getText(), "复审审核完成");
 			Assert.assertEquals(TestBase.biz.financeDataApprove().dataListApproveResults.get(manNumNew).getText(),
 					"审核通过");
-		} catch (AssertionError e) {
+		} catch (Exception e) {
 			String cls = this.getClass().getName();
 			String method = Thread.currentThread().getStackTrace()[1].getMethodName();
 			System.out.println(cls + "--" + method);
@@ -807,7 +813,7 @@ public class Team2Test extends TestBase {
 					"复审审核完成");
 			Assert.assertEquals(TestBase.biz.financeDataApprove().dataListApproveResults.get(manApproveNum).getText(),
 					"审核不通过");
-		} catch (AssertionError e) {
+		} catch (Exception e) {
 			String cls = this.getClass().getName();
 			String method = Thread.currentThread().getStackTrace()[1].getMethodName();
 			System.out.println(cls + "--" + method);
@@ -897,7 +903,7 @@ public class Team2Test extends TestBase {
 			Assert.assertEquals(TestBase.biz.financeDataApprove().dataListChildQTOpeReason.getText(), "");
 			Assert.assertEquals(TestBase.biz.financeDataApprove().dataListChildZMWJOpeResult.getText(), "");
 			Assert.assertEquals(TestBase.biz.financeDataApprove().dataListChildZMWJOpeReason.getText(), "");
-		} catch (AssertionError e) {
+		} catch (Exception e) {
 			String cls = this.getClass().getName();
 			String method = Thread.currentThread().getStackTrace()[1].getMethodName();
 			System.out.println(cls + "--" + method);
@@ -912,7 +918,6 @@ public class Team2Test extends TestBase {
 	@Test(enabled = true, priority = 2)
 	public void TestRedeemNoticeCreditNum() throws InterruptedException, SQLException {
 		try {
-			System.out.println(baseDir);
 			TestBase.biz.bizLoginPage().login(TestBase.productManagerMobileTeam2, TestBase.productManagerPasswordTeam2);
 			TestBase.biz.homePage().gotoRedeemNoticePage();
 			Thread.sleep(4000);
@@ -968,7 +973,7 @@ public class Team2Test extends TestBase {
 			Thread.sleep(4000);
 			TestBase.biz.redeemNoticePage().redeemNoticeCreditNum(null, null, null, redeemDateBegin, redeemDateEnd);
 			Thread.sleep(2000);
-		} catch (AssertionError e) {
+		} catch (Exception e) {
 			String cls = this.getClass().getName();
 			String method = Thread.currentThread().getStackTrace()[1].getMethodName();
 			System.out.println(cls + "--" + method);
@@ -1038,7 +1043,279 @@ public class Team2Test extends TestBase {
 			Thread.sleep(4000);
 			TestBase.biz.redeemNoticePage().redeemNoticeCreditList(null, null, null, redeemDateBegin, redeemDateEnd);
 			Thread.sleep(2000);
-		} catch (AssertionError e) {
+		} catch (Exception e) {
+			String cls = this.getClass().getName();
+			String method = Thread.currentThread().getStackTrace()[1].getMethodName();
+			System.out.println(cls + "--" + method);
+			TestBase.getScreenShot(cls, method);
+			throw e;
+		}
+	}
+	
+	/*
+	 * 平台端付款通知书生成1208模板并发送邮件（账款）
+	 */
+	@Test(enabled = true, priority = 2)
+	public void TestRedeemNotice1208SendEmailReceivable() throws InterruptedException, SQLException {
+		try {
+			TestBase.biz.bizLoginPage().login(TestBase.productManagerMobileTeam2, TestBase.productManagerPasswordTeam2);
+			TestBase.biz.homePage().gotoRedeemNoticePage();
+			Thread.sleep(4000);
+			//搜索一条账款企业
+			TestBase.biz.redeemNoticePage().corpNameCoreInput.sendKeys(TestBase.corpNameCoreReceivableTeam2);
+			TestBase.biz.redeemNoticePage().corpNameInput.sendKeys(TestBase.corpNameReceivableTeam2);
+			TestBase.biz.redeemNoticePage().productType.click();
+			Thread.sleep(1000);
+			TestBase.biz.redeemNoticePage().productTypeReceivable.click();
+			TestBase.biz.redeemNoticePage().searchBtn.click();
+			Thread.sleep(4000);
+			TestBase.biz.redeemNoticePage().redeemListCheckBoxs.get(0).click();
+			TestBase.biz.redeemNoticePage().generateNoticeBtn.click();
+			Thread.sleep(2000);
+			
+			//通过数据库查询付款列表中白条总数
+			ArrayList<String> creditList=new ArrayList<String>();
+			creditList.add("ISD");
+			creditList.add("RD0");
+			creditList.add("RD1");
+			creditList.add("RD9");
+			List<Map<String, String>> oracleList=OracleDataFactory.listRedeemCredit(creditList,TestBase.corpNameCoreReceivableTeam2,TestBase.corpNameReceivableTeam2,"RECEIVABLE",null, null);
+
+			Assert.assertEquals(TestBase.biz.redeemNoticePage().selectAcountWindowCorpNameCore.getText(), TestBase.corpNameCoreReceivableTeam2);
+			Assert.assertEquals(TestBase.biz.redeemNoticePage().selectAcountWindowRedeemAmount.getText().replaceAll(",", ""), oracleList.get(0).get("redeemAmount"));
+			TestBase.biz.redeemNoticePage().selectAcountWindowConfirmBtn.click();
+			Thread.sleep(2000);
+			TestBase.biz.redeemNoticePage().checkBtn.click();
+			Thread.sleep(2000);
+			TestBase.biz.redeemNoticePage().sendEmailBtn.click();
+			Thread.sleep(2000);
+			Assert.assertEquals(TestBase.biz.redeemNoticePage().InstructionResult.getText(),"邮件已发送，请查收");
+			TestBase.biz.redeemNoticePage().InstructionWindowConfirmBtn.click();
+		} catch (Exception e) {
+			String cls = this.getClass().getName();
+			String method = Thread.currentThread().getStackTrace()[1].getMethodName();
+			System.out.println(cls + "--" + method);
+			TestBase.getScreenShot(cls, method);
+			throw e;
+		}
+	}
+	
+	/*
+	 * 平台端付款通知书生成1208模板并发送邮件（融信）
+	 */
+	@Test(enabled = true, priority = 2)
+	public void TestRedeemNotice1208SendEmailCredit() throws InterruptedException, SQLException {
+		try {
+			TestBase.biz.bizLoginPage().login(TestBase.productManagerMobileTeam2, TestBase.productManagerPasswordTeam2);
+			TestBase.biz.homePage().gotoRedeemNoticePage();
+			Thread.sleep(4000);
+			//搜索一条融信企业
+			String corpNameCoreCredit="盛世集团成员二";
+			String corpNameCredit="太平链条企业一";
+			TestBase.biz.redeemNoticePage().corpNameCoreInput.sendKeys(corpNameCoreCredit);
+			TestBase.biz.redeemNoticePage().corpNameInput.sendKeys(corpNameCredit);
+			TestBase.biz.redeemNoticePage().productType.click();
+			Thread.sleep(1000);
+			TestBase.biz.redeemNoticePage().productTypeCredit.click();
+			TestBase.biz.redeemNoticePage().searchBtn.click();
+			Thread.sleep(4000);
+			TestBase.biz.redeemNoticePage().redeemListCheckBoxs.get(0).click();
+			TestBase.biz.redeemNoticePage().generateNoticeBtn.click();
+			Thread.sleep(2000);
+			
+			//通过数据库查询付款列表中白条总数
+			ArrayList<String> creditList=new ArrayList<String>();
+			creditList.add("ISD");
+			creditList.add("RD0");
+			creditList.add("RD1");
+			creditList.add("RD9");
+			List<Map<String, String>> oracleList=OracleDataFactory.listRedeemCredit(creditList,corpNameCoreCredit,corpNameCredit,"CREDIT",null, null);
+
+			Assert.assertEquals(TestBase.biz.redeemNoticePage().selectAcountWindowCorpNameCore.getText(), corpNameCoreCredit);
+			Assert.assertEquals(TestBase.biz.redeemNoticePage().selectAcountWindowRedeemAmount.getText().replaceAll(",", ""), oracleList.get(0).get("redeemAmount"));
+			TestBase.biz.redeemNoticePage().selectAcountWindowConfirmBtn.click();
+			Thread.sleep(2000);
+			TestBase.biz.redeemNoticePage().checkBtn.click();
+			Thread.sleep(2000);
+			TestBase.biz.redeemNoticePage().sendEmailBtn.click();
+			Thread.sleep(2000);
+			Assert.assertEquals(TestBase.biz.redeemNoticePage().InstructionResult.getText(),"邮件已发送，请查收");
+			TestBase.biz.redeemNoticePage().InstructionWindowConfirmBtn.click();
+		} catch (Exception e) {
+			String cls = this.getClass().getName();
+			String method = Thread.currentThread().getStackTrace()[1].getMethodName();
+			System.out.println(cls + "--" + method);
+			TestBase.getScreenShot(cls, method);
+			throw e;
+		}
+	}
+	
+	/*
+	 * 平台端付款通知书生成1208模板并发送邮件（批量）
+	 */
+	@Test(enabled = true, priority = 2)
+	public void TestRedeemNotice1208SendEmailBatch() throws InterruptedException, SQLException {
+		try {
+			TestBase.biz.bizLoginPage().login(TestBase.productManagerMobileTeam2, TestBase.productManagerPasswordTeam2);
+			TestBase.biz.homePage().gotoRedeemNoticePage();
+			Thread.sleep(4000);
+			//搜索一条账款企业
+			TestBase.biz.redeemNoticePage().corpNameCoreInput.sendKeys(TestBase.corpNameCoreReceivableTeam2);
+			TestBase.biz.redeemNoticePage().corpNameInput.sendKeys(TestBase.corpNameReceivableTeam2);
+			TestBase.biz.redeemNoticePage().productType.click();
+			Thread.sleep(1000);
+			TestBase.biz.redeemNoticePage().productTypeReceivable.click();
+			TestBase.biz.redeemNoticePage().searchBtn.click();
+			Thread.sleep(4000);
+			TestBase.biz.redeemNoticePage().redeemListCheckBoxs.get(0).click();
+			TestBase.biz.redeemNoticePage().redeemListCheckBoxs.get(1).click();
+			TestBase.biz.redeemNoticePage().generateNoticeBtn.click();
+			Thread.sleep(2000);
+			
+			//通过数据库查询付款列表中白条总数
+			ArrayList<String> creditList=new ArrayList<String>();
+			creditList.add("ISD");
+			creditList.add("RD0");
+			creditList.add("RD1");
+			creditList.add("RD9");
+			List<Map<String, String>> oracleList=OracleDataFactory.listRedeemCredit(creditList,TestBase.corpNameCoreReceivableTeam2,TestBase.corpNameReceivableTeam2,"RECEIVABLE",null, null);
+			Assert.assertEquals(TestBase.biz.redeemNoticePage().selectAcountWindowCorpNameCore.getText(), TestBase.corpNameCoreReceivableTeam2);
+			Assert.assertEquals(TestBase.biz.redeemNoticePage().selectAcountWindowRedeemAmount.getText().replaceAll(",", ""), new BigDecimal(oracleList.get(0).get("redeemAmount")).add(new BigDecimal(oracleList.get(1).get("redeemAmount"))).toString());
+			TestBase.biz.redeemNoticePage().selectAcountWindowConfirmBtn.click();
+			Thread.sleep(2000);
+			TestBase.biz.redeemNoticePage().checkBtn.click();
+			Thread.sleep(2000);
+			TestBase.biz.redeemNoticePage().sendEmailBtn.click();
+			Thread.sleep(2000);
+			Assert.assertEquals(TestBase.biz.redeemNoticePage().InstructionResult.getText(),"邮件已发送，请查收");
+			TestBase.biz.redeemNoticePage().InstructionWindowConfirmBtn.click();
+		} catch (Exception e) {
+			String cls = this.getClass().getName();
+			String method = Thread.currentThread().getStackTrace()[1].getMethodName();
+			System.out.println(cls + "--" + method);
+			TestBase.getScreenShot(cls, method);
+			throw e;
+		}
+	}
+	
+	/*
+	 * 平台端付款通知书生成026模板并发送邮件(账款)
+	 */
+	@Test(enabled = true, priority = 2)
+	public void TestRedeemNotice206SendEmailReceivable() throws InterruptedException, SQLException {
+		try {
+			TestBase.biz.bizLoginPage().login(TestBase.productManagerMobileTeam2, TestBase.productManagerPasswordTeam2);
+			TestBase.biz.homePage().gotoRedeemNoticePage();
+			Thread.sleep(4000);
+			ArrayList<String> creditList=new ArrayList<String>();
+			creditList.add("ISD");
+			creditList.add("RD0");
+			creditList.add("RD1");
+			creditList.add("RD9");
+			//获取第一级子条是已融资状态的条列表
+			List<Map<String, String>> oracleList=OracleDataFactory.listRedeemCreditFinanced(creditList,TestBase.corpNameCoreReceivableTeam2,TestBase.corpNameReceivableTeam2,"RECEIVABLE",null, null);
+
+			//搜索一条账款企业
+			TestBase.biz.redeemNoticePage().corpNameCoreInput.sendKeys(TestBase.corpNameCoreReceivableTeam2);
+			TestBase.biz.redeemNoticePage().corpNameInput.sendKeys(TestBase.corpNameReceivableTeam2);
+			TestBase.biz.redeemNoticePage().productType.click();
+			Thread.sleep(1000);
+			TestBase.biz.redeemNoticePage().productTypeReceivable.click();
+			TestBase.biz.redeemNoticePage().redeemDateBeginInput.sendKeys(oracleList.get(0).get("redeemDate"));
+			TestBase.biz.redeemNoticePage().redeemDateEndInput.sendKeys(oracleList.get(0).get("redeemDate"));
+			TestBase.biz.redeemNoticePage().searchBtn.click();
+			Thread.sleep(4000);
+			
+			//获取有一级融资条的根条并执行选择
+			int index=-1;
+			for(int i=0;i<TestBase.biz.redeemNoticePage().getLastPageNum();i++){
+				index=TestBase.biz.redeemNoticePage().getIndexByPkCreditOnePage(oracleList.get(0).get("pkCredit"),10);
+				if(TestBase.biz.redeemNoticePage().getIndexByPkCreditOnePage(oracleList.get(0).get("pkCredit"),10)==-1){
+					TestBase.biz.redeemNoticePage().nextPage.click();
+					Thread.sleep(4000);
+				}
+			}
+			TestBase.biz.redeemNoticePage().redeemListCheckBoxs.get(index).click();
+			TestBase.biz.redeemNoticePage().generateNoticeBtn.click();
+			Thread.sleep(2000);
+
+			Assert.assertEquals(TestBase.biz.redeemNoticePage().selectAcountWindowCorpNameCore.getText(), TestBase.corpNameCoreReceivableTeam2);
+			Assert.assertEquals(TestBase.biz.redeemNoticePage().selectAcountWindowRedeemAmount.getText().replaceAll(",", ""), oracleList.get(0).get("redeemAmount"));
+			TestBase.biz.redeemNoticePage().selectAcountWindow026Acount.click();
+			TestBase.biz.redeemNoticePage().selectAcountWindowConfirmBtn.click();
+			Thread.sleep(2000);
+			TestBase.biz.redeemNoticePage().checkBtn.click();
+			Thread.sleep(2000);
+			TestBase.biz.redeemNoticePage().sendEmailBtn.click();
+			Thread.sleep(2000);
+			Assert.assertEquals(TestBase.biz.redeemNoticePage().InstructionResult.getText(),"邮件已发送，请查收");
+			TestBase.biz.redeemNoticePage().InstructionWindowConfirmBtn.click();
+		} catch (Exception e) {
+			String cls = this.getClass().getName();
+			String method = Thread.currentThread().getStackTrace()[1].getMethodName();
+			System.out.println(cls + "--" + method);
+			TestBase.getScreenShot(cls, method);
+			throw e;
+		}
+	}
+	
+	/*
+	 * 平台端付款通知书生成026模板并发送邮件(融信)
+	 */
+	@Test(enabled = true, priority = 2)
+	public void TestRedeemNotice206SendEmailCredit() throws InterruptedException, SQLException {
+		try {
+			TestBase.biz.bizLoginPage().login(TestBase.productManagerMobileTeam2, TestBase.productManagerPasswordTeam2);
+			TestBase.biz.homePage().gotoRedeemNoticePage();
+			Thread.sleep(4000);
+			String corpNameCoreCredit="盛世集团成员二";
+			String corpNameCredit="太平链条企业一";
+			
+			ArrayList<String> creditList=new ArrayList<String>();
+			creditList.add("ISD");
+			creditList.add("RD0");
+			creditList.add("RD1");
+			creditList.add("RD9");
+			
+			//获取第一级子条是已融资状态的条列表
+			List<Map<String, String>> oracleList=OracleDataFactory.listRedeemCreditFinanced(creditList,corpNameCoreCredit,corpNameCredit,"CREDIT",null, null);
+
+			//搜索一条融信企业
+			TestBase.biz.redeemNoticePage().corpNameCoreInput.sendKeys(corpNameCoreCredit);
+			TestBase.biz.redeemNoticePage().corpNameInput.sendKeys(corpNameCredit);
+			TestBase.biz.redeemNoticePage().productType.click();
+			Thread.sleep(1000);
+			TestBase.biz.redeemNoticePage().productTypeCredit.click();
+			TestBase.biz.redeemNoticePage().redeemDateBeginInput.sendKeys(oracleList.get(0).get("redeemDate"));
+			TestBase.biz.redeemNoticePage().redeemDateEndInput.sendKeys(oracleList.get(0).get("redeemDate"));
+			TestBase.biz.redeemNoticePage().searchBtn.click();
+			Thread.sleep(4000);
+			
+			//获取有一级融资条的根条并执行选择
+			int index=-1;
+			for(int i=0;i<TestBase.biz.redeemNoticePage().getLastPageNum();i++){
+				index=TestBase.biz.redeemNoticePage().getIndexByPkCreditOnePage(oracleList.get(0).get("pkCredit"),10);
+				if(TestBase.biz.redeemNoticePage().getIndexByPkCreditOnePage(oracleList.get(0).get("pkCredit"),10)==-1){
+					TestBase.biz.redeemNoticePage().nextPage.click();
+					Thread.sleep(4000);
+				}
+			}
+			TestBase.biz.redeemNoticePage().redeemListCheckBoxs.get(index).click();
+			TestBase.biz.redeemNoticePage().generateNoticeBtn.click();
+			Thread.sleep(2000);
+
+			Assert.assertEquals(TestBase.biz.redeemNoticePage().selectAcountWindowCorpNameCore.getText(), corpNameCoreCredit);
+			Assert.assertEquals(TestBase.biz.redeemNoticePage().selectAcountWindowRedeemAmount.getText().replaceAll(",", ""), oracleList.get(0).get("redeemAmount"));
+			TestBase.biz.redeemNoticePage().selectAcountWindow026Acount.click();
+			TestBase.biz.redeemNoticePage().selectAcountWindowConfirmBtn.click();
+			Thread.sleep(2000);
+			TestBase.biz.redeemNoticePage().checkBtn.click();
+			Thread.sleep(2000);
+			TestBase.biz.redeemNoticePage().sendEmailBtn.click();
+			Thread.sleep(2000);
+			Assert.assertEquals(TestBase.biz.redeemNoticePage().InstructionResult.getText(),"邮件已发送，请查收");
+			TestBase.biz.redeemNoticePage().InstructionWindowConfirmBtn.click();
+		} catch (Exception e) {
 			String cls = this.getClass().getName();
 			String method = Thread.currentThread().getStackTrace()[1].getMethodName();
 			System.out.println(cls + "--" + method);

@@ -241,7 +241,7 @@ public class TestBase {
 	
     public static void getScreenShot(String cls, String methd) {
     	File srcFile = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
-    String fileName = cls + "_" + methd + "_" + caseId  + "_"  +  TestBase.generateDateTime2() + ".jpg";
+    String fileName =  TestBase.generateDateTime2() + methd + "_"  + ".jpg";
             try {
                 FileUtils.copyFile(srcFile, new File(TestBase.baseDir + "/screenshots" + "/"+fileName));
             } catch (IOException e) {

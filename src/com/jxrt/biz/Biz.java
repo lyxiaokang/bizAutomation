@@ -66,6 +66,13 @@ public class Biz {
 		return new RedeemNoticePage(driver);
 	}
 	
+	/*
+	 * 代发工资申请查询页面初始化
+	 */
+	public PayrollCreditApplySearchPage payrollCreditApplySearchPage() {
+		return new PayrollCreditApplySearchPage(driver);
+	}
+	
 	
 	
 }
