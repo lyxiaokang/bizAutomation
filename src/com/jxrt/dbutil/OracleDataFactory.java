@@ -5,14 +5,18 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.text.SimpleDateFormat;
 import java.time.DayOfWeek;
 import java.time.LocalDate;
 import java.time.temporal.TemporalAdjusters;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Random;
+
+import net.sf.json.JSONObject;
 
 public class OracleDataFactory implements DataFactory {
     
@@ -94,16 +98,23 @@ public class OracleDataFactory implements DataFactory {
 		sqlBuffer.append(" and delete_flag = '0'");
 		String sql=sqlBuffer.toString();
 		System.out.println(sql);
-		PreparedStatement pstm=connection.prepareStatement(sql);
-	    ResultSet rs=pstm.executeQuery(sql);
-		while(rs.next()){
-			BigDecimal issuedMoney=rs.getBigDecimal(1);
-			if(!(issuedMoney!= null)){
-				issuedMoney=BigDecimal.valueOf(0);
+		try{
+			PreparedStatement pstm=connection.prepareStatement(sql);
+		    ResultSet rs=pstm.executeQuery(sql);
+			while(rs.next()){
+				BigDecimal issuedMoney=rs.getBigDecimal(1);
+				if(!(issuedMoney!= null)){
+					issuedMoney=BigDecimal.valueOf(0);
+				}
+				System.out.println(issuedMoney);
+				return issuedMoney;
 			}
-			System.out.println(issuedMoney);
-			return issuedMoney;
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			DBUtil.closeConnection(connection);
 		}
+		
 		return null;
 	}
 	/**
@@ -147,15 +158,22 @@ public class OracleDataFactory implements DataFactory {
 
 		String sql=sqlBuffer.toString();
 		System.out.println(sql);
-		PreparedStatement pstm=connection.prepareStatement(sql);
-	    ResultSet rs=pstm.executeQuery(sql);
-	    
-		while(rs.next()){
-			String fkCorpCore=rs.getString(1);
-			fkCorpCoreListString.append("'");
-			fkCorpCoreListString.append(fkCorpCore.toString());
-			fkCorpCoreListString.append("',");
+		try{
+			PreparedStatement pstm=connection.prepareStatement(sql);
+		    ResultSet rs=pstm.executeQuery(sql);
+		    
+			while(rs.next()){
+				String fkCorpCore=rs.getString(1);
+				fkCorpCoreListString.append("'");
+				fkCorpCoreListString.append(fkCorpCore.toString());
+				fkCorpCoreListString.append("',");
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			DBUtil.closeConnection(connection);
 		}
+		
 		return fkCorpCoreListString.toString().substring(0, fkCorpCoreListString.toString().length()-1);
 	}
 	
@@ -179,14 +197,20 @@ public class OracleDataFactory implements DataFactory {
 		sqlBuffer.append(" and  fk_corp_core in ("+getFkCorpByDepartment(department)+")");
 		String sql=sqlBuffer.toString();
 		System.out.println(sql);
-		PreparedStatement pstm=connection.prepareStatement(sql);
-	    ResultSet rs=pstm.executeQuery(sql);
-	    
-		while(rs.next()){
-			String fkCorpCore=rs.getString(1);
-			fkCorpCoreListString.append("'");
-			fkCorpCoreListString.append(fkCorpCore.toString());
-			fkCorpCoreListString.append("',");
+		try{
+			PreparedStatement pstm=connection.prepareStatement(sql);
+		    ResultSet rs=pstm.executeQuery(sql);
+		    
+			while(rs.next()){
+				String fkCorpCore=rs.getString(1);
+				fkCorpCoreListString.append("'");
+				fkCorpCoreListString.append(fkCorpCore.toString());
+				fkCorpCoreListString.append("',");
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			DBUtil.closeConnection(connection);
 		}
 		return fkCorpCoreListString.toString().substring(0, fkCorpCoreListString.toString().length()-1);
 	}
@@ -211,14 +235,20 @@ public class OracleDataFactory implements DataFactory {
 		sqlBuffer.append(" and  fk_corp_core in ("+getFkCorpByDepartment(department)+")");
 		String sql=sqlBuffer.toString();
 		System.out.println(sql);
-		PreparedStatement pstm=connection.prepareStatement(sql);
-	    ResultSet rs=pstm.executeQuery(sql);
-	    
-		while(rs.next()){
-			String fkCorpCore=rs.getString(1);
-			fkCorpCoreListString.append("'");
-			fkCorpCoreListString.append(fkCorpCore.toString());
-			fkCorpCoreListString.append("',");
+		try{
+			PreparedStatement pstm=connection.prepareStatement(sql);
+		    ResultSet rs=pstm.executeQuery(sql);
+		    
+			while(rs.next()){
+				String fkCorpCore=rs.getString(1);
+				fkCorpCoreListString.append("'");
+				fkCorpCoreListString.append(fkCorpCore.toString());
+				fkCorpCoreListString.append("',");
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			DBUtil.closeConnection(connection);
 		}
 		return fkCorpCoreListString.toString().substring(0, fkCorpCoreListString.toString().length()-1);
 	}
@@ -262,21 +292,27 @@ public class OracleDataFactory implements DataFactory {
 		sqlBuffer.append(" and c.delete_flag = '0'");
 		String sql=sqlBuffer.toString();
 		System.out.println(sql);
-		PreparedStatement pstm=connection.prepareStatement(sql);
-	    ResultSet rs=pstm.executeQuery(sql);
-		while(rs.next()){
-			Map<String, String> map=new HashMap<String, String>();
-			map.put("fkCorpCore",rs.getString(1));
-			map.put("corpNameHold",rs.getString(2));
-			map.put("pkCredit",rs.getString(3));
-			map.put("maturityAmount",rs.getBigDecimal(4).setScale(2, BigDecimal.ROUND_HALF_UP).toString());
-			if(rs.getString(5)!=null){
-				map.put("financeTime",rs.getString(5).replaceAll("-",".").substring(0, 10));
-			}else{
-				map.put("financeTime","");
+		try{
+			PreparedStatement pstm=connection.prepareStatement(sql);
+		    ResultSet rs=pstm.executeQuery(sql);
+			while(rs.next()){
+				Map<String, String> map=new HashMap<String, String>();
+				map.put("fkCorpCore",rs.getString(1));
+				map.put("corpNameHold",rs.getString(2));
+				map.put("pkCredit",rs.getString(3));
+				map.put("maturityAmount",rs.getBigDecimal(4).setScale(2, BigDecimal.ROUND_HALF_UP).toString());
+				if(rs.getString(5)!=null){
+					map.put("financeTime",rs.getString(5).replaceAll("-",".").substring(0, 10));
+				}else{
+					map.put("financeTime","");
+				}
+				
+				list.add(map);
 			}
-			
-			list.add(map);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			DBUtil.closeConnection(connection);
 		}
 		return list;
 	}
@@ -329,21 +365,27 @@ public class OracleDataFactory implements DataFactory {
 		sqlBuffer.append(" and delete_flag = '0'");
 		String sql=sqlBuffer.toString();
 		System.out.println(sql);
-		PreparedStatement pstm=connection.prepareStatement(sql);
-	    ResultSet rs=pstm.executeQuery(sql);
-		while(rs.next()){
-			Map<String, String> map=new HashMap<String, String>();
-			map.put("fkCorpCore",rs.getString(1));
-			map.put("corpNameHold",rs.getString(2));
-			map.put("pkCredit",rs.getString(3));
-			map.put("maturityAmount",rs.getBigDecimal(4).setScale(2, BigDecimal.ROUND_HALF_UP).toString());
-			if(rs.getString(5)!=null){
-				map.put("acceptTime",rs.getString(5).replaceAll("-",".").substring(0, 10));
-			}else{
-				map.put("acceptTime","");
+		try{
+			PreparedStatement pstm=connection.prepareStatement(sql);
+		    ResultSet rs=pstm.executeQuery(sql);
+			while(rs.next()){
+				Map<String, String> map=new HashMap<String, String>();
+				map.put("fkCorpCore",rs.getString(1));
+				map.put("corpNameHold",rs.getString(2));
+				map.put("pkCredit",rs.getString(3));
+				map.put("maturityAmount",rs.getBigDecimal(4).setScale(2, BigDecimal.ROUND_HALF_UP).toString());
+				if(rs.getString(5)!=null){
+					map.put("acceptTime",rs.getString(5).replaceAll("-",".").substring(0, 10));
+				}else{
+					map.put("acceptTime","");
+				}
+				
+				list.add(map);
 			}
-			
-			list.add(map);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			DBUtil.closeConnection(connection);
 		}
 		return list;
 	}
@@ -378,11 +420,17 @@ public class OracleDataFactory implements DataFactory {
 		sqlBuffer.append(" where  corp_name = '"+corpName+"'");
 		String sql=sqlBuffer.toString();
 		System.out.println(sql);
-		PreparedStatement pstm=connection.prepareStatement(sql);
-	    ResultSet rs=pstm.executeQuery(sql);
-		while(rs.next()){
-			String pkCorp=rs.getString(1);
-			return pkCorp;
+		try{
+			PreparedStatement pstm=connection.prepareStatement(sql);
+		    ResultSet rs=pstm.executeQuery(sql);
+			while(rs.next()){
+				String pkCorp=rs.getString(1);
+				return pkCorp;
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			DBUtil.closeConnection(connection);
 		}
 		return null;
 	}
@@ -400,11 +448,17 @@ public class OracleDataFactory implements DataFactory {
 		sqlBuffer.append(" where  corp_shortname = '"+corpShortname+"'");
 		String sql=sqlBuffer.toString();
 		System.out.println(sql);
-		PreparedStatement pstm=connection.prepareStatement(sql);
-	    ResultSet rs=pstm.executeQuery(sql);
-		while(rs.next()){
-			String pkCorp=rs.getString(1);
-			return pkCorp;
+		try{
+			PreparedStatement pstm=connection.prepareStatement(sql);
+		    ResultSet rs=pstm.executeQuery(sql);
+			while(rs.next()){
+				String pkCorp=rs.getString(1);
+				return pkCorp;
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			DBUtil.closeConnection(connection);
 		}
 		return null;
 	}
@@ -422,11 +476,17 @@ public class OracleDataFactory implements DataFactory {
 		sqlBuffer.append(" where  pk_corp = '"+pkCorp+"'");
 		String sql=sqlBuffer.toString();
 		System.out.println(sql);
-		PreparedStatement pstm=connection.prepareStatement(sql);
-	    ResultSet rs=pstm.executeQuery(sql);
-		while(rs.next()){
-			String corpName=rs.getString(1);
-			return corpName;
+		try{
+			PreparedStatement pstm=connection.prepareStatement(sql);
+		    ResultSet rs=pstm.executeQuery(sql);
+			while(rs.next()){
+				String corpName=rs.getString(1);
+				return corpName;
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			DBUtil.closeConnection(connection);
 		}
 		return null;
 	}
@@ -450,10 +510,10 @@ public class OracleDataFactory implements DataFactory {
 		sqlBuffer.deleteCharAt(sqlBuffer.length()-1);
 		sqlBuffer.append(")");
 		if(corpNameCore!=null){
-			sqlBuffer.append(" and corp_name_core ='"+corpNameCore+"'");
+			sqlBuffer.append(" and corp_name_core like '%"+corpNameCore+"'");
 		}
 		if(corpName!=null){
-			sqlBuffer.append(" and corp_name_accept ='"+corpName+"'");
+			sqlBuffer.append(" and corp_name_accept like '%"+corpName+"'");
 		}
 		if(productTypeCcbscf!=null){
 			sqlBuffer.append(" and PRODUCT_TYPE_CCBSCF ='"+productTypeCcbscf+"'");
@@ -467,11 +527,17 @@ public class OracleDataFactory implements DataFactory {
 		sqlBuffer.append(" and delete_flag !=1");
 		String sql=sqlBuffer.toString();
 		System.out.println(sql);
-		PreparedStatement pstm=connection.prepareStatement(sql);
-	    ResultSet rs=pstm.executeQuery(sql);
-		while(rs.next()){
-			int count=rs.getInt(1);
-			return count;
+		try{
+			PreparedStatement pstm=connection.prepareStatement(sql);
+		    ResultSet rs=pstm.executeQuery(sql);
+			while(rs.next()){
+				int count=rs.getInt(1);
+				return count;
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			DBUtil.closeConnection(connection);
 		}
 		return 0 ;
 	}
@@ -496,10 +562,10 @@ public class OracleDataFactory implements DataFactory {
 		sqlBuffer.deleteCharAt(sqlBuffer.length()-1);
 		sqlBuffer.append(")");
 		if(corpNameCore!=null){
-			sqlBuffer.append(" and corp_name_core ='"+corpNameCore+"'");
+			sqlBuffer.append(" and corp_name_core like '%"+corpNameCore+"%'");
 		}
 		if(corpName!=null){
-			sqlBuffer.append(" and corp_name_accept ='"+corpName+"'");
+			sqlBuffer.append(" and corp_name_accept like '%"+corpName+"%'");
 		}
 		if(productTypeCcbscf!=null){
 			sqlBuffer.append(" and PRODUCT_TYPE_CCBSCF ='"+productTypeCcbscf+"'");
@@ -513,21 +579,27 @@ public class OracleDataFactory implements DataFactory {
 		sqlBuffer.append(" and delete_flag !=1 order by maturity_date nulls last,sequence_no desc");
 		String sql=sqlBuffer.toString();
 		System.out.println(sql);
-		PreparedStatement pstm=connection.prepareStatement(sql);
-	    ResultSet rs=pstm.executeQuery(sql);
-		while(rs.next()){
-			Map<String, String> map=new HashMap<String, String>();
-			map.put("pkCredit",rs.getString("pk_credit"));
-			map.put("corpNameCore",rs.getString("corp_name_core"));
-			map.put("corpName",rs.getString("corp_name_accept"));
-			map.put("productTypeCcbscf",rs.getString("product_type_ccbscf"));
-			map.put("issueTime",rs.getString("issue_time").substring(0,10));
-			map.put("maturityAmount",rs.getBigDecimal("maturity_amount").setScale(2, BigDecimal.ROUND_HALF_UP).toString());
-			map.put("redeemDate",rs.getString("redeem_date").substring(0,10));
-			map.put("redeemedAmount",rs.getBigDecimal("REDEEM_AMOUNT_SUM").setScale(2, BigDecimal.ROUND_HALF_UP).toString());
-			map.put("redeemAmount",rs.getBigDecimal("redeem_amount").setScale(2, BigDecimal.ROUND_HALF_UP).toString());
-			map.put("creditState",rs.getString("credit_state"));
-			list.add(map);
+		try{
+			PreparedStatement pstm=connection.prepareStatement(sql);
+		    ResultSet rs=pstm.executeQuery(sql);
+			while(rs.next()){
+				Map<String, String> map=new HashMap<String, String>();
+				map.put("pkCredit",rs.getString("pk_credit"));
+				map.put("corpNameCore",rs.getString("corp_name_core"));
+				map.put("corpName",rs.getString("corp_name_accept"));
+				map.put("productTypeCcbscf",rs.getString("product_type_ccbscf"));
+				map.put("issueTime",rs.getString("issue_time").substring(0,10));
+				map.put("maturityAmount",rs.getBigDecimal("maturity_amount").setScale(2, BigDecimal.ROUND_HALF_UP).toString());
+				map.put("redeemDate",rs.getString("redeem_date").substring(0,10));
+				map.put("redeemedAmount",rs.getBigDecimal("REDEEM_AMOUNT_SUM").setScale(2, BigDecimal.ROUND_HALF_UP).toString());
+				map.put("redeemAmount",rs.getBigDecimal("redeem_amount").setScale(2, BigDecimal.ROUND_HALF_UP).toString());
+				map.put("creditState",rs.getString("credit_state"));
+				list.add(map);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			DBUtil.closeConnection(connection);
 		}
 		return list;
 	}
@@ -552,10 +624,10 @@ public class OracleDataFactory implements DataFactory {
 		sqlBuffer.deleteCharAt(sqlBuffer.length()-1);
 		sqlBuffer.append(")");
 		if(corpNameCore!=null){
-			sqlBuffer.append(" and corp_name_core ='"+corpNameCore+"'");
+			sqlBuffer.append(" and corp_name_core like '%"+corpNameCore+"%'");
 		}
 		if(corpName!=null){
-			sqlBuffer.append(" and corp_name_accept ='"+corpName+"'");
+			sqlBuffer.append(" and corp_name_accept like '%"+corpName+"%'");
 		}
 		if(productTypeCcbscf!=null){
 			sqlBuffer.append(" and PRODUCT_TYPE_CCBSCF ='"+productTypeCcbscf+"'");
@@ -571,38 +643,327 @@ public class OracleDataFactory implements DataFactory {
 		sqlBuffer.append(" and delete_flag !=1 order by maturity_date nulls last,sequence_no desc");
 		String sql=sqlBuffer.toString();
 		System.out.println(sql);
-		PreparedStatement pstm=connection.prepareStatement(sql);
-	    ResultSet rs=pstm.executeQuery(sql);
-		while(rs.next()){
-			Map<String, String> map=new HashMap<String, String>();
-			map.put("pkCredit",rs.getString("pk_credit"));
-			map.put("corpNameCore",rs.getString("corp_name_core"));
-			map.put("corpName",rs.getString("corp_name_accept"));
-			map.put("productTypeCcbscf",rs.getString("product_type_ccbscf"));
-			map.put("issueTime",rs.getString("issue_time").substring(0,10));
-			map.put("maturityAmount",rs.getBigDecimal("maturity_amount").setScale(2, BigDecimal.ROUND_HALF_UP).toString());
-			map.put("redeemDate",rs.getString("redeem_date").substring(0,10));
-			map.put("redeemedAmount",rs.getBigDecimal("REDEEM_AMOUNT_SUM").setScale(2, BigDecimal.ROUND_HALF_UP).toString());
-			map.put("redeemAmount",rs.getBigDecimal("redeem_amount").setScale(2, BigDecimal.ROUND_HALF_UP).toString());
-			map.put("creditState",rs.getString("credit_state"));
-			list.add(map);
+		try{
+			PreparedStatement pstm=connection.prepareStatement(sql);
+		    ResultSet rs=pstm.executeQuery(sql);
+			while(rs.next()){
+				Map<String, String> map=new HashMap<String, String>();
+				map.put("pkCredit",rs.getString("pk_credit"));
+				map.put("corpNameCore",rs.getString("corp_name_core"));
+				map.put("corpName",rs.getString("corp_name_accept"));
+				map.put("productTypeCcbscf",rs.getString("product_type_ccbscf"));
+				map.put("issueTime",rs.getString("issue_time").substring(0,10));
+				map.put("maturityAmount",rs.getBigDecimal("maturity_amount").setScale(2, BigDecimal.ROUND_HALF_UP).toString());
+				map.put("redeemDate",rs.getString("redeem_date").substring(0,10));
+				map.put("redeemedAmount",rs.getBigDecimal("REDEEM_AMOUNT_SUM").setScale(2, BigDecimal.ROUND_HALF_UP).toString());
+				map.put("redeemAmount",rs.getBigDecimal("redeem_amount").setScale(2, BigDecimal.ROUND_HALF_UP).toString());
+				map.put("creditState",rs.getString("credit_state"));
+				list.add(map);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			DBUtil.closeConnection(connection);
 		}
 		return list;
 	}
-	public static void main(String[] args) throws SQLException {
-		OracleDataFactory oracleDataFactory = new OracleDataFactory();
-		List creditList=new ArrayList<String>();
-		creditList.add("ISD");
-		creditList.add("RD0");
-		creditList.add("RD1");
-		creditList.add("RD9");
-		LocalDate today=LocalDate.now();
-		LocalDate reddemDateBegin=today.minusDays(20);
-		LocalDate reddemDateEnd=today.plusDays(20);
-//		LocalDate reddemDateBegin=LocalDate.of(2018,11,22);
-//		LocalDate reddemDateEnd=LocalDate.of(2018,11,22);
-		System.out.println(oracleDataFactory.listRedeemCredit(creditList,"盛世集团成员二","太平链条企业一","CREDIT",null, null));
+	/**
+	 * 查询代发工资申请中白条公用条件组装方法
+	 * @author 邱刚
+	 * @return
+	 * @throws SQLException 
+	 */
+	private static String getPayrollCreditUtil(String corpNameCore,String corpName,String partnerName,
+			LocalDate createTimeBegin,LocalDate createTimeEnd,String state) throws SQLException{
+		StringBuffer sqlBuffer = new StringBuffer();
+		sqlBuffer.append(" where a.PRODUCT_TYPE_CCBSCF = 'CREDIT' and (c.FK_PARTNER is null or c.FK_PARTNER = 'PARTNER_CCBSCF' "
+				+ "or a.IS_CHECK_PASS <> '0') and a.MARKETING_BRAND is null and c.BUSI_TYPE in ('PAYROLL_CREDIT') and a.APPLY_STATE in ('APPLY_DIRECTOR')");
+		if(corpNameCore!=null){
+			sqlBuffer.append(" and c.CORP_NAME_CORE like '%"+corpNameCore+"%'");
 		}
+		if(corpName!=null){
+			sqlBuffer.append(" and a.CORP_NAME_APPLY like '%"+corpName+"%'");
+		}
+		if(partnerName!=null){
+			sqlBuffer.append(" and c.PARTNER_NAME like '%"+partnerName+"%'");
+		}
+		if(createTimeBegin!=null){
+			sqlBuffer.append(" and a.APPLY_TIME >=date'"+createTimeBegin+"'");
+		}
+		if(createTimeEnd!=null){
+			sqlBuffer.append(" and a.APPLY_TIME <=date'"+createTimeEnd+"'");
+		}
+		if(state!=null){
+			if(state=="新增中"){
+				sqlBuffer.append(" and a.APPROVE_REASON like '%正在进行银行账户校验，请等待校验结果%'");
+			}
+			if(state=="新增失败"){
+				sqlBuffer.append(" and a.APPROVE_REASON like '%条数据校验不通过，请下载工资文件查看详情%'");
+			}
+			if(state=="待提交"){
+				sqlBuffer.append(" and a.APPROVE_RESULT is null and c.FK_PARTNER = 'PARTNER_CCBSCF' and a.IS_CHECK_PASS = '1'");
+			}
+			if(state=="待确认"){ 
+				sqlBuffer.append(" and c.FK_PARTNER not in 'PARTNER_CCBSCF' and a.APPROVE_RESULT is null and a.IS_CHECK_PASS = '1'");
+			}
+			if(state=="核心企业审核不通过"){
+				sqlBuffer.append(" and a.APPROVE_RESULT = 'NOPASS' ");
+			}
+			
+		}
+		sqlBuffer.append(" order by a.APPLY_TIME desc");
+		return sqlBuffer.toString();
+	}
+	
+	/**
+	 * 查询代发工资申请中白条总数
+	 * @author 邱刚
+	 * @return
+	 * @throws SQLException 
+	 */
+	public static int getPayrollCreditCount(String corpNameCore,String corpName,String partnerName,
+			LocalDate createTimeBegin,LocalDate createTimeEnd,String state) throws SQLException{
+		Connection connection=DBUtil.getConnection();
+		StringBuffer sqlBuffer = new StringBuffer();
+		sqlBuffer.append("select count(*) from "+DBUtil.schema+"T_CREDIT_APPLY_TEMP a left outer join "+DBUtil.schema+"T_CREDIT c on a.FK_CREDIT = c.PK_CREDIT");
+		sqlBuffer.append(getPayrollCreditUtil(corpNameCore,corpName,partnerName,
+				createTimeBegin,createTimeEnd,state));
+		String sql=sqlBuffer.toString();
+		System.out.println(sql);
+		try{
+			PreparedStatement pstm=connection.prepareStatement(sql);
+		    ResultSet rs=pstm.executeQuery(sql);
+			while(rs.next()){
+				int count=rs.getInt(1);
+				return count;
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			DBUtil.closeConnection(connection);
+		}
+		return 0;
+	}
+	
+	/**
+	 * 查询代发工资申请中白条list
+	 * @author 邱刚
+	 * @return
+	 * @throws SQLException 
+	 */
+	public static List<Map<String, String>> getPayrollCreditList(String corpNameCore,String corpName,String partnerName,
+			LocalDate createTimeBegin,LocalDate createTimeEnd,String state) throws SQLException{
+		List<Map<String, String>> list=new ArrayList<Map<String, String>>();
+		Connection connection=DBUtil.getConnection();
+		StringBuffer sqlBuffer = new StringBuffer();
+		sqlBuffer.append("select a.APPLY_AMOUNT,a.CORP_NAME_APPROVE,a.CORP_NAME_APPLY,c.PARTNER_NAME,a.APPLY_FORM,c.ISSUE_APPLY_TIME,c.product_type_ccbscf from "+DBUtil.schema+"T_CREDIT_APPLY_TEMP a left outer join "+DBUtil.schema+"T_CREDIT c on a.FK_CREDIT = c.PK_CREDIT");
+		sqlBuffer.append(getPayrollCreditUtil(corpNameCore,corpName,partnerName,
+				createTimeBegin,createTimeEnd,state));
+		String sql=sqlBuffer.toString();
+		System.out.println(sql);
+		try{
+			PreparedStatement pstm=connection.prepareStatement(sql);
+		    ResultSet rs=pstm.executeQuery(sql);
+			while(rs.next()){
+				Map<String, String> map=new HashMap<String, String>();
+				map.put("corpNameCore",rs.getString("CORP_NAME_APPROVE"));
+				map.put("corpName",rs.getString("CORP_NAME_APPLY"));
+				map.put("partnerName",rs.getString("PARTNER_NAME"));
+				map.put("createTime",rs.getString("ISSUE_APPLY_TIME"));
+				map.put("paymentDetailTotalAmount",rs.getBigDecimal("APPLY_AMOUNT").setScale(2, BigDecimal.ROUND_HALF_UP).toString());
+				String applyForm=rs.getString("APPLY_FORM");
+				JSONObject jsonObject=JSONObject.fromObject(applyForm);
+				map.put("projectName",jsonObject.getString("projectName"));
+				try{
+					map.put("batchTeamGroup",jsonObject.getString("batchTeamGroup"));
+				}catch(Exception e){
+					map.put("batchTeamGroup","");
+				}
+				String payrollYearMonthBegin=new SimpleDateFormat("yyyy-MM").format(new Date(Long.parseLong(jsonObject.getString("payrollYearMonthBegin"))));
+				String payrollYearMonthEnd=new SimpleDateFormat("yyyy-MM").format(new Date(Long.parseLong(jsonObject.getString("payrollYearMonthEnd"))));
+				map.put("payrollDuring",payrollYearMonthBegin+"至"+payrollYearMonthEnd);
+				map.put("payrollDetailCount",jsonObject.getString("payrollDetailCount")+"笔");
+				map.put("productTypeCcbscf",rs.getString("product_type_ccbscf"));
+				
+				list.add(map);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			DBUtil.closeConnection(connection);
+		}
+		return list;
+	}
+	
+	/**
+	 * 查询代发工资申请中白条金额
+	 * @author 邱刚
+	 * @return
+	 * @throws SQLException 
+	 */
+	public static BigDecimal getPayrollCreditAmount(String corpNameCore,String corpName,String partnerName,
+			LocalDate createTimeBegin,LocalDate createTimeEnd,String state) throws SQLException{
+		Connection connection=DBUtil.getConnection();
+		StringBuffer sqlBuffer = new StringBuffer();
+		sqlBuffer.append("select sum(c.maturity_amount) from "+DBUtil.schema+"T_CREDIT_APPLY_TEMP a left outer join "+DBUtil.schema+"T_CREDIT c on a.FK_CREDIT = c.PK_CREDIT");
+		sqlBuffer.append(getPayrollCreditUtil(corpNameCore,corpName,partnerName,
+				createTimeBegin,createTimeEnd,state));
+		String sql=sqlBuffer.toString();
+		System.out.println(sql);
+		try{
+			PreparedStatement pstm=connection.prepareStatement(sql);
+		    ResultSet rs=pstm.executeQuery(sql);
+			while(rs.next()){
+				BigDecimal amount=rs.getBigDecimal(1).setScale(2, BigDecimal.ROUND_HALF_UP);
+				return amount;
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			DBUtil.closeConnection(connection);
+		}
+		return new BigDecimal(0);
+	}
+	
+	/**
+	 * 查询代发工资申请中签发中tab白条公用条件组装方法
+	 * @author 邱刚
+	 * @return
+	 * @throws SQLException 
+	 */
+	private static String getPayrollCreditIssuingUtil(String corpNameCore,String corpName,String pkCredit,String partnerName,
+			LocalDate submitTimeBegin,LocalDate submitTimeEnd) throws SQLException{
+		StringBuffer sqlBuffer = new StringBuffer();
+		sqlBuffer.append(" where a.PRODUCT_TYPE_CCBSCF = 'CREDIT' and (c.FK_PARTNER is null or c.FK_PARTNER = 'PARTNER_CCBSCF' "
+				+ "or a.IS_CHECK_PASS <> '0') and a.MARKETING_BRAND is null and c.BUSI_TYPE in ('PAYROLL_CREDIT') and a.APPLY_STATE "
+				+ "in ('APPROVE_OPERATOR', 'APPROVE_DIRECTOR', 'APPROVE_FINAL_DIRECTOR')");
+		if(corpNameCore!=null){
+			sqlBuffer.append(" and c.CORP_NAME_CORE like '%"+corpNameCore+"%'");
+		}
+		if(corpName!=null){
+			sqlBuffer.append(" and a.CORP_NAME_APPLY like '%"+corpName+"%'");
+		}
+		if(pkCredit!=null){
+			sqlBuffer.append(" and a.FK_CREDIT like '%"+pkCredit+"%'");
+		}
+		if(partnerName!=null){
+			sqlBuffer.append(" and c.PARTNER_NAME like '%"+partnerName+"%'");
+		}
+		if(submitTimeBegin!=null){
+			sqlBuffer.append(" and a.SUBMIT_TIME >=date'"+submitTimeBegin+"'");
+		}
+		if(submitTimeEnd!=null){
+			sqlBuffer.append(" and a.SUBMIT_TIME <=date'"+submitTimeEnd+"'");
+		}
+		sqlBuffer.append(" order by a.SUBMIT_TIME desc nulls last, a.SEQUENCE_NO desc");
+		return sqlBuffer.toString();
+	}
+	
+	/**
+	 * 查询代发工资申请中签发中tab白条总数
+	 * @author 邱刚
+	 * @return
+	 * @throws SQLException 
+	 */
+	public static int getPayrollCreditIssuingCount(String corpNameCore,String corpName,String pkCredit,String partnerName,
+			LocalDate submitTimeBegin,LocalDate submitTimeEnd) throws SQLException{
+		Connection connection=DBUtil.getConnection();
+		StringBuffer sqlBuffer = new StringBuffer();
+		sqlBuffer.append("select count(*) from "+DBUtil.schema+"T_CREDIT_APPLY_TEMP a left outer join "+DBUtil.schema+"T_CREDIT c on a.FK_CREDIT = c.PK_CREDIT");
+		sqlBuffer.append(getPayrollCreditIssuingUtil(corpNameCore,corpName,pkCredit,partnerName,
+				submitTimeBegin,submitTimeEnd));
+		String sql=sqlBuffer.toString();
+		System.out.println(sql);
+		try{
+			PreparedStatement pstm=connection.prepareStatement(sql);
+		    ResultSet rs=pstm.executeQuery(sql);
+			while(rs.next()){
+				int count=rs.getInt(1);
+				return count;
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			DBUtil.closeConnection(connection);
+		}
+		return 0;
+	}
+	
+	/**
+	 * 查询代发工资申请中签发中tab白条list
+	 * @author 邱刚
+	 * @return
+	 * @throws SQLException 
+	 */
+	public static List<Map<String, String>> getPayrollCreditIssuingList(String corpNameCore,String corpName,String pkCredit,String partnerName,
+			LocalDate submitTimeBegin,LocalDate submitTimeEnd) throws SQLException{
+		List<Map<String, String>> list=new ArrayList<Map<String, String>>();
+		Connection connection=DBUtil.getConnection();
+		StringBuffer sqlBuffer = new StringBuffer();
+		sqlBuffer.append("select a.APPLY_AMOUNT,a.CORP_NAME_APPROVE,a.CORP_NAME_APPLY,c.PARTNER_NAME,a.APPLY_FORM,a.SUBMIT_TIME,c.product_type_ccbscf,a.FK_CREDIT,c.CREDIT_STATE from "+DBUtil.schema+"T_CREDIT_APPLY_TEMP a left outer join "+DBUtil.schema+"T_CREDIT c on a.FK_CREDIT = c.PK_CREDIT");
+		sqlBuffer.append(getPayrollCreditIssuingUtil(corpNameCore,corpName,pkCredit,partnerName,
+				submitTimeBegin,submitTimeEnd));
+		String sql=sqlBuffer.toString();
+		System.out.println(sql);
+		try{
+			PreparedStatement pstm=connection.prepareStatement(sql);
+		    ResultSet rs=pstm.executeQuery(sql);
+			while(rs.next()){
+				Map<String, String> map=new HashMap<String, String>();
+				map.put("corpNameCore",rs.getString("CORP_NAME_APPROVE"));
+				map.put("corpName",rs.getString("CORP_NAME_APPLY"));
+				map.put("partnerName",rs.getString("PARTNER_NAME"));
+				map.put("submitTime",rs.getString("SUBMIT_TIME"));
+				map.put("pkCredit",rs.getString("FK_CREDIT"));
+				map.put("creditState",rs.getString("CREDIT_STATE"));
+				map.put("paymentDetailTotalAmount",rs.getBigDecimal("APPLY_AMOUNT").setScale(2, BigDecimal.ROUND_HALF_UP).toString());
+				map.put("productTypeCcbscf",rs.getString("product_type_ccbscf"));
+				String applyForm=rs.getString("APPLY_FORM");
+				JSONObject jsonObject=JSONObject.fromObject(applyForm);
+				map.put("payrollDetailCount",jsonObject.getString("payrollDetailCount")+"笔");
+				list.add(map);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			DBUtil.closeConnection(connection);
+		}
+		return list;
+	}
+	
+	/**
+	 * 查询代发工资申请中签发中tab白条金额
+	 * @author 邱刚
+	 * @return
+	 * @throws SQLException 
+	 */
+	public static BigDecimal getPayrollCreditIssuingAmount(String corpNameCore,String corpName,String pkCredit,String partnerName,
+			LocalDate submitTimeBegin,LocalDate submitTimeEnd) throws SQLException{
+		Connection connection=DBUtil.getConnection();
+		StringBuffer sqlBuffer = new StringBuffer();
+		sqlBuffer.append("select sum(c.maturity_amount) from "+DBUtil.schema+"T_CREDIT_APPLY_TEMP a left outer join "+DBUtil.schema+"T_CREDIT c on a.FK_CREDIT = c.PK_CREDIT");
+		sqlBuffer.append(getPayrollCreditIssuingUtil(corpNameCore,corpName,pkCredit,partnerName,
+				submitTimeBegin,submitTimeEnd));
+		String sql=sqlBuffer.toString();
+		System.out.println(sql);
+		try{
+			PreparedStatement pstm=connection.prepareStatement(sql);
+		    ResultSet rs=pstm.executeQuery(sql);
+			while(rs.next()){
+				BigDecimal amount=rs.getBigDecimal(1).setScale(2, BigDecimal.ROUND_HALF_UP);
+				return amount;
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			DBUtil.closeConnection(connection);
+		}
+		return new BigDecimal(0);
+	}
+	public static void main(String[] args) throws SQLException {
+		OracleDataFactory.getPayrollCreditIssuingList(null, null, null, null, null, null);
 		
+		
+		}
 
 }

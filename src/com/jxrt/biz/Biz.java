@@ -73,6 +73,27 @@ public class Biz {
 		return new PayrollCreditApplySearchPage(driver);
 	}
 	
+	/*
+	 * 代发工资申请查询签收中tab页面初始化
+	 */
+	public PayrollCreditApplySearchIssuingTabPage payrollCreditApplySearchIssuingTabPage() {
+		return new PayrollCreditApplySearchIssuingTabPage(driver);
+	}
+	
+//	/*
+//	 * 代发工资申请查询融资中tab页面初始化
+//	 */
+//	public PayrollCreditApplySearchFinancingTabPage payrollCreditApplySearchFinancingTabPage() {
+//		return new PayrollCreditApplySearchFinancingTabPage(driver);
+//	}
+//	
+//	/*
+//	 * 代发工资申请查询已放款tab页面初始化
+//	 */
+//	public PayrollCreditApplySearchLoanedTabPage payrollCreditApplySearchLoanedTabPage() {
+//		return new PayrollCreditApplySearchLoanedTabPage(driver);
+//	}
+	
 	
 	
 }

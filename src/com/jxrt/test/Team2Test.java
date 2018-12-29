@@ -500,7 +500,7 @@ public class Team2Test extends TestBase {
 	/*
 	 * 平台端融资资料审核添加
 	 */
-	@Test(enabled = false, priority = 1)
+	@Test(enabled = true, priority = 1)
 	public void TestFinanceDataAdd() throws InterruptedException {
 		try {
 			TestBase.biz.bizLoginPage().login(TestBase.operateQueryMobileTeam2, TestBase.operateQueryPasswordTeam2);
@@ -508,9 +508,10 @@ public class Team2Test extends TestBase {
 			Thread.sleep(5000);
 			TestBase.biz.financeDataApprove().financeDataAdd();
 			Thread.sleep(5000);
-			TestBase.biz.financeDataApprove().pageNums.get(TestBase.biz.financeDataApprove().pageNums.size() - 1)
-					.click();
-			Thread.sleep(8000);
+			
+			//搜索状态为待审核的数据
+			TestBase.biz.financeDataApprove().getDataByWorkFlow(TestBase.biz.financeDataApprove().workFlowUN_AUDIT);
+			
 			int num = TestBase.biz.financeDataApprove().dataListIndexs.size() - 1;
 			Assert.assertEquals(TestBase.biz.financeDataApprove().dataListFinanceCorpNames.get(num).getText(),
 					TestBase.FinanceDataApproveCorpName);
@@ -520,6 +521,8 @@ public class Team2Test extends TestBase {
 					TestBase.operateQueryNameTeam2);
 			Assert.assertTrue(TestBase.biz.financeDataApprove().dataListSubmitDates.get(num).getText()
 					.contains(LocalDate.now().toString()));
+			Assert.assertEquals(TestBase.biz.financeDataApprove().dataListAbstracts.get(num).getText(),
+					"摘要");
 			Assert.assertEquals(TestBase.biz.financeDataApprove().dataListWorkFlows.get(num).getText(), "待审核");
 		} catch (Exception e) {
 			String cls = this.getClass().getName();
@@ -542,18 +545,16 @@ public class Team2Test extends TestBase {
 			Thread.sleep(5000);
 			TestBase.biz.financeDataApprove().financeDataAdd();
 			Thread.sleep(5000);
-			// 获取最后一页页码
-			TestBase.biz.financeDataApprove().pageNums.get(TestBase.biz.financeDataApprove().pageNums.size() - 1)
-					.click();
-			Thread.sleep(8000);
-			int num = TestBase.biz.financeDataApprove().dataListIndexs.size() - 1;
+			
+			//搜索状态为待审核的数据
+			TestBase.biz.financeDataApprove().getDataByWorkFlow(TestBase.biz.financeDataApprove().workFlowUN_AUDIT);
+			
 			int modifyNum = TestBase.biz.financeDataApprove().dataLisModifyBtns.size() - 1;
 			TestBase.biz.financeDataApprove().dataLisModifyBtns.get(modifyNum).click();
 			TestBase.biz.financeDataApprove().financeDataModify();
 			int invalidNum = TestBase.biz.financeDataApprove().dataLisInvalidBtns.size() - 1;
 			TestBase.biz.financeDataApprove().dataLisInvalidBtns.get(invalidNum).click();
 			TestBase.biz.financeDataApprove().financeDataInvalid();
-			Assert.assertEquals(TestBase.biz.financeDataApprove().dataListWorkFlows.get(num).getText(), "失效");
 		} catch (Exception e) {
 			String cls = this.getClass().getName();
 			String method = Thread.currentThread().getStackTrace()[1].getMethodName();
@@ -579,17 +580,24 @@ public class Team2Test extends TestBase {
 			TestBase.biz.bizLoginPage().login(TestBase.operateOperatorMobileTeam2,
 					TestBase.operateOperatorPasswordTeam2);
 			TestBase.biz.homePage().gotoFinanceDataApprovePage();
-			Thread.sleep(8000);
-			TestBase.biz.financeDataApprove().pageNums.get(TestBase.biz.financeDataApprove().pageNums.size() - 1)
-					.click();
 			Thread.sleep(5000);
+			
+			//搜索状态为待审核的数据
+			TestBase.biz.financeDataApprove().getDataByWorkFlow(TestBase.biz.financeDataApprove().workFlowUN_AUDIT);
+			
 			int num = TestBase.biz.financeDataApprove().dataListIndexs.size() - 1;
 			// 领取任务
 			int operatorApproveBtnNum = TestBase.biz.financeDataApprove().operatorApproveBtns.size() - 1;
 			TestBase.biz.financeDataApprove().operatorGetTask(operatorApproveBtnNum);
+			
+			//搜索状态为初审审核中的数据
+			TestBase.biz.financeDataApprove().getDataByWorkFlow(TestBase.biz.financeDataApprove().workFlowFIRST_AUDITING);
+			
+			num = TestBase.biz.financeDataApprove().dataListIndexs.size() - 1;
 			Assert.assertEquals(TestBase.biz.financeDataApprove().dataListOperatorNames.get(num).getText(),
 					TestBase.operateOperatorNameTeam2);
 			Assert.assertEquals(TestBase.biz.financeDataApprove().dataListWorkFlows.get(num).getText(), "初审审核中");
+			
 			// 点击下拉框对记录进行审核
 			TestBase.biz.financeDataApprove().dataListDropDownBtns.get(num).click();
 			Thread.sleep(2000);
@@ -605,12 +613,10 @@ public class Team2Test extends TestBase {
 			int operatorApproveDoneBtnNum = TestBase.biz.financeDataApprove().operatorApproveDoneBtns.size() - 1;
 			TestBase.biz.financeDataApprove().operatorApproveDoneBtns.get(operatorApproveDoneBtnNum).click();
 			Thread.sleep(2000);
+			
 			Assert.assertEquals(TestBase.biz.financeDataApprove().message.getText(), "初审完成");
 			TestBase.biz.financeDataApprove().messageConfirmBtn.click();
 			Thread.sleep(2000);
-
-			Assert.assertEquals(TestBase.biz.financeDataApprove().dataListWorkFlows.get(num).getText(), "初审审核完成");
-			Assert.assertEquals(TestBase.biz.financeDataApprove().dataListApproveResults.get(num).getText(), "审核通过");
 		} catch (Exception e) {
 			String cls = this.getClass().getName();
 			String method = Thread.currentThread().getStackTrace()[1].getMethodName();
@@ -639,16 +645,17 @@ public class Team2Test extends TestBase {
 					TestBase.operateOperatorPasswordTeam2);
 			TestBase.biz.homePage().gotoFinanceDataApprovePage();
 			Thread.sleep(8000);
-			TestBase.biz.financeDataApprove().pageNums.get(TestBase.biz.financeDataApprove().pageNums.size() - 1)
-					.click();
-			Thread.sleep(5000);
+			
+			//搜索状态为待审核的数据
+			TestBase.biz.financeDataApprove().getDataByWorkFlow(TestBase.biz.financeDataApprove().workFlowUN_AUDIT);
+
 			int opeNum = TestBase.biz.financeDataApprove().dataListIndexs.size() - 1;
 			// 领取任务
 			int opeApproveBtnNum = TestBase.biz.financeDataApprove().operatorApproveBtns.size() - 1;
 			TestBase.biz.financeDataApprove().operatorGetTask(opeApproveBtnNum);
-			Assert.assertEquals(TestBase.biz.financeDataApprove().dataListOperatorNames.get(opeNum).getText(),
-					TestBase.operateOperatorNameTeam2);
-			Assert.assertEquals(TestBase.biz.financeDataApprove().dataListWorkFlows.get(opeNum).getText(), "初审审核中");
+			//搜索初审审核中数据
+			TestBase.biz.financeDataApprove().getDataByWorkFlow(TestBase.biz.financeDataApprove().workFlowFIRST_AUDITING);
+			opeNum = TestBase.biz.financeDataApprove().dataListIndexs.size() - 1;
 			// 点击下拉框对记录进行审核
 			TestBase.biz.financeDataApprove().dataListDropDownBtns.get(opeNum).click();
 			Thread.sleep(2000);
@@ -667,8 +674,6 @@ public class Team2Test extends TestBase {
 			Assert.assertEquals(TestBase.biz.financeDataApprove().message.getText(), "初审完成");
 			TestBase.biz.financeDataApprove().messageConfirmBtn.click();
 			Thread.sleep(3000);
-			Assert.assertEquals(TestBase.biz.financeDataApprove().dataListWorkFlows.get(opeNum).getText(), "初审审核完成");
-			Assert.assertEquals(TestBase.biz.financeDataApprove().dataListApproveResults.get(opeNum).getText(), "审核通过");
 			TestBase.tearDownBiz();
 
 			// 复审审核
@@ -676,19 +681,16 @@ public class Team2Test extends TestBase {
 			TestBase.biz.bizLoginPage().login(TestBase.operateManagerMobileTeam2, TestBase.operateManagerPasswordTeam2);
 			TestBase.biz.homePage().gotoFinanceDataApprovePage();
 			Thread.sleep(8000);
-			TestBase.biz.financeDataApprove().pageNums.get(TestBase.biz.financeDataApprove().pageNums.size() - 1)
-					.click();
-			Thread.sleep(5000);
-			int manApproveNum = TestBase.biz.financeDataApprove().dataListIndexs.size() - 1;
+			//搜索状态为初审审核完成的数据
+			TestBase.biz.financeDataApprove().getDataByWorkFlow(TestBase.biz.financeDataApprove().workFlowFIRST_AUDITED);
+
 			// 领取任务
 			int manApproveBtnNum = TestBase.biz.financeDataApprove().managerApproveBtns.size() - 1;
 			TestBase.biz.financeDataApprove().managerGetTask(manApproveBtnNum);
 			TestBase.biz.financeDataApprove().noPassBtn.click();
 			TestBase.biz.financeDataApprove().scrollIntoView(TestBase.biz.financeDataApprove().manApproveQYZXPart);
 			TestBase.biz.financeDataApprove().manApproveBackToOpeBtn.click();
-			Thread.sleep(3000);
-			Assert.assertEquals(TestBase.biz.financeDataApprove().dataListWorkFlows.get(manApproveNum).getText(),
-					"初审审核中");
+			Thread.sleep(1000);
 			TestBase.tearDownBiz();
 
 			// 初审再次审核提交
@@ -696,10 +698,10 @@ public class Team2Test extends TestBase {
 			TestBase.biz.bizLoginPage().login(TestBase.operateOperatorMobileTeam2,
 					TestBase.operateOperatorPasswordTeam2);
 			TestBase.biz.homePage().gotoFinanceDataApprovePage();
-			Thread.sleep(8000);
-			TestBase.biz.financeDataApprove().pageNums.get(TestBase.biz.financeDataApprove().pageNums.size() - 1)
-					.click();
 			Thread.sleep(5000);
+			//搜索状态为初审审核中的数据
+			TestBase.biz.financeDataApprove().getDataByWorkFlow(TestBase.biz.financeDataApprove().workFlowFIRST_AUDITING);
+
 			int opeNumNew = TestBase.biz.financeDataApprove().dataListIndexs.size() - 1;
 			// 点击下拉框对记录进行审核
 			TestBase.biz.financeDataApprove().dataListDropDownBtns.get(opeNumNew).click();
@@ -720,9 +722,9 @@ public class Team2Test extends TestBase {
 			TestBase.biz.bizLoginPage().login(TestBase.operateManagerMobileTeam2, TestBase.operateManagerPasswordTeam2);
 			TestBase.biz.homePage().gotoFinanceDataApprovePage();
 			Thread.sleep(8000);
-			TestBase.biz.financeDataApprove().pageNums.get(TestBase.biz.financeDataApprove().pageNums.size() - 1)
-					.click();
-			Thread.sleep(5000);
+			//搜索状态为初审审核完成的数据
+			TestBase.biz.financeDataApprove().getDataByWorkFlow(TestBase.biz.financeDataApprove().workFlowFIRST_AUDITED);
+
 			int manNumNew = TestBase.biz.financeDataApprove().dataListIndexs.size() - 1;
 			// 领取任务
 			int manApproveBtnNumNew = TestBase.biz.financeDataApprove().managerApproveBtns.size() - 1;
@@ -730,6 +732,9 @@ public class Team2Test extends TestBase {
 			TestBase.biz.financeDataApprove().scrollIntoView(TestBase.biz.financeDataApprove().manApproveQYZXPart);
 			TestBase.biz.financeDataApprove().manApproveSubtmitBtn.click();
 			Thread.sleep(3000);
+			//搜索复审审核完成数据
+			TestBase.biz.financeDataApprove().getDataByWorkFlow(TestBase.biz.financeDataApprove().workFlowFINAL_AUDITED);
+			manNumNew = TestBase.biz.financeDataApprove().dataListIndexs.size() - 1;
 			Assert.assertEquals(TestBase.biz.financeDataApprove().dataListWorkFlows.get(manNumNew).getText(), "复审审核完成");
 			Assert.assertEquals(TestBase.biz.financeDataApprove().dataListApproveResults.get(manNumNew).getText(),
 					"审核通过");
@@ -760,17 +765,17 @@ public class Team2Test extends TestBase {
 			TestBase.biz.bizLoginPage().login(TestBase.operateOperatorMobileTeam2,
 					TestBase.operateOperatorPasswordTeam2);
 			TestBase.biz.homePage().gotoFinanceDataApprovePage();
-			Thread.sleep(8000);
-			TestBase.biz.financeDataApprove().pageNums.get(TestBase.biz.financeDataApprove().pageNums.size() - 1)
-					.click();
 			Thread.sleep(5000);
+			//搜索状态为待审核的数据
+			TestBase.biz.financeDataApprove().getDataByWorkFlow(TestBase.biz.financeDataApprove().workFlowUN_AUDIT);
+
 			int opeNum = TestBase.biz.financeDataApprove().dataListIndexs.size() - 1;
 			// 领取任务
 			int opeApproveBtnNum = TestBase.biz.financeDataApprove().operatorApproveBtns.size() - 1;
 			TestBase.biz.financeDataApprove().operatorGetTask(opeApproveBtnNum);
-			Assert.assertEquals(TestBase.biz.financeDataApprove().dataListOperatorNames.get(opeNum).getText(),
-					TestBase.operateOperatorNameTeam2);
-			Assert.assertEquals(TestBase.biz.financeDataApprove().dataListWorkFlows.get(opeNum).getText(), "初审审核中");
+			//搜索初审审核中数据
+			TestBase.biz.financeDataApprove().getDataByWorkFlow(TestBase.biz.financeDataApprove().workFlowFIRST_AUDITING);
+			opeNum = TestBase.biz.financeDataApprove().dataListIndexs.size() - 1;
 			// 点击下拉框对记录进行审核
 			TestBase.biz.financeDataApprove().dataListDropDownBtns.get(opeNum).click();
 			Thread.sleep(2000);
@@ -789,18 +794,16 @@ public class Team2Test extends TestBase {
 			Assert.assertEquals(TestBase.biz.financeDataApprove().message.getText(), "初审完成");
 			TestBase.biz.financeDataApprove().messageConfirmBtn.click();
 			Thread.sleep(3000);
-			Assert.assertEquals(TestBase.biz.financeDataApprove().dataListWorkFlows.get(opeNum).getText(), "初审审核完成");
-			Assert.assertEquals(TestBase.biz.financeDataApprove().dataListApproveResults.get(opeNum).getText(), "审核通过");
 			TestBase.tearDownBiz();
 
 			// 复审审核
 			TestBase.setupBiz();
 			TestBase.biz.bizLoginPage().login(TestBase.operateManagerMobileTeam2, TestBase.operateManagerPasswordTeam2);
 			TestBase.biz.homePage().gotoFinanceDataApprovePage();
-			Thread.sleep(8000);
-			TestBase.biz.financeDataApprove().pageNums.get(TestBase.biz.financeDataApprove().pageNums.size() - 1)
-					.click();
 			Thread.sleep(5000);
+			//搜索状态为初审审核通过的数据
+			TestBase.biz.financeDataApprove().getDataByWorkFlow(TestBase.biz.financeDataApprove().workFlowFIRST_AUDITED);
+
 			int manApproveNum = TestBase.biz.financeDataApprove().dataListIndexs.size() - 1;
 			// 领取任务
 			int manApproveBtnNum = TestBase.biz.financeDataApprove().managerApproveBtns.size() - 1;
@@ -809,6 +812,9 @@ public class Team2Test extends TestBase {
 			TestBase.biz.financeDataApprove().scrollIntoView(TestBase.biz.financeDataApprove().manApproveQYZXPart);
 			TestBase.biz.financeDataApprove().manApproveSubtmitBtn.click();
 			Thread.sleep(3000);
+			
+			TestBase.biz.financeDataApprove().getDataByWorkFlow(TestBase.biz.financeDataApprove().workFlowFINAL_AUDITED);
+			manApproveNum = TestBase.biz.financeDataApprove().dataListIndexs.size() - 1;
 			Assert.assertEquals(TestBase.biz.financeDataApprove().dataListWorkFlows.get(manApproveNum).getText(),
 					"复审审核完成");
 			Assert.assertEquals(TestBase.biz.financeDataApprove().dataListApproveResults.get(manApproveNum).getText(),
@@ -841,16 +847,16 @@ public class Team2Test extends TestBase {
 					TestBase.operateOperatorPasswordTeam2);
 			TestBase.biz.homePage().gotoFinanceDataApprovePage();
 			Thread.sleep(8000);
-			TestBase.biz.financeDataApprove().pageNums.get(TestBase.biz.financeDataApprove().pageNums.size() - 1)
-					.click();
-			Thread.sleep(5000);
+			//搜索状态为待审核的数据
+			TestBase.biz.financeDataApprove().getDataByWorkFlow(TestBase.biz.financeDataApprove().workFlowUN_AUDIT);
+
 			int opeNum = TestBase.biz.financeDataApprove().dataListIndexs.size() - 1;
 			// 领取任务
 			int opeApproveBtnNum = TestBase.biz.financeDataApprove().operatorApproveBtns.size() - 1;
 			TestBase.biz.financeDataApprove().operatorGetTask(opeApproveBtnNum);
-			Assert.assertEquals(TestBase.biz.financeDataApprove().dataListOperatorNames.get(opeNum).getText(),
-					TestBase.operateOperatorNameTeam2);
-			Assert.assertEquals(TestBase.biz.financeDataApprove().dataListWorkFlows.get(opeNum).getText(), "初审审核中");
+			//搜索初审审核中数据
+			TestBase.biz.financeDataApprove().getDataByWorkFlow(TestBase.biz.financeDataApprove().workFlowFIRST_AUDITING);
+			opeNum = TestBase.biz.financeDataApprove().dataListIndexs.size() - 1;
 			// 点击下拉框对记录进行审核
 			TestBase.biz.financeDataApprove().dataListDropDownBtns.get(opeNum).click();
 			Thread.sleep(2000);
@@ -869,18 +875,15 @@ public class Team2Test extends TestBase {
 			Assert.assertEquals(TestBase.biz.financeDataApprove().message.getText(), "初审完成");
 			TestBase.biz.financeDataApprove().messageConfirmBtn.click();
 			Thread.sleep(3000);
-			Assert.assertEquals(TestBase.biz.financeDataApprove().dataListWorkFlows.get(opeNum).getText(), "初审审核完成");
-			Assert.assertEquals(TestBase.biz.financeDataApprove().dataListApproveResults.get(opeNum).getText(),
-					"审核不通过");
 			TestBase.tearDownBiz();
 			// 客服修改
 			TestBase.setupBiz();
 			TestBase.biz.bizLoginPage().login(TestBase.operateQueryMobileTeam2, TestBase.operateQueryPasswordTeam2);
 			TestBase.biz.homePage().gotoFinanceDataApprovePage();
 			Thread.sleep(5000);
-			TestBase.biz.financeDataApprove().pageNums.get(TestBase.biz.financeDataApprove().pageNums.size() - 1)
-					.click();
-			Thread.sleep(8000);
+			//搜索状态为待审核的数据
+			TestBase.biz.financeDataApprove().getDataByWorkFlow(TestBase.biz.financeDataApprove().workFlowUN_AUDIT);
+
 			int num = TestBase.biz.financeDataApprove().dataListIndexs.size() - 1;
 			int modifyNum = TestBase.biz.financeDataApprove().dataLisModifyBtns.size() - 1;
 			TestBase.biz.financeDataApprove().dataLisModifyBtns.get(modifyNum).click();
@@ -996,8 +999,8 @@ public class Team2Test extends TestBase {
 			Thread.sleep(2000);
 
 			LocalDate today = LocalDate.now();
-			LocalDate redeemDateBegin = today.minusDays(20);
-			LocalDate redeemDateEnd = today.plusDays(20);
+			LocalDate redeemDateBegin = today.minusDays(25);
+			LocalDate redeemDateEnd = today.minusDays(5);
 			String corpNameCore = TestBase.corpNameCoreReceivableTeam2;
 			String corpName = TestBase.corpNameReceivableTeam2;
 
@@ -1322,5 +1325,188 @@ public class Team2Test extends TestBase {
 			TestBase.getScreenShot(cls, method);
 			throw e;
 		}
+	}
+		
+	/*
+	 * 代发工资--代发工资申请代发申请中查询
+	 */
+	@Test(enabled = true, priority = 2)
+	public void TestPayrollCreditApplySearchPage() throws InterruptedException, SQLException {
+		try {
+			TestBase.biz.bizLoginPage().login(TestBase.operateOperatorMobileTeam2, TestBase.operateManagerPasswordTeam2);
+			TestBase.biz.homePage().gotoPayrollCreditApplySearchPage();
+			Thread.sleep(4000);
+			TestBase.biz.payrollCreditApplySearchPage().payrollCreditList(null, null, null, null, null, null);
+			
+			String corpNameCore="盛世集团成员二";
+			String corpName="太平链条企业一";
+			LocalDate today = LocalDate.now();
+			LocalDate createDateBegin = today.minusDays(25);
+			LocalDate createDateEnd = today.minusDays(5);
+			//核心企业筛选
+			TestBase.biz.payrollCreditApplySearchPage().corpNameCoreInput.sendKeys(corpNameCore);
+			TestBase.biz.payrollCreditApplySearchPage().searchBtn.click();
+			Thread.sleep(2000);
+			TestBase.biz.payrollCreditApplySearchPage().payrollCreditList(corpNameCore, null, null, null, null, null);
+			TestBase.driver.navigate().refresh();
+			Thread.sleep(2000);
+			//链条企业筛选
+			TestBase.biz.payrollCreditApplySearchPage().corpNameInput.sendKeys(corpName);
+			TestBase.biz.payrollCreditApplySearchPage().searchBtn.click();
+			Thread.sleep(2000);
+			TestBase.biz.payrollCreditApplySearchPage().payrollCreditList(null, corpName, null, null, null, null);
+			TestBase.driver.navigate().refresh();
+			Thread.sleep(2000);
+			//测试合作平台筛选
+			TestBase.biz.payrollCreditApplySearchPage().partnerNameInput.sendKeys("建信融通");
+			TestBase.biz.payrollCreditApplySearchPage().searchBtn.click();
+			Thread.sleep(2000);
+			TestBase.biz.payrollCreditApplySearchPage().payrollCreditList(null, null, "建信融通", null, null, null);
+			TestBase.biz.payrollCreditApplySearchPage().partnerNameInput.clear();
+			TestBase.biz.payrollCreditApplySearchPage().partnerNameInput.sendKeys("开太平");
+			TestBase.biz.payrollCreditApplySearchPage().searchBtn.click();
+			Thread.sleep(2000);
+			TestBase.biz.payrollCreditApplySearchPage().payrollCreditList(null, null, "开太平", null, null, null);
+			TestBase.driver.navigate().refresh();
+			Thread.sleep(2000);
+			//创建开始时间，结束时间筛选
+			TestBase.biz.payrollCreditApplySearchPage().createDateBeginInput.sendKeys(createDateBegin.toString());
+			TestBase.biz.payrollCreditApplySearchPage().createDateEndInput.sendKeys(createDateEnd.toString());
+			TestBase.biz.payrollCreditApplySearchPage().searchBtn.click();
+			Thread.sleep(2000);
+			TestBase.biz.payrollCreditApplySearchPage().payrollCreditList(null, null, null, createDateBegin, createDateEnd, null);
+			TestBase.driver.navigate().refresh();
+			Thread.sleep(2000);
+			
+			//状态筛选
+			TestBase.biz.payrollCreditApplySearchPage().state.click();
+			Thread.sleep(1000);
+			TestBase.biz.payrollCreditApplySearchPage().stateINCREASING.click();
+			Thread.sleep(1000);
+			TestBase.biz.payrollCreditApplySearchPage().searchBtn.click();
+			Thread.sleep(4000);
+			TestBase.biz.payrollCreditApplySearchPage().payrollCreditList(null, null, null, null, null, "新增中");
+			Thread.sleep(2000);
+			
+			TestBase.biz.payrollCreditApplySearchPage().state.click();
+			Thread.sleep(1000);
+			TestBase.biz.payrollCreditApplySearchPage().stateINCREASE_FAIL.click();
+			Thread.sleep(1000);
+			TestBase.biz.payrollCreditApplySearchPage().searchBtn.click();
+			Thread.sleep(4000);
+			TestBase.biz.payrollCreditApplySearchPage().payrollCreditList(null, null, null, null, null, "新增失败");
+			Thread.sleep(2000);
+			
+			TestBase.biz.payrollCreditApplySearchPage().state.click();
+			Thread.sleep(1000);
+			TestBase.biz.payrollCreditApplySearchPage().stateSUBMITTING.click();
+			Thread.sleep(1000);
+			TestBase.biz.payrollCreditApplySearchPage().searchBtn.click();
+			Thread.sleep(4000);
+			TestBase.biz.payrollCreditApplySearchPage().payrollCreditList(null, null, null, null, null, "待提交");
+			Thread.sleep(2000);
+			
+			TestBase.biz.payrollCreditApplySearchPage().state.click();
+			Thread.sleep(1000);
+			TestBase.biz.payrollCreditApplySearchPage().stateCOMMITTING.click();
+			Thread.sleep(1000);
+			TestBase.biz.payrollCreditApplySearchPage().searchBtn.click();
+			Thread.sleep(4000);
+			TestBase.biz.payrollCreditApplySearchPage().payrollCreditList(null, null, null, null, null, "待确认");
+			Thread.sleep(2000);
+			
+			TestBase.biz.payrollCreditApplySearchPage().state.click();
+			Thread.sleep(1000);
+			TestBase.biz.payrollCreditApplySearchPage().stateAPPROVE_FAIL.click();
+			Thread.sleep(1000);
+			TestBase.biz.payrollCreditApplySearchPage().searchBtn.click();
+			Thread.sleep(4000);
+			TestBase.biz.payrollCreditApplySearchPage().payrollCreditList(null, null, null, null, null, "核心企业审核不通过");
+			Thread.sleep(2000);
+		} catch (Exception e) {
+			String cls = this.getClass().getName();
+			String method = Thread.currentThread().getStackTrace()[1].getMethodName();
+			System.out.println(cls + "--" + method);
+			TestBase.getScreenShot(cls, method);
+			throw e;
+		}	
+	}
+	
+	/*
+	 * 代发工资--代发工资申请签发中查询
+	 */
+	@Test(enabled = true, priority = 2)
+	public void TestPayrollCreditApplySearchIssuingTabPage() throws InterruptedException, SQLException {
+		try {
+			TestBase.biz.bizLoginPage().login(TestBase.operateOperatorMobileTeam2, TestBase.operateManagerPasswordTeam2);
+			TestBase.biz.homePage().gotoPayrollCreditApplySearchPage();
+			Thread.sleep(2000);
+			TestBase.biz.payrollCreditApplySearchPage().changeTab(TestBase.biz.payrollCreditApplySearchPage().issuingTab);
+			TestBase.biz.payrollCreditApplySearchIssuingTabPage().payrollCreditIssuingList(null, null, null, null, null, null);
+			
+			String corpNameCore="盛世集团成员二";
+			String corpName="太平链条企业一";
+			LocalDate today = LocalDate.now();
+			LocalDate submitTimeBegin = today.minusDays(30);
+			LocalDate submitTimeEnd = today;
+			//核心企业筛选
+			TestBase.biz.payrollCreditApplySearchIssuingTabPage().corpNameCoreInput.sendKeys(corpNameCore);
+			TestBase.biz.payrollCreditApplySearchIssuingTabPage().searchBtn.click();
+			Thread.sleep(2000);
+			TestBase.biz.payrollCreditApplySearchIssuingTabPage().payrollCreditIssuingList(corpNameCore, null, null, null, null, null);
+			TestBase.driver.navigate().refresh();
+			Thread.sleep(2000);
+			TestBase.biz.payrollCreditApplySearchPage().changeTab(TestBase.biz.payrollCreditApplySearchPage().issuingTab);
+
+			//链条企业筛选
+			TestBase.biz.payrollCreditApplySearchIssuingTabPage().corpNameInput.sendKeys(corpName);
+			TestBase.biz.payrollCreditApplySearchIssuingTabPage().searchBtn.click();
+			Thread.sleep(2000);
+			TestBase.biz.payrollCreditApplySearchIssuingTabPage().payrollCreditIssuingList(null, corpName, null, null, null, null);
+			TestBase.driver.navigate().refresh();
+			Thread.sleep(2000);
+			TestBase.biz.payrollCreditApplySearchPage().changeTab(TestBase.biz.payrollCreditApplySearchPage().issuingTab);
+
+			//白条编号筛选
+			String pkCredit=TestBase.biz.payrollCreditApplySearchIssuingTabPage().payrollListPkCredits.get(0).getText();
+			TestBase.biz.payrollCreditApplySearchIssuingTabPage().pkCreditInput.sendKeys(pkCredit);
+			TestBase.biz.payrollCreditApplySearchIssuingTabPage().searchBtn.click();
+			Thread.sleep(2000);
+			TestBase.biz.payrollCreditApplySearchIssuingTabPage().payrollCreditIssuingList(null, null, pkCredit, null, null, null);
+			TestBase.driver.navigate().refresh();
+			Thread.sleep(2000);
+			TestBase.biz.payrollCreditApplySearchPage().changeTab(TestBase.biz.payrollCreditApplySearchPage().issuingTab);
+
+			//测试合作平台筛选
+			TestBase.biz.payrollCreditApplySearchIssuingTabPage().partnerNameInput.sendKeys("建信融通");
+			TestBase.biz.payrollCreditApplySearchIssuingTabPage().searchBtn.click();
+			Thread.sleep(2000);
+			TestBase.biz.payrollCreditApplySearchIssuingTabPage().payrollCreditIssuingList(null, null, null, "建信融通", null, null);
+			TestBase.biz.payrollCreditApplySearchIssuingTabPage().partnerNameInput.clear();
+			TestBase.biz.payrollCreditApplySearchIssuingTabPage().partnerNameInput.sendKeys("开太平");
+			TestBase.biz.payrollCreditApplySearchIssuingTabPage().searchBtn.click();
+			Thread.sleep(2000);
+			TestBase.biz.payrollCreditApplySearchIssuingTabPage().payrollCreditIssuingList(null, null, null, "开太平", null, null);
+			TestBase.driver.navigate().refresh();
+			Thread.sleep(2000);
+			TestBase.biz.payrollCreditApplySearchPage().changeTab(TestBase.biz.payrollCreditApplySearchPage().issuingTab);
+
+			//提交申请开始时间，结束时间筛选
+			TestBase.biz.payrollCreditApplySearchIssuingTabPage().submitTimeBeginInput.sendKeys(submitTimeBegin.toString());
+			TestBase.biz.payrollCreditApplySearchIssuingTabPage().submitTimeEndInput.sendKeys(submitTimeEnd.toString());
+			Thread.sleep(2000);
+			TestBase.biz.payrollCreditApplySearchIssuingTabPage().searchBtn.click();
+			Thread.sleep(2000);
+			TestBase.biz.payrollCreditApplySearchIssuingTabPage().payrollCreditIssuingList(null, null, null,null, submitTimeBegin, submitTimeEnd);
+			TestBase.driver.navigate().refresh();
+			Thread.sleep(2000);
+			
+		} catch (Exception e) {
+			String cls = this.getClass().getName();
+			String method = Thread.currentThread().getStackTrace()[1].getMethodName();
+			System.out.println(cls + "--" + method);
+			TestBase.getScreenShot(cls, method);
+			throw e;
+		}	
 	}
 }

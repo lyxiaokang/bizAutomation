@@ -2,20 +2,20 @@
 <testng-results skipped="0" failed="0" total="1" passed="1">
   <reporter-output>
   </reporter-output>
-  <suite name="Default suite" duration-ms="32211" started-at="2018-12-25T09:22:03Z" finished-at="2018-12-25T09:22:35Z">
+  <suite name="Default suite" duration-ms="49735" started-at="2018-12-29T06:53:42Z" finished-at="2018-12-29T06:54:31Z">
     <groups>
     </groups>
-    <test name="Default test" duration-ms="32211" started-at="2018-12-25T09:22:03Z" finished-at="2018-12-25T09:22:35Z">
+    <test name="Default test" duration-ms="49735" started-at="2018-12-29T06:53:42Z" finished-at="2018-12-29T06:54:31Z">
       <class name="com.jxrt.test.Team2Test">
-        <test-method status="PASS" signature="setup_Biz()[pri:0, instance:com.jxrt.test.Team2Test@3aeaafa6]" name="setup_Biz" is-config="true" duration-ms="6327" started-at="2018-12-25T17:22:03Z" finished-at="2018-12-25T17:22:10Z">
+        <test-method status="PASS" signature="setup_Biz()[pri:0, instance:com.jxrt.test.Team2Test@3aeaafa6]" name="setup_Biz" is-config="true" duration-ms="6185" started-at="2018-12-29T14:53:42Z" finished-at="2018-12-29T14:53:48Z">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- setup_Biz -->
-        <test-method status="PASS" signature="TestRedeemNotice206SendEmailCredit()[pri:2, instance:com.jxrt.test.Team2Test@3aeaafa6]" name="TestRedeemNotice206SendEmailCredit" duration-ms="25163" started-at="2018-12-25T17:22:10Z" finished-at="2018-12-25T17:22:35Z">
+        <test-method status="PASS" signature="TestPayrollCreditApplySearchIssuingTabPage()[pri:2, instance:com.jxrt.test.Team2Test@3aeaafa6]" name="TestPayrollCreditApplySearchIssuingTabPage" duration-ms="42753" started-at="2018-12-29T14:53:48Z" finished-at="2018-12-29T14:54:31Z">
           <reporter-output>
           </reporter-output>
-        </test-method> <!-- TestRedeemNotice206SendEmailCredit -->
-        <test-method status="PASS" signature="tearDown_Biz()[pri:0, instance:com.jxrt.test.Team2Test@3aeaafa6]" name="tearDown_Biz" is-config="true" duration-ms="706" started-at="2018-12-25T17:22:35Z" finished-at="2018-12-25T17:22:35Z">
+        </test-method> <!-- TestPayrollCreditApplySearchIssuingTabPage -->
+        <test-method status="PASS" signature="tearDown_Biz()[pri:0, instance:com.jxrt.test.Team2Test@3aeaafa6]" name="tearDown_Biz" is-config="true" duration-ms="783" started-at="2018-12-29T14:54:31Z" finished-at="2018-12-29T14:54:31Z">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- tearDown_Biz -->

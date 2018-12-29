@@ -50,16 +50,44 @@ public class FinanceDataApprovePage extends AbstractPage{
 	@FindBy(xpath="//span[contains(text(), '客服姓名：')]/../descendant::input")
 	public WebElement queryNameInput;
 	//审核进度输入框
-	@FindBy(xpath="//span[contains(text(), '审核进度：')]/../descendant::input")
+	@FindBy(xpath="//span[contains(text(), '审核进度：')]/../div/div")
 	public WebElement workFlowInput;
-//	TODO
+	//待审核
+	@FindBy(xpath="//div/ul/li[text()='待审核']")
+	public WebElement workFlowUN_AUDIT;
+	//初审审核中
+	@FindBy(xpath="//div/ul/li[text()='初审审核中']")
+	public WebElement workFlowFIRST_AUDITING;
+	//初审审核完成
+	@FindBy(xpath="//div/ul/li[text()='初审审核完成']")
+	public WebElement workFlowFIRST_AUDITED;
+	//复审审核中
+	@FindBy(xpath="//div/ul/li[text()='复审审核中']")
+	public WebElement workFlowFINAL_AUDITING;
+	//复审审核完成
+	@FindBy(xpath="//div/ul/li[text()='复审审核完成']")
+	public WebElement workFlowFINAL_AUDITED;
+	//失效
+	@FindBy(xpath="//div/ul/li[text()='失效']")
+	public WebElement workFlowINVALID;
+	
 	//审核结果输入框
 	@FindBy(xpath="//span[contains(text(), '审核结果：')]/../descendant::input")
 	public WebElement approveResultInput;
-//	TODO
+	//审核通过
+	@FindBy(xpath="//div/ul/li[text()='审核通过']")
+	public WebElement approveResultPass;
+	//审核不通过
+	@FindBy(xpath="//div/ul/li[text()='审核不通过']")
+	public WebElement approveResultNoPass;
+	
 	//初审审核员姓名输入框
 	@FindBy(xpath="//span[contains(text(), '初审审核员姓名：')]/../descendant::input")
 	public WebElement operatorNameInput;
+
+	//复审审核员姓名输入框
+	@FindBy(xpath="//span[contains(text(), '复审审核员姓名：')]/../descendant::input")
+	public WebElement managerNameInput;
 	
 	//新增按钮
 	@FindBy(xpath="//button/span[contains(text(), '新增')]")
@@ -121,6 +149,9 @@ public class FinanceDataApprovePage extends AbstractPage{
 	//融资金额
 	@FindBy(xpath="//div[contains(text(), '审核记录新增')]/../../descendant::label[contains(text(), '融资金额：')]/../descendant::input")
 	public WebElement addFinanceAmountInput;
+	//摘要
+	@FindBy(xpath="//div[contains(text(), '审核记录新增')]/../../descendant::label[contains(text(), '摘要：')]/../descendant::input")
+	public WebElement addAbstractInput;
 	//是否加急-是
 	@FindBy(xpath="//div[contains(text(), '审核记录新增')]/../../descendant::label[contains(text(), '是否加急：')]/../descendant::label[contains(text(), '是') and @class='ivu-radio-wrapper ivu-radio-group-item']")
 	public WebElement addIsUrgent;
@@ -233,26 +264,29 @@ public class FinanceDataApprovePage extends AbstractPage{
 	//提交日期
 	@FindBy(xpath="/html/body/div[1]/div/div[2]/div[1]/div/div[2]/div/div/div[2]/div/div[2]/div/div/div[2]/table/tbody/tr/td[7]")
 	public List<WebElement> dataListSubmitDates;
-	//初审姓名
+	//摘要
 	@FindBy(xpath="/html/body/div[1]/div/div[2]/div[1]/div/div[2]/div/div/div[2]/div/div[2]/div/div/div[2]/table/tbody/tr/td[8]")
+	public List<WebElement> dataListAbstracts;
+	//初审姓名
+	@FindBy(xpath="/html/body/div[1]/div/div[2]/div[1]/div/div[2]/div/div/div[2]/div/div[2]/div/div/div[2]/table/tbody/tr/td[9]")
 	public List<WebElement> dataListOperatorNames;
 	//终审姓名
-	@FindBy(xpath="/html/body/div[1]/div/div[2]/div[1]/div/div[2]/div/div/div[2]/div/div[2]/div/div/div[2]/table/tbody/tr/td[9]")
+	@FindBy(xpath="/html/body/div[1]/div/div[2]/div[1]/div/div[2]/div/div/div[2]/div/div[2]/div/div/div[2]/table/tbody/tr/td[10]")
 	public List<WebElement> dataListManagerNames;
 	//客服姓名
-	@FindBy(xpath="/html/body/div[1]/div/div[2]/div[1]/div/div[2]/div/div/div[2]/div/div[2]/div/div/div[2]/table/tbody/tr/td[10]")
+	@FindBy(xpath="/html/body/div[1]/div/div[2]/div[1]/div/div[2]/div/div/div[2]/div/div[2]/div/div/div[2]/table/tbody/tr/td[11]")
 	public List<WebElement> dataListQueryNames;
 	//进度
-	@FindBy(xpath="/html/body/div[1]/div/div[2]/div[1]/div/div[2]/div/div/div[2]/div/div[2]/div/div/div[2]/table/tbody/tr/td[11]")
+	@FindBy(xpath="/html/body/div[1]/div/div[2]/div[1]/div/div[2]/div/div/div[2]/div/div[2]/div/div/div[2]/table/tbody/tr/td[12]")
 	public List<WebElement> dataListWorkFlows;
 	//审核结果
-	@FindBy(xpath="/html/body/div[1]/div/div[2]/div[1]/div/div[2]/div/div/div[2]/div/div[2]/div/div/div[2]/table/tbody/tr/td[12]")
+	@FindBy(xpath="/html/body/div[1]/div/div[2]/div[1]/div/div[2]/div/div/div[2]/div/div[2]/div/div/div[2]/table/tbody/tr/td[13]")
 	public List<WebElement> dataListApproveResults;
 	//修改按钮
-	@FindBy(xpath="/html/body/div[1]/div/div[2]/div[1]/div/div[2]/div/div/div[2]/div/div[2]/div/div/div[2]/table/tbody/tr/td[13]//button/span[contains(text(),'修改')]")
+	@FindBy(xpath="/html/body/div[1]/div/div[2]/div[1]/div/div[2]/div/div/div[2]/div/div[2]/div/div/div[2]/table/tbody/tr/td[14]//button/span[contains(text(),'修改')]")
 	public List<WebElement> dataLisModifyBtns;
 	//失效按钮
-	@FindBy(xpath="/html/body/div[1]/div/div[2]/div[1]/div/div[2]/div/div/div[2]/div/div[2]/div/div/div[2]/table/tbody/tr/td[13]//button/span[contains(text(),'失效')]")
+	@FindBy(xpath="/html/body/div[1]/div/div[2]/div[1]/div/div[2]/div/div/div[2]/div/div[2]/div/div/div[2]/table/tbody/tr/td[14]//button/span[contains(text(),'失效')]")
 	public List<WebElement> dataLisInvalidBtns;
 	
 	//失效提示框               
@@ -262,13 +296,13 @@ public class FinanceDataApprovePage extends AbstractPage{
 	public WebElement invalidCancelBtn;
 	
 	//初审审核按钮 
-	@FindBy(xpath="/html/body/div[1]/div/div[2]/div[1]/div/div[2]/div/div/div[2]/div/div[2]/div/div/div[2]/table/tbody/tr/td[13]/div/div/button/span[contains(text(),'审核')]")
+	@FindBy(xpath="/html/body/div[1]/div/div[2]/div[1]/div/div[2]/div/div/div[2]/div/div[2]/div/div/div[2]/table/tbody/tr/td[14]/div/div/button/span[contains(text(),'审核')]")
 	public List<WebElement> operatorApproveBtns;
 	//初审审核完成按钮
-	@FindBy(xpath="/html/body/div[1]/div/div[2]/div[1]/div/div[2]/div/div/div[2]/div/div[2]/div/div/div[2]/table/tbody/tr/td[13]/div/div/button/span[contains(text(),'初审完成')]")
+	@FindBy(xpath="/html/body/div[1]/div/div[2]/div[1]/div/div[2]/div/div/div[2]/div/div[2]/div/div/div[2]/table/tbody/tr/td[14]/div/div/button/span[contains(text(),'初审完成')]")
 	public List<WebElement> operatorApproveDoneBtns;
 	//复审审核按钮
-	@FindBy(xpath="//table/tbody/tr/td[13]/div/div/button/span[contains(text(),'复审')]")
+	@FindBy(xpath="//table/tbody/tr/td[14]/div/div/button/span[contains(text(),'复审')]")
 	public List<WebElement> managerApproveBtns;
 	
 	//认领任务提示框
@@ -551,6 +585,7 @@ public class FinanceDataApprovePage extends AbstractPage{
 		addCreditChose.click();
 		
 		addFinanceAmountInput.sendKeys("100");
+		addAbstractInput.sendKeys("摘要");
 		
 		addNextStepBtn.click();
 		
@@ -605,6 +640,19 @@ public class FinanceDataApprovePage extends AbstractPage{
 		Assert.assertEquals(message.getText(), "失效完成");
 		messageConfirmBtn.click();
 		Thread.sleep(2000);
+	}
+	
+	/*
+	 * 搜索某种状态记录,并翻到最后一页
+	 */
+	public void getDataByWorkFlow(WebElement element) throws InterruptedException{
+		workFlowInput.click();
+		Thread.sleep(1000);
+		element.click();
+		searchBtn.click();
+		Thread.sleep(5000);
+		pageNums.get(pageNums.size() - 1).click();
+		Thread.sleep(5000);
 	}
 	/*
 	 * 初审领取任务

@@ -4,12 +4,32 @@ package com.jxrt.common.constans;
 public enum CreditStateEnum {
     /** 已逾期 */
     OVERDUE("RD9", "已逾期"),
-    /** 待付款 */
-    REDEEM("RD0", "待付款"),
+    /** 待还款 */
+    REDEEM("RD0", "待还款"),
     /** 付款中 */
-    REDEEMING("RD1", "付款中"),
+    REDEEMING("RD1", "还款审核中"),
+    /** 已付款 */
+    REDEEMED("RDD", "已还款"),
+    /** 待签发 */
+    ISSUE("IS0", "待签发"),
+    /** 签发审核中 */
+    ISSUING("IS1", "签发审核中"),
+    /** 供应商待签收 */
+    ISSUING_ACCEPTING("IS2", "供应商待签收"),
+    /** 供应商拒收中 */
+    ISSUING_REFUSEING("IS3", "供应商拒收中"),
+    /** 供应商已拒收 */
+    ISSUING_REFUSED("IS4", "供应商已拒收"),
+    /** 撤回审核中 */
+    ISSUING_CANCELEING("IS5", "撤回审核中"),
+    /** 已撤回 */
+    ISSUING_CANCELED("IS6", "已撤回"),
     /** 已签发 */
     ISSUED("ISD", "已签发"),
+    /** 已废弃 */
+    DISCARD("DIS", "已废弃"),
+    /** 收款期自动撤回 */
+    CANCELED("CAN", "收款期自动撤回"),
     /** 未知 */
     UNKNOWN("UNKNOWN", "未知");
 

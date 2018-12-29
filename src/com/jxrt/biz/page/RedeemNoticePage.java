@@ -183,12 +183,12 @@ public class RedeemNoticePage extends AbstractPage {
 	public void redeemNoticeCreditNum(String corpNameCore,String corpName,
 			String productTypeCcbscf,LocalDate reddemDateBegin,LocalDate reddemDateEnd) throws InterruptedException, SQLException{
 		//确认付款通知书页面白条总数与元素
-		WebElement lastPageElement=TestBase.biz.redeemNoticePage().getLastPageElement();
-		int lastPageNum=TestBase.biz.redeemNoticePage().getLastPageNum();
+		WebElement lastPageElement=getLastPageElement();
+		int lastPageNum=getLastPageNum();
 		//翻到最后一页，获取该页条数
 		lastPageElement.click();
 		Thread.sleep(4000);
-		int lastPageCreditNum=TestBase.biz.redeemNoticePage().redeemListIndexs.size();
+		int lastPageCreditNum=redeemListIndexs.size();
 		int CreditCount=lastPageNum*10+lastPageCreditNum-10;
 		System.out.println(CreditCount);
 
@@ -203,19 +203,19 @@ public class RedeemNoticePage extends AbstractPage {
 		
 		Assert.assertEquals(CreditCount, oracleCount);
 		//恢复到第一页
-		TestBase.biz.redeemNoticePage().firstPage.click();
+		firstPage.click();
 	}
 	
 	public void redeemNoticeCreditList(String corpNameCore,String corpName,
 			String productTypeCcbscf,LocalDate reddemDateBegin,LocalDate reddemDateEnd) throws InterruptedException, SQLException{
 		//确认付款通知书页面白条总数与元素
-		WebElement lastPageElement=TestBase.biz.redeemNoticePage().getLastPageElement();
-		int lastPageNum=TestBase.biz.redeemNoticePage().getLastPageNum();
+		WebElement lastPageElement=getLastPageElement();
+		int lastPageNum=getLastPageNum();
 		
 		//翻到最后一页，获取该页条数
 		lastPageElement.click();
 		Thread.sleep(4000);
-		int lastPageCreditNum=TestBase.biz.redeemNoticePage().redeemListIndexs.size();
+		int lastPageCreditNum=redeemListIndexs.size();
 
 		//通过数据库查询付款列表中白条总数
 		ArrayList<String> creditList=new ArrayList<String>();
@@ -239,7 +239,7 @@ public class RedeemNoticePage extends AbstractPage {
 		}
 		//恢复到第一页
 		
-		TestBase.biz.redeemNoticePage().firstPage.click();
+		firstPage.click();
 		Thread.sleep(4000);
 		for(int i=0;i<redeemListCorpNameCores.size();i++){
 			Assert.assertEquals(redeemListPkCredits.get(i).getText(), oracleList.get(i).get("pkCredit"));
