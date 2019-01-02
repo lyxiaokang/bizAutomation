@@ -5,9 +5,16 @@
 		<listener class-name="org.uncommons.reportng.HTMLReporter" />
 	</listeners>
  	<test name="Team2Test" preserve-order="true">
-		<classes>
-			<class name="com.jxrt.test.Team2Test">			
-			</class>
-		</classes>
+        <groups>
+            <run>
+                <exclude name="ReceivableIssue-test" />
+                <exclude name="FinanceDataApprove-test" />
+                <include name="RedeemNotice-test" />
+                <exclude name="PayrollCreditApply-test" />
+            </run>
+        </groups>
+        <classes>
+            <class name="com.jxrt.test.Team2Test" />
+        </classes>
 	</test>	
 </suite>

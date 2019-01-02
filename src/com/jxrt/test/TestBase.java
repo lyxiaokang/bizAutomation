@@ -35,6 +35,7 @@ public class TestBase {
 	public static  String BizUrl = "http://"+PropertiesUtil.getOptValue("server_ip")+"/biz/login";
 	public static  String browserType = PropertiesUtil.getOptValue("browserType");
 	public static String baseDir = System.getProperty("user.dir");
+	public static String downloadsPath = baseDir+"\\Downloads";
 	public static Biz biz;
 	
 	public static String priority = PropertiesUtil.getOptValue("priority");	

@@ -1,5 +1,6 @@
 package com.jxrt.test;
 
+import java.io.File;
 import java.math.BigDecimal;
 import java.sql.SQLException;
 import java.time.LocalDate;
@@ -11,19 +12,29 @@ import java.util.Random;
 import org.testng.Assert;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.BeforeSuite;
 import org.testng.annotations.Test;
 
 import com.jxrt.dbutil.OracleDataFactory;
 
 public class Team2Test extends TestBase {
-
-	@BeforeMethod
+	/*
+	 * 每次运行前清空下载文件列表
+	 */
+	@BeforeSuite(alwaysRun = true)
+	public void clearDownloadsPath() {
+		File downloadsFiles=new File(TestBase.downloadsPath);
+		for(File file:downloadsFiles.listFiles()){
+			file.delete();
+		}
+	}
+	@BeforeMethod(alwaysRun = true)
 	public void setup_Biz() {
 		setupBiz();
 
 	}
 
-	@AfterMethod
+	@AfterMethod(alwaysRun = true)
 	public void tearDown_Biz() {
 		tearDownBiz();
 	}
@@ -31,7 +42,7 @@ public class Team2Test extends TestBase {
 	/*
 	 * 平台端账款签发新增（单笔）
 	 */
-	@Test(enabled = false, priority = 0)
+	@Test(groups = "ReceivableIssue-test",enabled = false, priority = 0)
 	public void TestReceivableIssue() throws InterruptedException {
 		try {
 			// 初始化数据
@@ -104,7 +115,7 @@ public class Team2Test extends TestBase {
 	/*
 	 * 平台端账款签发审核通过（单条）
 	 */
-	@Test(enabled = true, priority = 0)
+	@Test(groups = "ReceivableIssue-test",enabled = true, priority = 0)
 	public void TestReceivableApprovePass() throws InterruptedException {
 		try {
 			// 调用签发
@@ -157,7 +168,7 @@ public class Team2Test extends TestBase {
 	/*
 	 * 平台端账款签发审核不通过（单笔）
 	 */
-	@Test(enabled = true, priority = 0)
+	@Test(groups = "ReceivableIssue-test",enabled = true, priority = 0)
 	public void TestReceivableApproveNoPass() throws InterruptedException {
 		try {
 			// 调用签发
@@ -213,7 +224,7 @@ public class Team2Test extends TestBase {
 	/*
 	 * 平台端账款签发审核不通过修改
 	 */
-	@Test(enabled = true, priority = 0)
+	@Test(groups = "ReceivableIssue-test",enabled = true, priority = 0)
 	public void TestReceivableApproveNoPassModify() throws InterruptedException {
 		try {
 			TestReceivableApproveNoPass();
@@ -260,7 +271,7 @@ public class Team2Test extends TestBase {
 	/*
 	 * 平台端账款签发审核不通过删除
 	 */
-	@Test(enabled = true, priority = 0)
+	@Test(groups = "ReceivableIssue-test",enabled = true, priority = 0)
 	public void TestReceivableApproveNoPassDelete() throws InterruptedException {
 		try {
 			TestReceivableApproveNoPass();
@@ -309,7 +320,7 @@ public class Team2Test extends TestBase {
 	/*
 	 * 平台端账款签发新增后进行修改和删除
 	 */
-	@Test(enabled = true, priority = 0)
+	@Test(groups = "ReceivableIssue-test",enabled = true, priority = 0)
 	public void TestReceivableIssueModifyDelete() throws InterruptedException {
 		try {
 			// 初始化数据
@@ -353,7 +364,7 @@ public class Team2Test extends TestBase {
 	/*
 	 * 平台端账款签发批量提交-审核通过
 	 */
-	@Test(enabled = true, priority = 0)
+	@Test(groups = "ReceivableIssue-test",enabled = true, priority = 0)
 	public void TestReceivableApprovePassBath() throws InterruptedException {
 		try {
 			// 初始化数据
@@ -422,7 +433,7 @@ public class Team2Test extends TestBase {
 	/*
 	 * 平台端账款签发批量提交-审核通过
 	 */
-	@Test(enabled = true, priority = 0)
+	@Test(groups = "ReceivableIssue-test",enabled = true, priority = 0)
 	public void TestReceivableApproveNoPassBath() throws InterruptedException {
 		try {
 			// 初始化数据
@@ -500,7 +511,7 @@ public class Team2Test extends TestBase {
 	/*
 	 * 平台端融资资料审核添加
 	 */
-	@Test(enabled = true, priority = 1)
+	@Test(groups = "FinanceDataApprove-test",enabled = true, priority = 1)
 	public void TestFinanceDataAdd() throws InterruptedException {
 		try {
 			TestBase.biz.bizLoginPage().login(TestBase.operateQueryMobileTeam2, TestBase.operateQueryPasswordTeam2);
@@ -536,7 +547,7 @@ public class Team2Test extends TestBase {
 	/*
 	 * 平台端融资资料审核-修改和失效
 	 */
-	@Test(enabled = true, priority = 1)
+	@Test(groups = "FinanceDataApprove-test",enabled = true, priority = 1)
 	public void TestFinanceDataModifyAndInvalid() throws InterruptedException {
 		try {
 
@@ -567,7 +578,7 @@ public class Team2Test extends TestBase {
 	/*
 	 * 平台端融资资料审核-初审领取任务并审核通过
 	 */
-	@Test(enabled = true, priority = 1)
+	@Test(groups = "FinanceDataApprove-test",enabled = true, priority = 1)
 	public void TestFinanceDataOpeApprovePass() throws InterruptedException {
 		try {
 			TestBase.biz.bizLoginPage().login(TestBase.operateQueryMobileTeam2, TestBase.operateQueryPasswordTeam2);
@@ -629,7 +640,7 @@ public class Team2Test extends TestBase {
 	/*
 	 * 平台端融资资料审核-复审退回经办，经办重新提交，复审通过
 	 */
-	@Test(enabled = true, priority = 1)
+	@Test(groups = "FinanceDataApprove-test",enabled = true, priority = 1)
 	public void TestFinanceDataAfterBackToOpeManApprovePass() throws InterruptedException {
 		try {
 			// 客服新增
@@ -750,7 +761,7 @@ public class Team2Test extends TestBase {
 	/*
 	 * 平台端融资资料审核-复审审核不通过
 	 */
-	@Test(enabled = true, priority = 1)
+	@Test(groups = "FinanceDataApprove-test",enabled = true, priority = 1)
 	public void TestFinanceDataManApproveNoPass() throws InterruptedException {
 		try {
 			// 客服新增
@@ -831,7 +842,7 @@ public class Team2Test extends TestBase {
 	/*
 	 * 平台端融资资料审核-初审审核不通过-客服修改
 	 */
-	@Test(enabled = true, priority = 1)
+	@Test(groups = "FinanceDataApprove-test",enabled = true, priority = 1)
 	public void TestFinanceDataOpeApproveNoPass() throws InterruptedException {
 		try {
 			// 客服新增
@@ -918,7 +929,7 @@ public class Team2Test extends TestBase {
 	/*
 	 * 平台端付款通知书页面白条数量
 	 */
-	@Test(enabled = true, priority = 2)
+	@Test(groups = "RedeemNotice-test",enabled = true, priority = 2)
 	public void TestRedeemNoticeCreditNum() throws InterruptedException, SQLException {
 		try {
 			TestBase.biz.bizLoginPage().login(TestBase.productManagerMobileTeam2, TestBase.productManagerPasswordTeam2);
@@ -988,7 +999,7 @@ public class Team2Test extends TestBase {
 	/*
 	 * 平台端付款通知书页面白条list
 	 */
-	@Test(enabled = true, priority = 2)
+	@Test(groups = "RedeemNotice-test",enabled = true, priority = 2)
 	public void TestRedeemNoticeCreditList() throws InterruptedException, SQLException {
 		try {
 			TestBase.biz.bizLoginPage().login(TestBase.productManagerMobileTeam2, TestBase.productManagerPasswordTeam2);
@@ -1058,7 +1069,7 @@ public class Team2Test extends TestBase {
 	/*
 	 * 平台端付款通知书生成1208模板并发送邮件（账款）
 	 */
-	@Test(enabled = true, priority = 2)
+	@Test(groups = "RedeemNotice-test",enabled = true, priority = 2)
 	public void TestRedeemNotice1208SendEmailReceivable() throws InterruptedException, SQLException {
 		try {
 			TestBase.biz.bizLoginPage().login(TestBase.productManagerMobileTeam2, TestBase.productManagerPasswordTeam2);
@@ -1106,7 +1117,7 @@ public class Team2Test extends TestBase {
 	/*
 	 * 平台端付款通知书生成1208模板并发送邮件（融信）
 	 */
-	@Test(enabled = true, priority = 2)
+	@Test(groups = "RedeemNotice-test",enabled = true, priority = 2)
 	public void TestRedeemNotice1208SendEmailCredit() throws InterruptedException, SQLException {
 		try {
 			TestBase.biz.bizLoginPage().login(TestBase.productManagerMobileTeam2, TestBase.productManagerPasswordTeam2);
@@ -1156,7 +1167,7 @@ public class Team2Test extends TestBase {
 	/*
 	 * 平台端付款通知书生成1208模板并发送邮件（批量）
 	 */
-	@Test(enabled = true, priority = 2)
+	@Test(groups = "RedeemNotice-test",enabled = true, priority = 2)
 	public void TestRedeemNotice1208SendEmailBatch() throws InterruptedException, SQLException {
 		try {
 			TestBase.biz.bizLoginPage().login(TestBase.productManagerMobileTeam2, TestBase.productManagerPasswordTeam2);
@@ -1204,7 +1215,7 @@ public class Team2Test extends TestBase {
 	/*
 	 * 平台端付款通知书生成026模板并发送邮件(账款)
 	 */
-	@Test(enabled = true, priority = 2)
+	@Test(groups = "RedeemNotice-test",enabled = true, priority = 2)
 	public void TestRedeemNotice206SendEmailReceivable() throws InterruptedException, SQLException {
 		try {
 			TestBase.biz.bizLoginPage().login(TestBase.productManagerMobileTeam2, TestBase.productManagerPasswordTeam2);
@@ -1265,7 +1276,7 @@ public class Team2Test extends TestBase {
 	/*
 	 * 平台端付款通知书生成026模板并发送邮件(融信)
 	 */
-	@Test(enabled = true, priority = 2)
+	@Test(groups = "RedeemNotice-test",enabled = true, priority = 2)
 	public void TestRedeemNotice206SendEmailCredit() throws InterruptedException, SQLException {
 		try {
 			TestBase.biz.bizLoginPage().login(TestBase.productManagerMobileTeam2, TestBase.productManagerPasswordTeam2);
@@ -1289,6 +1300,7 @@ public class Team2Test extends TestBase {
 			TestBase.biz.redeemNoticePage().productType.click();
 			Thread.sleep(1000);
 			TestBase.biz.redeemNoticePage().productTypeCredit.click();
+			Thread.sleep(1000);
 			TestBase.biz.redeemNoticePage().redeemDateBeginInput.sendKeys(oracleList.get(0).get("redeemDate"));
 			TestBase.biz.redeemNoticePage().redeemDateEndInput.sendKeys(oracleList.get(0).get("redeemDate"));
 			TestBase.biz.redeemNoticePage().searchBtn.click();
@@ -1330,7 +1342,7 @@ public class Team2Test extends TestBase {
 	/*
 	 * 代发工资--代发工资申请代发申请中查询
 	 */
-	@Test(enabled = true, priority = 2)
+	@Test(groups = "PayrollCreditApply-test",enabled = true, priority = 2)
 	public void TestPayrollCreditApplySearchPage() throws InterruptedException, SQLException {
 		try {
 			TestBase.biz.bizLoginPage().login(TestBase.operateOperatorMobileTeam2, TestBase.operateManagerPasswordTeam2);
@@ -1435,7 +1447,7 @@ public class Team2Test extends TestBase {
 	/*
 	 * 代发工资--代发工资申请签发中查询
 	 */
-	@Test(enabled = true, priority = 2)
+	@Test(groups = "PayrollCreditApply-test",enabled = true, priority = 2)
 	public void TestPayrollCreditApplySearchIssuingTabPage() throws InterruptedException, SQLException {
 		try {
 			TestBase.biz.bizLoginPage().login(TestBase.operateOperatorMobileTeam2, TestBase.operateManagerPasswordTeam2);

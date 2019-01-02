@@ -1,5 +1,6 @@
 package com.jxrt.dbutil;
 
+import java.io.File;
 import java.math.BigDecimal;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -15,6 +16,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Random;
+
+import com.jxrt.test.TestBase;
 
 import net.sf.json.JSONObject;
 
@@ -960,10 +963,39 @@ public class OracleDataFactory implements DataFactory {
 		}
 		return new BigDecimal(0);
 	}
+	
+	/**
+	 * 查询核心企业对应的英文简称
+	 * @author 邱刚
+	 * @return
+	 * @throws SQLException 
+	 */
+	public static String getShortNameENByCorpName(String corpName) throws SQLException{
+		Connection connection=DBUtil.getConnection();
+		StringBuffer sqlBuffer = new StringBuffer();
+		sqlBuffer.append("select CORP_SHORTNAME_EN from "+DBUtil.schema+"T_CI_CORP");
+		sqlBuffer.append(" where CORP_NAME = '"+corpName+"'");
+		String sql=sqlBuffer.toString();
+		System.out.println(sql);
+		try{
+			PreparedStatement pstm=connection.prepareStatement(sql);
+		    ResultSet rs=pstm.executeQuery(sql);
+			while(rs.next()){
+				String shortNameEN=rs.getString(1);
+				return shortNameEN;
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			DBUtil.closeConnection(connection);
+		}
+		return null;
+	}
 	public static void main(String[] args) throws SQLException {
-		OracleDataFactory.getPayrollCreditIssuingList(null, null, null, null, null, null);
-		
-		
+			File downloadsFiles=new File(TestBase.downloadsPath);
+			for(File file:downloadsFiles.listFiles()){
+				file.delete();
+			}
 		}
 
 }
