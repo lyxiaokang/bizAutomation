@@ -30,6 +30,22 @@ public enum CreditStateEnum {
     DISCARD("DIS", "已废弃"),
     /** 收款期自动撤回 */
     CANCELED("CAN", "收款期自动撤回"),
+    
+    /** 待融资 */
+    FINANCE("FI0", "待融资"),
+    /** 融资审核中（链条企业） */
+    FINANCING_CORP("FI1", "融资审核中（链条企业）"),
+    /** 融资审核中（建信融通） */
+    FINANCING_PLAT("FI2", "融资审核中（建信融通）"),
+    /** 融资审核中（金融机构） */
+    FINANCING_FI("FI3", "融资审核中（金融机构）"),
+    /** 金融机构待放款 */
+    FINANCING_LOAN("FI4", "金融机构待放款"),
+    /** 金融机构放款审核中 */
+    FINANCING_LOANING("FI5", "金融机构放款审核中"),
+    /** 已融资 */
+    FINANCED("FID", "已融资"),
+    
     /** 未知 */
     UNKNOWN("UNKNOWN", "未知");
 

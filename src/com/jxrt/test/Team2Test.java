@@ -1480,7 +1480,7 @@ public class Team2Test extends TestBase {
 			TestBase.biz.payrollCreditApplySearchPage().changeTab(TestBase.biz.payrollCreditApplySearchPage().issuingTab);
 
 			//白条编号筛选
-			String pkCredit=TestBase.biz.payrollCreditApplySearchIssuingTabPage().payrollListPkCredits.get(0).getText();
+			String pkCredit=TestBase.biz.payrollCreditApplySearchIssuingTabPage().payrollListPkCredits.get(1).getText();
 			TestBase.biz.payrollCreditApplySearchIssuingTabPage().pkCreditInput.sendKeys(pkCredit);
 			TestBase.biz.payrollCreditApplySearchIssuingTabPage().searchBtn.click();
 			Thread.sleep(2000);
@@ -1519,6 +1519,237 @@ public class Team2Test extends TestBase {
 			System.out.println(cls + "--" + method);
 			TestBase.getScreenShot(cls, method);
 			throw e;
-		}	
+		}
+	}
+		
+		/*
+		 * 代发工资--代发工资申请融资处理中查询
+		 */
+		@Test(groups = "PayrollCreditApply-test",enabled = true, priority = 2)
+		public void TestPayrollCreditApplySearchFinancingTabPage() throws InterruptedException, SQLException {
+			try {
+				TestBase.biz.bizLoginPage().login(TestBase.operateOperatorMobileTeam2, TestBase.operateManagerPasswordTeam2);
+				TestBase.biz.homePage().gotoPayrollCreditApplySearchPage();
+				Thread.sleep(2000);
+				TestBase.biz.payrollCreditApplySearchPage().changeTab(TestBase.biz.payrollCreditApplySearchPage().financingTab);
+				TestBase.biz.payrollCreditApplySearchFinancingTabPage().payrollCreditFinancingList(null, null, null, null, null, null,null);
+
+				String corpNameCore="代发工资核心企业杨桢桢";
+				String corpName="代发工资链条企业杨桢桢";
+				LocalDate today = LocalDate.now();
+				LocalDate financeApplyDateBegin = today.minusDays(30);
+				LocalDate financeApplyDateEnd = today;
+				//核心企业筛选
+				TestBase.biz.payrollCreditApplySearchFinancingTabPage().corpNameCoreInput.sendKeys(corpNameCore);
+				TestBase.biz.payrollCreditApplySearchFinancingTabPage().searchBtn.click();
+				Thread.sleep(2000);
+				TestBase.biz.payrollCreditApplySearchFinancingTabPage().payrollCreditFinancingList(corpNameCore, null, null, null, null, null,null);
+				TestBase.driver.navigate().refresh();
+				Thread.sleep(2000);
+				TestBase.biz.payrollCreditApplySearchPage().changeTab(TestBase.biz.payrollCreditApplySearchPage().financingTab);
+
+				//链条企业筛选
+				TestBase.biz.payrollCreditApplySearchFinancingTabPage().corpNameInput.sendKeys(corpName);
+				TestBase.biz.payrollCreditApplySearchFinancingTabPage().searchBtn.click();
+				Thread.sleep(2000);
+				TestBase.biz.payrollCreditApplySearchFinancingTabPage().payrollCreditFinancingList(null, corpName, null, null, null, null,null);
+				TestBase.driver.navigate().refresh();
+				Thread.sleep(2000);
+				TestBase.biz.payrollCreditApplySearchPage().changeTab(TestBase.biz.payrollCreditApplySearchPage().financingTab);
+
+				//白条编号筛选
+				String pkCredit=TestBase.biz.payrollCreditApplySearchFinancingTabPage().payrollListPkCredits.get(1).getText();
+				TestBase.biz.payrollCreditApplySearchFinancingTabPage().pkCreditInput.sendKeys(pkCredit);
+				TestBase.biz.payrollCreditApplySearchFinancingTabPage().searchBtn.click();
+				Thread.sleep(2000);
+				TestBase.biz.payrollCreditApplySearchFinancingTabPage().payrollCreditFinancingList(null, null, pkCredit, null, null, null,null);
+				TestBase.driver.navigate().refresh();
+				Thread.sleep(2000);
+				TestBase.biz.payrollCreditApplySearchPage().changeTab(TestBase.biz.payrollCreditApplySearchPage().financingTab);
+
+				//测试合作平台筛选
+				TestBase.biz.payrollCreditApplySearchFinancingTabPage().partnerNameInput.sendKeys("建信融通");
+				TestBase.biz.payrollCreditApplySearchFinancingTabPage().searchBtn.click();
+				Thread.sleep(2000);
+				TestBase.biz.payrollCreditApplySearchFinancingTabPage().payrollCreditFinancingList(null, null, null, "建信融通", null, null,null);
+				TestBase.biz.payrollCreditApplySearchFinancingTabPage().partnerNameInput.clear();
+				TestBase.biz.payrollCreditApplySearchFinancingTabPage().partnerNameInput.sendKeys("开太平");
+				TestBase.biz.payrollCreditApplySearchFinancingTabPage().searchBtn.click();
+				Thread.sleep(2000);
+				TestBase.biz.payrollCreditApplySearchFinancingTabPage().payrollCreditFinancingList(null, null, null, "开太平", null, null,null);
+				TestBase.driver.navigate().refresh();
+				Thread.sleep(2000);
+				TestBase.biz.payrollCreditApplySearchPage().changeTab(TestBase.biz.payrollCreditApplySearchPage().financingTab);
+
+				//融资申请申请开始时间，结束时间筛选
+				TestBase.biz.payrollCreditApplySearchFinancingTabPage().financeApplyDateBeginInput.sendKeys(financeApplyDateBegin.toString());
+				TestBase.biz.payrollCreditApplySearchFinancingTabPage().financeApplyDateEndInput.sendKeys(financeApplyDateEnd.toString());
+				Thread.sleep(2000);
+				TestBase.biz.payrollCreditApplySearchFinancingTabPage().searchBtn.click();
+				Thread.sleep(2000);
+				TestBase.biz.payrollCreditApplySearchFinancingTabPage().payrollCreditFinancingList(null, null, null,null, financeApplyDateBegin, financeApplyDateEnd,null);
+				TestBase.driver.navigate().refresh();
+				Thread.sleep(2000);
+				TestBase.biz.payrollCreditApplySearchPage().changeTab(TestBase.biz.payrollCreditApplySearchPage().financingTab);
+
+				//状态筛选
+				TestBase.biz.payrollCreditApplySearchFinancingTabPage().creditState.click();
+				Thread.sleep(1000);
+				TestBase.biz.payrollCreditApplySearchFinancingTabPage().creditStateFI1.click();
+				Thread.sleep(1000);
+				TestBase.biz.payrollCreditApplySearchFinancingTabPage().searchBtn.click();
+				Thread.sleep(4000);
+				TestBase.biz.payrollCreditApplySearchFinancingTabPage().payrollCreditFinancingList(null, null, null, null, null, null,"FI1");
+				Thread.sleep(2000);
+				
+				TestBase.biz.payrollCreditApplySearchFinancingTabPage().creditState.click();
+				Thread.sleep(1000);
+				TestBase.biz.payrollCreditApplySearchFinancingTabPage().creditStateFI2.click();
+				Thread.sleep(1000);
+				TestBase.biz.payrollCreditApplySearchFinancingTabPage().searchBtn.click();
+				Thread.sleep(4000);
+				TestBase.biz.payrollCreditApplySearchFinancingTabPage().payrollCreditFinancingList(null, null, null, null, null, null,"FI2");
+				Thread.sleep(2000);
+				
+				TestBase.biz.payrollCreditApplySearchFinancingTabPage().creditState.click();
+				Thread.sleep(1000);
+				TestBase.biz.payrollCreditApplySearchFinancingTabPage().creditStateFI3.click();
+				Thread.sleep(1000);
+				TestBase.biz.payrollCreditApplySearchFinancingTabPage().searchBtn.click();
+				Thread.sleep(4000);
+				TestBase.biz.payrollCreditApplySearchFinancingTabPage().payrollCreditFinancingList(null, null, null, null, null, null,"FI3");
+				Thread.sleep(2000);
+				
+			} catch (Exception e) {
+				String cls = this.getClass().getName();
+				String method = Thread.currentThread().getStackTrace()[1].getMethodName();
+				System.out.println(cls + "--" + method);
+				TestBase.getScreenShot(cls, method);
+				throw e;
+			}	
+	}
+		
+		/*
+		 * 代发工资--代发工资申请已放款查询
+		 */
+		@Test(groups = "PayrollCreditApply-test",enabled = true, priority = 2)
+		public void TestPayrollCreditApplySearchLoanedTabPage() throws Exception {
+			try {
+				TestBase.biz.bizLoginPage().login(TestBase.operateOperatorMobileTeam2, TestBase.operateManagerPasswordTeam2);
+				TestBase.biz.homePage().gotoPayrollCreditApplySearchPage();
+				Thread.sleep(2000);
+				TestBase.biz.payrollCreditApplySearchPage().changeTab(TestBase.biz.payrollCreditApplySearchPage().loanedTab);
+				TestBase.biz.payrollCreditApplySearchLoanedTabPage().payrollCreditLoanedList(null, null, null, null, null, null,null, null);
+
+				String corpNameCore="代发工资核心企业杨桢桢";
+				String corpName="代发工资链条企业杨桢桢";
+				LocalDate today = LocalDate.now();
+				LocalDate createDateBegin = today.minusDays(30);
+				LocalDate createDateEnd = today.minusDays(5);
+				LocalDate loanTimeBegin = today.minusDays(25);
+				LocalDate loanTimeEnd = today;
+				//核心企业筛选
+				TestBase.biz.payrollCreditApplySearchLoanedTabPage().corpNameCoreInput.sendKeys(corpNameCore);
+				TestBase.biz.payrollCreditApplySearchLoanedTabPage().searchBtn.click();
+				Thread.sleep(2000);
+				TestBase.biz.payrollCreditApplySearchLoanedTabPage().payrollCreditLoanedList(corpNameCore, null, null, null, null, null,null, null);
+				TestBase.driver.navigate().refresh();
+				Thread.sleep(2000);
+				TestBase.biz.payrollCreditApplySearchPage().changeTab(TestBase.biz.payrollCreditApplySearchPage().loanedTab);
+
+				//链条企业筛选
+				TestBase.biz.payrollCreditApplySearchLoanedTabPage().corpNameInput.sendKeys(corpName);
+				TestBase.biz.payrollCreditApplySearchLoanedTabPage().searchBtn.click();
+				Thread.sleep(2000);
+				TestBase.biz.payrollCreditApplySearchLoanedTabPage().payrollCreditLoanedList(null, corpName, null, null, null, null,null, null);
+				TestBase.driver.navigate().refresh();
+				Thread.sleep(2000);
+				TestBase.biz.payrollCreditApplySearchPage().changeTab(TestBase.biz.payrollCreditApplySearchPage().loanedTab);
+
+				//状态筛选
+				TestBase.biz.payrollCreditApplySearchLoanedTabPage().payrollState.click();
+				Thread.sleep(1000);
+				TestBase.biz.payrollCreditApplySearchLoanedTabPage().payrollStatePass.click();
+				Thread.sleep(1000);
+				TestBase.biz.payrollCreditApplySearchLoanedTabPage().searchBtn.click();
+				Thread.sleep(4000);
+				TestBase.biz.payrollCreditApplySearchLoanedTabPage().payrollCreditLoanedList(null, null,"成功", null, null, null,null, null);
+				TestBase.driver.navigate().refresh();
+				Thread.sleep(2000);
+				TestBase.biz.payrollCreditApplySearchPage().changeTab(TestBase.biz.payrollCreditApplySearchPage().loanedTab);
+				
+				Thread.sleep(2000);
+				TestBase.biz.payrollCreditApplySearchLoanedTabPage().payrollState.click();
+				Thread.sleep(1000);
+				TestBase.biz.payrollCreditApplySearchLoanedTabPage().payrollStateFail.click();
+				Thread.sleep(1000);
+				TestBase.biz.payrollCreditApplySearchLoanedTabPage().searchBtn.click();
+				Thread.sleep(4000);
+				TestBase.biz.payrollCreditApplySearchLoanedTabPage().payrollCreditLoanedList(null, null,"失败", null, null, null,null, null);
+				TestBase.driver.navigate().refresh();
+				Thread.sleep(2000);
+				TestBase.biz.payrollCreditApplySearchPage().changeTab(TestBase.biz.payrollCreditApplySearchPage().loanedTab);
+
+				
+				TestBase.biz.payrollCreditApplySearchLoanedTabPage().payrollState.click();
+				Thread.sleep(1000);
+				TestBase.biz.payrollCreditApplySearchLoanedTabPage().payrollStateDoing.click();
+				Thread.sleep(1000);
+				TestBase.biz.payrollCreditApplySearchLoanedTabPage().searchBtn.click();
+				Thread.sleep(4000);
+				TestBase.biz.payrollCreditApplySearchLoanedTabPage().payrollCreditLoanedList(null, null,"处理中", null, null, null,null, null);
+				TestBase.driver.navigate().refresh();
+				Thread.sleep(2000);
+				TestBase.biz.payrollCreditApplySearchPage().changeTab(TestBase.biz.payrollCreditApplySearchPage().loanedTab);
+				
+				TestBase.biz.payrollCreditApplySearchLoanedTabPage().payrollState.click();
+				Thread.sleep(1000);
+				TestBase.biz.payrollCreditApplySearchLoanedTabPage().payrollStateUndo.click();
+				Thread.sleep(1000);
+				TestBase.biz.payrollCreditApplySearchLoanedTabPage().searchBtn.click();
+				Thread.sleep(4000);
+				TestBase.biz.payrollCreditApplySearchLoanedTabPage().payrollCreditLoanedList(null, null,"待处理", null, null, null,null, null);
+				TestBase.driver.navigate().refresh();
+				Thread.sleep(2000);
+				TestBase.biz.payrollCreditApplySearchPage().changeTab(TestBase.biz.payrollCreditApplySearchPage().loanedTab);
+
+				
+				//白条编号筛选
+				String pkCredit=TestBase.biz.payrollCreditApplySearchLoanedTabPage().payrollListPkCredits.get(1).getText();
+				TestBase.biz.payrollCreditApplySearchLoanedTabPage().pkCreditInput.sendKeys(pkCredit);
+				TestBase.biz.payrollCreditApplySearchLoanedTabPage().searchBtn.click();
+				Thread.sleep(2000);
+				TestBase.biz.payrollCreditApplySearchLoanedTabPage().payrollCreditLoanedList(null, null, null, pkCredit, null, null,null, null);
+				TestBase.driver.navigate().refresh();
+				Thread.sleep(2000);
+				TestBase.biz.payrollCreditApplySearchPage().changeTab(TestBase.biz.payrollCreditApplySearchPage().loanedTab);
+
+
+				//开始时间，结束时间筛选
+				TestBase.biz.payrollCreditApplySearchLoanedTabPage().createDateBeginInput.sendKeys(createDateBegin.toString());
+				TestBase.biz.payrollCreditApplySearchLoanedTabPage().createDateEndInput.sendKeys(createDateEnd.toString());
+				Thread.sleep(2000);
+				TestBase.biz.payrollCreditApplySearchLoanedTabPage().searchBtn.click();
+				Thread.sleep(2000);
+				TestBase.biz.payrollCreditApplySearchLoanedTabPage().payrollCreditLoanedList(null, null, null,null, createDateBegin, createDateEnd,null, null);
+				TestBase.driver.navigate().refresh();
+				Thread.sleep(2000);
+				TestBase.biz.payrollCreditApplySearchPage().changeTab(TestBase.biz.payrollCreditApplySearchPage().loanedTab);
+
+				//开始时间，结束时间筛选
+				TestBase.biz.payrollCreditApplySearchLoanedTabPage().loanTimeBeginInput.sendKeys(loanTimeBegin.toString());
+				TestBase.biz.payrollCreditApplySearchLoanedTabPage().loanTimeEndInput.sendKeys(loanTimeEnd.toString());
+				Thread.sleep(2000);
+				TestBase.biz.payrollCreditApplySearchLoanedTabPage().searchBtn.click();
+				Thread.sleep(2000);
+				TestBase.biz.payrollCreditApplySearchLoanedTabPage().payrollCreditLoanedList(null, null, null,null, null, null,loanTimeBegin, loanTimeEnd);
+				
+			} catch (Exception e) {
+				String cls = this.getClass().getName();
+				String method = Thread.currentThread().getStackTrace()[1].getMethodName();
+				System.out.println(cls + "--" + method);
+				TestBase.getScreenShot(cls, method);
+				throw e;
+			}	
 	}
 }

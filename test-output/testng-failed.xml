@@ -5,8 +5,8 @@
     <classes>
       <class name="com.jxrt.test.Team2Test">
         <methods>
-          <include name="TestRedeemNotice1208SendEmailReceivable"/>
           <include name="setup_Biz"/>
+          <include name="TestPayrollCreditApplySearchLoanedTabPage"/>
           <include name="tearDown_Biz"/>
           <include name="clearDownloadsPath"/>
         </methods>

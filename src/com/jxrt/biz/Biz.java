@@ -80,19 +80,19 @@ public class Biz {
 		return new PayrollCreditApplySearchIssuingTabPage(driver);
 	}
 	
-//	/*
-//	 * 代发工资申请查询融资中tab页面初始化
-//	 */
-//	public PayrollCreditApplySearchFinancingTabPage payrollCreditApplySearchFinancingTabPage() {
-//		return new PayrollCreditApplySearchFinancingTabPage(driver);
-//	}
-//	
-//	/*
-//	 * 代发工资申请查询已放款tab页面初始化
-//	 */
-//	public PayrollCreditApplySearchLoanedTabPage payrollCreditApplySearchLoanedTabPage() {
-//		return new PayrollCreditApplySearchLoanedTabPage(driver);
-//	}
+	/*
+	 * 代发工资申请查询融资中tab页面初始化
+	 */
+	public PayrollCreditApplySearchFinancingTabPage payrollCreditApplySearchFinancingTabPage() {
+		return new PayrollCreditApplySearchFinancingTabPage(driver);
+	}
+	
+	/*
+	 * 代发工资申请查询已放款tab页面初始化
+	 */
+	public PayrollCreditApplySearchLoanedTabPage payrollCreditApplySearchLoanedTabPage() {
+		return new PayrollCreditApplySearchLoanedTabPage(driver);
+	}
 	
 	
 	

@@ -2,27 +2,27 @@
 <testng-results skipped="0" failed="0" total="1" passed="1">
   <reporter-output>
   </reporter-output>
-  <suite name="Default suite" duration-ms="30013" started-at="2019-01-02T09:14:39Z" finished-at="2019-01-02T09:15:09Z">
+  <suite name="Default suite" duration-ms="222567" started-at="2019-01-04T06:15:30Z" finished-at="2019-01-04T06:19:12Z">
     <groups>
-      <group name="RedeemNotice-test">
-        <method signature="Team2Test.TestRedeemNotice1208SendEmailReceivable()[pri:2, instance:com.jxrt.test.Team2Test@63440df3]" name="TestRedeemNotice1208SendEmailReceivable" class="com.jxrt.test.Team2Test"/>
-      </group> <!-- RedeemNotice-test -->
+      <group name="PayrollCreditApply-test">
+        <method signature="Team2Test.TestPayrollCreditApplySearchLoanedTabPage()[pri:2, instance:com.jxrt.test.Team2Test@63440df3]" name="TestPayrollCreditApplySearchLoanedTabPage" class="com.jxrt.test.Team2Test"/>
+      </group> <!-- PayrollCreditApply-test -->
     </groups>
-    <test name="Default test" duration-ms="30013" started-at="2019-01-02T09:14:39Z" finished-at="2019-01-02T09:15:09Z">
+    <test name="Default test" duration-ms="222567" started-at="2019-01-04T06:15:30Z" finished-at="2019-01-04T06:19:12Z">
       <class name="com.jxrt.test.Team2Test">
-        <test-method status="PASS" signature="clearDownloadsPath()[pri:0, instance:com.jxrt.test.Team2Test@63440df3]" name="clearDownloadsPath" is-config="true" duration-ms="10" started-at="2019-01-02T17:14:39Z" finished-at="2019-01-02T17:14:39Z">
+        <test-method status="PASS" signature="clearDownloadsPath()[pri:0, instance:com.jxrt.test.Team2Test@63440df3]" name="clearDownloadsPath" is-config="true" duration-ms="11" started-at="2019-01-04T14:15:30Z" finished-at="2019-01-04T14:15:30Z">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- clearDownloadsPath -->
-        <test-method status="PASS" signature="setup_Biz()[pri:0, instance:com.jxrt.test.Team2Test@63440df3]" name="setup_Biz" is-config="true" duration-ms="5526" started-at="2019-01-02T17:14:39Z" finished-at="2019-01-02T17:14:45Z">
+        <test-method status="PASS" signature="setup_Biz()[pri:0, instance:com.jxrt.test.Team2Test@63440df3]" name="setup_Biz" is-config="true" duration-ms="6290" started-at="2019-01-04T14:15:30Z" finished-at="2019-01-04T14:15:36Z">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- setup_Biz -->
-        <test-method status="PASS" signature="TestRedeemNotice1208SendEmailReceivable()[pri:2, instance:com.jxrt.test.Team2Test@63440df3]" name="TestRedeemNotice1208SendEmailReceivable" duration-ms="23792" started-at="2019-01-02T17:14:45Z" finished-at="2019-01-02T17:15:09Z">
+        <test-method status="PASS" signature="TestPayrollCreditApplySearchLoanedTabPage()[pri:2, instance:com.jxrt.test.Team2Test@63440df3]" name="TestPayrollCreditApplySearchLoanedTabPage" duration-ms="215575" started-at="2019-01-04T14:15:36Z" finished-at="2019-01-04T14:19:12Z">
           <reporter-output>
           </reporter-output>
-        </test-method> <!-- TestRedeemNotice1208SendEmailReceivable -->
-        <test-method status="PASS" signature="tearDown_Biz()[pri:0, instance:com.jxrt.test.Team2Test@63440df3]" name="tearDown_Biz" is-config="true" duration-ms="678" started-at="2019-01-02T17:15:09Z" finished-at="2019-01-02T17:15:09Z">
+        </test-method> <!-- TestPayrollCreditApplySearchLoanedTabPage -->
+        <test-method status="PASS" signature="tearDown_Biz()[pri:0, instance:com.jxrt.test.Team2Test@63440df3]" name="tearDown_Biz" is-config="true" duration-ms="690" started-at="2019-01-04T14:19:12Z" finished-at="2019-01-04T14:19:12Z">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- tearDown_Biz -->

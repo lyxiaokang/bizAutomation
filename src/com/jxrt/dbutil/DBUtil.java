@@ -118,7 +118,6 @@ public class DBUtil {
 				url = db2_url;
 			else if (dbType.equalsIgnoreCase("oracle"))
 				url = oracle_url;
-			System.out.println(url);
 			conn = DriverManager.getConnection(url, USERNAME, PASSWORD);
 		} catch (SQLException e) {
 			e.printStackTrace();

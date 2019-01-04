@@ -43,10 +43,10 @@ public class PayrollCreditApplySearchPage extends AbstractPage {
 	
 	//融资处理中Tab
 	@FindBy(xpath="//div[contains(@class,'ivu-tabs-tab')]/div/span[contains(text(), '融资处理中')]")
-	public WebElement finacingTab;
+	public WebElement financingTab;
 	//融资处理中数值
 	@FindBy(xpath="//div[contains(@class,'ivu-tabs-tab')]/div/span[contains(text(), '融资处理中')]/../span[2]")
-	public WebElement finacingTabCount;
+	public WebElement financingTabCount;
 	
 	//已放款Tab
 	@FindBy(xpath="//div[contains(@class,'ivu-tabs-tab')]/div/span[contains(text(), '已放款')]")
