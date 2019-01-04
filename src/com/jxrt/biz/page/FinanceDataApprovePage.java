@@ -327,12 +327,12 @@ public class FinanceDataApprovePage extends AbstractPage{
 	@FindBy(xpath="//table/tbody/tr/td/div/span[contains(text(),'公司章程')]/../../../td[6]//button/span[contains(text(),'审核')]")
 	public WebElement dataListChildGSZCApproveBtn;
 	//公司章程审核界面
-	@FindBy(xpath="//div[contains(text(),'公司章程')]/../../div[@class='ivu-modal-footer']//button/span[contains(text(),'提交')]")
+	@FindBy(xpath="//div[contains(text(),'公司章程')]/../../div[@class='ivu-modal-body']//button/span[contains(text(),'提交')]")
 	public WebElement opeApproveGSZCSubmitBtn;
-	@FindBy(xpath="//div[contains(text(),'公司章程')]/../../div[@class='ivu-modal-footer']//button/span[contains(text(),'关闭')]")
+	@FindBy(xpath="//div[contains(text(),'公司章程')]/../../div[@class='ivu-modal-body']//button/span[contains(text(),'关闭')]")
 	public WebElement opeApproveGSZCCloseBtn;
 	//不通过原因
-	@FindBy(xpath="//span[contains(text(),'企业最新章程，且与融资申请企业名称一致')]/../..//input")
+	@FindBy(xpath="//span[contains(text(),'企业最新章程，且与融资申请企业名称一致')]/../../..//input")
 	public WebElement noPassGSZCBtn;
 	
 	
@@ -349,13 +349,13 @@ public class FinanceDataApprovePage extends AbstractPage{
 	@FindBy(xpath="//table/tbody/tr/td/div/span[contains(text(),'个人征信授权书')]/../../../td[6]//button/span[contains(text(),'审核')]")
 	public WebElement dataListChildGRZXApproveBtn;
 	//不通过原因
-	@FindBy(xpath="//span[contains(text(),'法人签字，国企可不提供')]/../..//input")
+	@FindBy(xpath="//span[contains(text(),'法人签字，国企可不提供')]/../../..//input")
 	public WebElement noPassGRZXBtn;
 	
 	//个人征信审核界面
-	@FindBy(xpath="//div[contains(text(),'个人征信授权书')]/../../div[@class='ivu-modal-footer']//button/span[contains(text(),'提交')]")
+	@FindBy(xpath="//div[contains(text(),'个人征信授权书')]/../../div[@class='ivu-modal-body']//button/span[contains(text(),'提交')]")
 	public WebElement opeApproveGRZXSubmitBtn;
-	@FindBy(xpath="//div[contains(text(),'个人征信授权书')]/../../div[@class='ivu-modal-footer']//button/span[contains(text(),'关闭')]")
+	@FindBy(xpath="//div[contains(text(),'个人征信授权书')]/../../div[@class='ivu-modal-body']//button/span[contains(text(),'关闭')]")
 	public WebElement opeApproveGRZXCloseBtn;
 	
 	@FindBy(xpath="//table/tbody/tr/td/div/span[contains(text(),'关于同意查询和报送信用信息的函')]")
@@ -371,13 +371,13 @@ public class FinanceDataApprovePage extends AbstractPage{
 	@FindBy(xpath="//table/tbody/tr/td/div/span[contains(text(),'关于同意查询和报送信用信息的函')]/../../../td[6]//button/span[contains(text(),'审核')]")
 	public WebElement dataListChildQYZXApproveBtn;
 	//不通过原因
-	@FindBy(xpath="//span[contains(text(),'法人签字并加盖公章')]/../..//input")
+	@FindBy(xpath="//span[contains(text(),'法人签字并加盖公章')]/../../..//input")
 	public WebElement noPassQYZXBtn;
 	
 	//企业征信审核界面
-	@FindBy(xpath="//div[contains(text(),'关于同意查询和报送信用信息的函')]/../../div[@class='ivu-modal-footer']//button/span[contains(text(),'提交')]")
+	@FindBy(xpath="//div[contains(text(),'关于同意查询和报送信用信息的函')]/../../div[@class='ivu-modal-body']//button/span[contains(text(),'提交')]")
 	public WebElement opeApproveQYZXSubmitBtn;
-	@FindBy(xpath="//div[contains(text(),'关于同意查询和报送信用信息的函')]/../../div[@class='ivu-modal-footer']//button/span[contains(text(),'关闭')]")
+	@FindBy(xpath="//div[contains(text(),'关于同意查询和报送信用信息的函')]/../../div[@class='ivu-modal-body']//button/span[contains(text(),'关闭')]")
 	public WebElement opeApproveQYZXCloseBtn;
 	
 	@FindBy(xpath="//table/tbody/tr/td/div/span[contains(text(),'商务合同')]")
@@ -425,9 +425,9 @@ public class FinanceDataApprovePage extends AbstractPage{
 	@FindBy(xpath="//div[contains(text(),'商务合同')]/../../div[@class='ivu-modal-body']//form//label[contains(text(),'商务合同编号：')]/..//input")
 	public WebElement opeApproveSWHTBusiContractCodeInput;
 	
-	@FindBy(xpath="/html/body/div[17]/div[2]/div/div/div[3]/div/button[1]/span")
+	@FindBy(xpath="/html/body/div[17]/div[2]/div/div/div[2]/div/div[2]/form/div[11]/div/button[1]/span")
 	public WebElement opeApproveSWHTSubmitBtn;
-	@FindBy(xpath="/html/body/div[17]/div[2]/div/div/div[3]/div/button[2]/span")
+	@FindBy(xpath="/html/body/div[17]/div[2]/div/div/div[2]/div/div[2]/form/div[11]/div/button[2]/span")
 	public WebElement opeApproveSWHTCloseBtn;
 	
 	@FindBy(xpath="//table/tbody/tr/td/div/span[contains(text(),'发票')]")
@@ -442,14 +442,14 @@ public class FinanceDataApprovePage extends AbstractPage{
 	public WebElement dataListChildFPManReason;
 	@FindBy(xpath="//table/tbody/tr/td/div/span[contains(text(),'发票')]/../../../td[6]//button/span[contains(text(),'审核')]")
 	public WebElement dataListChildFPApproveBtn;
-	//发票审核界面           /html/body/div[10]/div[2]/div/div/div[3]/div/button[1]/span
+//	发票
 	@FindBy(xpath="/html/body/div[10]/div[2]/div/div/div[2]/div[5]/div[1]/button/span")
 	public WebElement opeApproveFPDeleteAllBtn;
 	@FindBy(xpath="/html/body/div[10]/div[2]/div/div/div[3]/div/button[1]/span")
 	public WebElement opeApproveFPSubmitBtn;
 	@FindBy(xpath="/html/body/div[10]/div[2]/div/div/div[3]/div/button[2]/span")
 	public WebElement opeApproveFPCloseBtn;
-	
+//	其它
 	@FindBy(xpath="//table/tbody/tr/td/div/span[contains(text(),'其它1')]")
 	public WebElement dataListChildQT;
 	@FindBy(xpath="//table/tbody/tr/td/div/span[contains(text(),'其它1')]/../../../td[2]")
@@ -463,7 +463,7 @@ public class FinanceDataApprovePage extends AbstractPage{
 	@FindBy(xpath="//table/tbody/tr/td/div/span[contains(text(),'其它1')]/../../../td[6]//button/span[contains(text(),'审核')]")
 	public WebElement dataListChildQTApproveBtn;
 	//不通过原因
-	@FindBy(xpath="//span[contains(text(),'其它1描述1')]/../..//input")
+	@FindBy(xpath="//span[contains(text(),'其它1描述1')]/../../..//input")
 	public WebElement noPassQTBtn;
 	
 	//其它审核界面
@@ -485,35 +485,35 @@ public class FinanceDataApprovePage extends AbstractPage{
 	@FindBy(xpath="//table/tbody/tr/td/div/span[contains(text(),'经营异常证明文件')]/../../../td[6]//button/span[contains(text(),'审核')]")
 	public WebElement dataListChildZMWJApproveBtn;
 	//经营异常证明文件审核界面
-	@FindBy(xpath="//span[contains(text(),'工商、人法、失信截图Word文件：')]/..//button/span[contains(text(),'上传')]")
+	@FindBy(xpath="//span[contains(text(),'工商、人法、失信截图pdf文件：')]/..//button/span[contains(text(),'上传')]")
 	public WebElement opeApproveZMWJUploadBtn;
-	@FindBy(xpath="//div[contains(text(),'经营异常证明文件')]/../../div[@class='ivu-modal-footer']//button/span[contains(text(),'提交')]")
+	@FindBy(xpath="//div[contains(text(),'经营异常证明文件')]/../../div[@class='ivu-modal-body']//button/span[contains(text(),'提交')]")
 	public WebElement opeApproveZMWJSubmitBtn;
-	@FindBy(xpath="//div[contains(text(),'经营异常证明文件')]/../../div[@class='ivu-modal-footer']//button/span[contains(text(),'关闭')]")
+	@FindBy(xpath="//div[contains(text(),'经营异常证明文件')]/../../div[@class='ivu-modal-body']//button/span[contains(text(),'关闭')]")
 	public WebElement opeApproveZMWJCloseBtn;
 	//不通过原因
-	@FindBy(xpath="//span[contains(text(),'工商网信息无异常')]/../..//input")
+	@FindBy(xpath="//span[contains(text(),'工商网信息无异常')]/../../..//input")
 	public WebElement noPassZMWJBtn;
 	
 	//复审弹出框
 	//公司章程部分
-	@FindBy(xpath="//h3[contains(text(),'公司章程')]/..")
-	public WebElement manApproveGSZCPart;
-	@FindBy(xpath="//span[contains(text(),'企业最新章程，且与融资申请企业名称一致')]/../..//input")
-	public WebElement noPassBtn;
-	
+	@FindBy(xpath="//div[contains(text(),'复审审核')]/../..//div[contains(@class,'ivu-tabs-tab') and text()=' 公司章程 ']")
+	public WebElement managerApproveGSZCTab;
 	//个人征信授权书部分
-	@FindBy(xpath="//h3[contains(text(),'个人征信授权书')]/..")
-	public WebElement manApproveGRZXCPart;
+	@FindBy(xpath="//div[contains(text(),'复审审核')]/../..//div[contains(@class,'ivu-tabs-tab') and text()=' 个人征信授权书 ']")
+	public WebElement managerApproveGRZXTab;
 	//关于同意查询和报送信用信息的函部分
-	@FindBy(xpath="//h3[contains(text(),'关于同意查询和报送信用信息的函')]/..")
-	public WebElement manApproveQYZXPart;
+	@FindBy(xpath="//div[contains(text(),'复审审核')]/../..//div[contains(@class,'ivu-tabs-tab') and text()=' 关于同意查询和报送信用信息的函 ']")
+	public WebElement managerApproveQYZXTab;
+	//商务合同部分
+	@FindBy(xpath="//div[contains(text(),'复审审核')]/../..//div[contains(@class,'ivu-tabs-tab') and text()=' 商务合同 ']")
+	public WebElement managerApproveSWHTTab;
 	//其它部分
-	@FindBy(xpath="//h3[contains(text(),'其它1')]/..")
-	public WebElement manApproveQTPart;
+	@FindBy(xpath="//div[contains(text(),'复审审核')]/../..//div[contains(@class,'ivu-tabs-tab') and text()=' 其它1 ']")
+	public WebElement managerApproveQTTab;
 	//经营异常证明文件部分
-	@FindBy(xpath="//h3[contains(text(),'经营异常证明文件')]/..")
-	public WebElement manApproveZMWJPart;
+	@FindBy(xpath="//div[contains(text(),'复审审核')]/../..//div[contains(@class,'ivu-tabs-tab') and text()=' 经营异常证明文件 ']")
+	public WebElement managerApproveZMWJTab;
 	
 	//退回初审按钮
 	@FindBy(xpath="//button/span[contains(text(),'退回初审')]")
@@ -685,7 +685,7 @@ public class FinanceDataApprovePage extends AbstractPage{
 	/*
 	 * 初审审核公司章程通过
 	 */
-	public void OperatorApproveGSZCPass() throws InterruptedException{
+	public void operatorApproveGSZCPass() throws InterruptedException{
 		dataListChildGSZCApproveBtn.click();
 		Thread.sleep(2000);
 		opeApproveGSZCSubmitBtn.click();
@@ -698,7 +698,7 @@ public class FinanceDataApprovePage extends AbstractPage{
 	/*
 	 * 初审审核公司章程不通过
 	 */
-	public void OperatorApproveGSZCNoPass() throws InterruptedException{
+	public void operatorApproveGSZCNoPass() throws InterruptedException{
 		dataListChildGSZCApproveBtn.click();
 		Thread.sleep(2000);
 		noPassGSZCBtn.click();
@@ -710,10 +710,19 @@ public class FinanceDataApprovePage extends AbstractPage{
 		Assert.assertEquals(dataListChildGSZCOpeResult.getText(), "审核不通过");
 		Assert.assertEquals(dataListChildGSZCOpeReason.getText(), "1. 企业最新章程，且与融资申请企业名称一致");
 	}
+	
+	/*
+	 * 复审审核公司章程不通过
+	 */
+	public void managerApproveGSZCNoPass() throws InterruptedException{
+		managerApproveGSZCTab.click();
+		Thread.sleep(2000);
+		noPassGSZCBtn.click();
+	}
 	/*
 	 * 初审审核个人征信通过
 	 */
-	public void OperatorApproveGRZXPass() throws InterruptedException{
+	public void operatorApproveGRZXPass() throws InterruptedException{
 		dataListChildGRZXApproveBtn.click();
 		Thread.sleep(2000);
 		opeApproveGRZXSubmitBtn.click();
@@ -725,7 +734,7 @@ public class FinanceDataApprovePage extends AbstractPage{
 	/*
 	 * 初审审核个人征信不通过
 	 */
-	public void OperatorApproveGRZXNoPass() throws InterruptedException{
+	public void operatorApproveGRZXNoPass() throws InterruptedException{
 		dataListChildGRZXApproveBtn.click();
 		Thread.sleep(2000);
 		noPassGRZXBtn.click();
@@ -738,9 +747,17 @@ public class FinanceDataApprovePage extends AbstractPage{
 		Assert.assertEquals(dataListChildGRZXOpeReason.getText(), "1. 法人签字，国企可不提供");
 	}
 	/*
+	 * 复审审核个人征信不通过
+	 */
+	public void managerApproveGRZXNoPass() throws InterruptedException{
+		managerApproveGRZXTab.click();
+		Thread.sleep(2000);
+		noPassGRZXBtn.click();
+	}
+	/*
 	 * 初审审核企业征信通过
 	 */
-	public void OperatorApproveQYZXPass() throws InterruptedException{
+	public void operatorApproveQYZXPass() throws InterruptedException{
 		dataListChildQYZXApproveBtn.click();
 		Thread.sleep(2000);
 		opeApproveQYZXSubmitBtn.click();
@@ -752,7 +769,7 @@ public class FinanceDataApprovePage extends AbstractPage{
 	/*
 	 * 初审审核企业征信不通过
 	 */
-	public void OperatorApproveQYZXNoPass() throws InterruptedException{
+	public void operatorApproveQYZXNoPass() throws InterruptedException{
 		dataListChildQYZXApproveBtn.click();
 		Thread.sleep(2000);
 		noPassQYZXBtn.click();
@@ -765,9 +782,17 @@ public class FinanceDataApprovePage extends AbstractPage{
 		Assert.assertEquals(dataListChildQYZXOpeReason.getText(), "1. 法人签字并加盖公章");
 	}
 	/*
+	 * 复审审核企业征信不通过
+	 */
+	public void managerApproveQYZXNoPass() throws InterruptedException{
+		managerApproveQYZXTab.click();
+		Thread.sleep(2000);
+		noPassQYZXBtn.click();
+	}
+	/*
 	 * 初审审核商务合同通过
 	 */
-	public void OperatorApproveSWHTPass() throws InterruptedException{
+	public void operatorApproveSWHTPass() throws InterruptedException{
 		dataListChildSWHTApproveBtn.click();
 		Thread.sleep(2000);
 		opeApproveSWHTBusiContractCodeInput.sendKeys("123");
@@ -784,7 +809,7 @@ public class FinanceDataApprovePage extends AbstractPage{
 	/*
 	 * 初审审核发票通过
 	 */
-	public void OperatorApproveFPPass() throws InterruptedException{
+	public void operatorApproveFPPass() throws InterruptedException{
 		dataListChildFPApproveBtn.click();
 		Thread.sleep(2000);
 		scrollIntoView(opeApproveFPDeleteAllBtn);
@@ -794,10 +819,18 @@ public class FinanceDataApprovePage extends AbstractPage{
 		messageConfirmBtn.click();
 		Thread.sleep(2000);
 	}
+//	/*
+//	 * 复审审核商务合同不通过
+//	 */
+//	public void managerApproveSWHTNoPass() throws InterruptedException{
+//		managerApproveSWHTTab.click();
+//		Thread.sleep(2000);
+//		noPassSWHTBtn.click();
+//	}
 	/*
 	 * 初审审核其它通过
 	 */
-	public void OperatorApproveQTPass() throws InterruptedException{
+	public void operatorApproveQTPass() throws InterruptedException{
 		dataListChildQTApproveBtn.click();
 		Thread.sleep(2000);
 		opeApproveQTSubmitBtn.click();
@@ -809,7 +842,7 @@ public class FinanceDataApprovePage extends AbstractPage{
 	/*
 	 * 初审审核其它不通过
 	 */
-	public void OperatorApproveQTNoPass() throws InterruptedException{
+	public void operatorApproveQTNoPass() throws InterruptedException{
 		dataListChildQTApproveBtn.click();
 		Thread.sleep(2000);
 		noPassQTBtn.click();
@@ -822,9 +855,17 @@ public class FinanceDataApprovePage extends AbstractPage{
 		Assert.assertEquals(dataListChildQTOpeReason.getText(), "1. 其它1描述1");
 	}
 	/*
+	 * 复审审核其它不通过
+	 */
+	public void managerApproveQTNoPass() throws InterruptedException{
+		managerApproveQTTab.click();
+		Thread.sleep(2000);
+		noPassQTBtn.click();
+	}
+	/*
 	 * 初审审核经营异常证明文件通过
 	 */
-	public void OperatorApproveZMWJPass() throws InterruptedException{
+	public void operatorApproveZMWJPass() throws InterruptedException{
 		dataListChildZMWJApproveBtn.click();
 		Thread.sleep(2000);
 		uploadFile(opeApproveZMWJUploadBtn, "uploadFileForGoogle.exe");
@@ -837,7 +878,7 @@ public class FinanceDataApprovePage extends AbstractPage{
 	/*
 	 * 初审审核经营异常证明文件不通过
 	 */
-	public void OperatorApproveZMWJNoPass() throws InterruptedException{
+	public void operatorApproveZMWJNoPass() throws InterruptedException{
 		dataListChildZMWJApproveBtn.click();
 		Thread.sleep(2000);
 		noPassZMWJBtn.click();
@@ -849,30 +890,42 @@ public class FinanceDataApprovePage extends AbstractPage{
 		Assert.assertEquals(dataListChildZMWJOpeResult.getText(), "审核不通过");
 		Assert.assertEquals(dataListChildZMWJOpeReason.getText(), "1. 工商网信息无异常");
 	}
-	public static void main(String[] args) throws InterruptedException{
-		//客服新增
-		TestBase.setupBiz();
-		TestBase.biz.bizLoginPage().login(TestBase.operateQueryMobileTeam2, TestBase.operateQueryPasswordTeam2);
-		TestBase.biz.homePage().gotoFinanceDataApprovePage();
-		Thread.sleep(5000);
-		TestBase.biz.financeDataApprove().financeDataAdd();
-		TestBase.tearDownBiz();
-		//初审审核
-		TestBase.setupBiz();
-		TestBase.biz.bizLoginPage().login(TestBase.operateOperatorMobileTeam2, TestBase.operateOperatorPasswordTeam2);
-		TestBase.biz.homePage().gotoFinanceDataApprovePage();
-		Thread.sleep(8000);
-		TestBase.biz.financeDataApprove().pageNums.get(TestBase.biz.financeDataApprove().pageNums.size()-1).click();
-		Thread.sleep(5000);
-		int opeNum=TestBase.biz.financeDataApprove().dataListIndexs.size()-1;
-		//领取任务
-		int opeApproveBtnNum=TestBase.biz.financeDataApprove().operatorApproveBtns.size()-1;
-		TestBase.biz.financeDataApprove().operatorGetTask(opeApproveBtnNum);
-		Assert.assertEquals(TestBase.biz.financeDataApprove().dataListOperatorNames.get(opeNum).getText(), TestBase.operateOperatorNameTeam2);
-		Assert.assertEquals(TestBase.biz.financeDataApprove().dataListWorkFlows.get(opeNum).getText(), "初审审核中");
-		//点击下拉框对记录进行审核
-		TestBase.biz.financeDataApprove().dataListDropDownBtns.get(opeNum).click();
+	/*
+	 * 复审审核经营异常证明文件不通过
+	 */
+	public void managerApproveZMWJNoPass() throws InterruptedException{
+		managerApproveZMWJTab.click();
 		Thread.sleep(2000);
+		noPassZMWJBtn.click();
+	}
+	public static void main(String[] args) throws InterruptedException{
+		// 复审审核
+		TestBase.setupBiz();
+		TestBase.biz.bizLoginPage().login(TestBase.operateManagerMobileTeam2, TestBase.operateManagerPasswordTeam2);
+		TestBase.biz.homePage().gotoFinanceDataApprovePage();
+		Thread.sleep(5000);
+		//搜索状态为初审审核通过的数据
+		TestBase.biz.financeDataApprove().getDataByWorkFlow(TestBase.biz.financeDataApprove().workFlowFINAL_AUDITING);
+
+		int manApproveNum = TestBase.biz.financeDataApprove().dataListIndexs.size() - 1;
+		// 领取任务
+		int manApproveBtnNum = TestBase.biz.financeDataApprove().managerApproveBtns.size() - 1;
+		TestBase.biz.financeDataApprove().managerApproveBtns.get(manApproveBtnNum).click();
+		Thread.sleep(2000);
+		TestBase.biz.financeDataApprove().managerApproveGSZCNoPass();
+		TestBase.biz.financeDataApprove().managerApproveGRZXNoPass();
+		TestBase.biz.financeDataApprove().managerApproveQYZXNoPass();
+		TestBase.biz.financeDataApprove().managerApproveQTNoPass();
+		TestBase.biz.financeDataApprove().managerApproveZMWJNoPass();
+		TestBase.biz.financeDataApprove().manApproveSubtmitBtn.click();
+		Thread.sleep(3000);
+		
+		TestBase.biz.financeDataApprove().getDataByWorkFlow(TestBase.biz.financeDataApprove().workFlowFINAL_AUDITED);
+		manApproveNum = TestBase.biz.financeDataApprove().dataListIndexs.size() - 1;
+		Assert.assertEquals(TestBase.biz.financeDataApprove().dataListWorkFlows.get(manApproveNum).getText(),
+				"复审审核完成");
+		Assert.assertEquals(TestBase.biz.financeDataApprove().dataListApproveResults.get(manApproveNum).getText(),
+				"审核不通过");
 	}
 
 }

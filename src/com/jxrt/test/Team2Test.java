@@ -612,13 +612,13 @@ public class Team2Test extends TestBase {
 			// 点击下拉框对记录进行审核
 			TestBase.biz.financeDataApprove().dataListDropDownBtns.get(num).click();
 			Thread.sleep(2000);
-			TestBase.biz.financeDataApprove().OperatorApproveGSZCPass();
-			TestBase.biz.financeDataApprove().OperatorApproveGRZXPass();
-			TestBase.biz.financeDataApprove().OperatorApproveQYZXPass();
-			TestBase.biz.financeDataApprove().OperatorApproveSWHTPass();
-			TestBase.biz.financeDataApprove().OperatorApproveFPPass();
-			TestBase.biz.financeDataApprove().OperatorApproveQTPass();
-			TestBase.biz.financeDataApprove().OperatorApproveZMWJPass();
+			TestBase.biz.financeDataApprove().operatorApproveGSZCPass();
+			TestBase.biz.financeDataApprove().operatorApproveGRZXPass();
+			TestBase.biz.financeDataApprove().operatorApproveQYZXPass();
+			TestBase.biz.financeDataApprove().operatorApproveSWHTPass();
+			TestBase.biz.financeDataApprove().operatorApproveFPPass();
+			TestBase.biz.financeDataApprove().operatorApproveQTPass();
+			TestBase.biz.financeDataApprove().operatorApproveZMWJPass();
 			Thread.sleep(2000);
 			// 确认初审完成
 			int operatorApproveDoneBtnNum = TestBase.biz.financeDataApprove().operatorApproveDoneBtns.size() - 1;
@@ -670,13 +670,13 @@ public class Team2Test extends TestBase {
 			// 点击下拉框对记录进行审核
 			TestBase.biz.financeDataApprove().dataListDropDownBtns.get(opeNum).click();
 			Thread.sleep(2000);
-			TestBase.biz.financeDataApprove().OperatorApproveGSZCPass();
-			TestBase.biz.financeDataApprove().OperatorApproveGRZXPass();
-			TestBase.biz.financeDataApprove().OperatorApproveQYZXPass();
-			TestBase.biz.financeDataApprove().OperatorApproveSWHTPass();
-			TestBase.biz.financeDataApprove().OperatorApproveFPPass();
-			TestBase.biz.financeDataApprove().OperatorApproveQTPass();
-			TestBase.biz.financeDataApprove().OperatorApproveZMWJPass();
+			TestBase.biz.financeDataApprove().operatorApproveGSZCPass();
+			TestBase.biz.financeDataApprove().operatorApproveGRZXPass();
+			TestBase.biz.financeDataApprove().operatorApproveQYZXPass();
+			TestBase.biz.financeDataApprove().operatorApproveSWHTPass();
+			TestBase.biz.financeDataApprove().operatorApproveFPPass();
+			TestBase.biz.financeDataApprove().operatorApproveQTPass();
+			TestBase.biz.financeDataApprove().operatorApproveZMWJPass();
 			Thread.sleep(2000);
 			// 确认初审完成
 			int opeApproveDoneBtnNum = TestBase.biz.financeDataApprove().operatorApproveDoneBtns.size() - 1;
@@ -698,8 +698,7 @@ public class Team2Test extends TestBase {
 			// 领取任务
 			int manApproveBtnNum = TestBase.biz.financeDataApprove().managerApproveBtns.size() - 1;
 			TestBase.biz.financeDataApprove().managerGetTask(manApproveBtnNum);
-			TestBase.biz.financeDataApprove().noPassBtn.click();
-			TestBase.biz.financeDataApprove().scrollIntoView(TestBase.biz.financeDataApprove().manApproveQYZXPart);
+			TestBase.biz.financeDataApprove().managerApproveGSZCNoPass();
 			TestBase.biz.financeDataApprove().manApproveBackToOpeBtn.click();
 			Thread.sleep(1000);
 			TestBase.tearDownBiz();
@@ -717,7 +716,7 @@ public class Team2Test extends TestBase {
 			// 点击下拉框对记录进行审核
 			TestBase.biz.financeDataApprove().dataListDropDownBtns.get(opeNumNew).click();
 			Thread.sleep(2000);
-			TestBase.biz.financeDataApprove().OperatorApproveGSZCPass();
+			TestBase.biz.financeDataApprove().operatorApproveGSZCPass();
 			Thread.sleep(2000);
 			// 确认初审完成
 			int operatorApproveDoneBtnNumNew = TestBase.biz.financeDataApprove().operatorApproveDoneBtns.size() - 1;
@@ -740,7 +739,6 @@ public class Team2Test extends TestBase {
 			// 领取任务
 			int manApproveBtnNumNew = TestBase.biz.financeDataApprove().managerApproveBtns.size() - 1;
 			TestBase.biz.financeDataApprove().managerGetTask(manApproveBtnNumNew);
-			TestBase.biz.financeDataApprove().scrollIntoView(TestBase.biz.financeDataApprove().manApproveQYZXPart);
 			TestBase.biz.financeDataApprove().manApproveSubtmitBtn.click();
 			Thread.sleep(3000);
 			//搜索复审审核完成数据
@@ -790,13 +788,13 @@ public class Team2Test extends TestBase {
 			// 点击下拉框对记录进行审核
 			TestBase.biz.financeDataApprove().dataListDropDownBtns.get(opeNum).click();
 			Thread.sleep(2000);
-			TestBase.biz.financeDataApprove().OperatorApproveGSZCPass();
-			TestBase.biz.financeDataApprove().OperatorApproveGRZXPass();
-			TestBase.biz.financeDataApprove().OperatorApproveQYZXPass();
-			TestBase.biz.financeDataApprove().OperatorApproveSWHTPass();
-			TestBase.biz.financeDataApprove().OperatorApproveFPPass();
-			TestBase.biz.financeDataApprove().OperatorApproveQTPass();
-			TestBase.biz.financeDataApprove().OperatorApproveZMWJPass();
+			TestBase.biz.financeDataApprove().operatorApproveGSZCPass();
+			TestBase.biz.financeDataApprove().operatorApproveGRZXPass();
+			TestBase.biz.financeDataApprove().operatorApproveQYZXPass();
+			TestBase.biz.financeDataApprove().operatorApproveSWHTPass();
+			TestBase.biz.financeDataApprove().operatorApproveFPPass();
+			TestBase.biz.financeDataApprove().operatorApproveQTPass();
+			TestBase.biz.financeDataApprove().operatorApproveZMWJPass();
 			Thread.sleep(2000);
 			// 确认初审完成
 			int opeApproveDoneBtnNum = TestBase.biz.financeDataApprove().operatorApproveDoneBtns.size() - 1;
@@ -819,8 +817,11 @@ public class Team2Test extends TestBase {
 			// 领取任务
 			int manApproveBtnNum = TestBase.biz.financeDataApprove().managerApproveBtns.size() - 1;
 			TestBase.biz.financeDataApprove().managerGetTask(manApproveBtnNum);
-			TestBase.biz.financeDataApprove().noPassBtn.click();
-			TestBase.biz.financeDataApprove().scrollIntoView(TestBase.biz.financeDataApprove().manApproveQYZXPart);
+			TestBase.biz.financeDataApprove().managerApproveGSZCNoPass();
+			TestBase.biz.financeDataApprove().managerApproveGRZXNoPass();
+			TestBase.biz.financeDataApprove().managerApproveQYZXNoPass();
+			TestBase.biz.financeDataApprove().managerApproveQTNoPass();
+			TestBase.biz.financeDataApprove().managerApproveZMWJNoPass();
 			TestBase.biz.financeDataApprove().manApproveSubtmitBtn.click();
 			Thread.sleep(3000);
 			
@@ -871,13 +872,13 @@ public class Team2Test extends TestBase {
 			// 点击下拉框对记录进行审核
 			TestBase.biz.financeDataApprove().dataListDropDownBtns.get(opeNum).click();
 			Thread.sleep(2000);
-			TestBase.biz.financeDataApprove().OperatorApproveGSZCNoPass();
-			TestBase.biz.financeDataApprove().OperatorApproveGRZXNoPass();
-			TestBase.biz.financeDataApprove().OperatorApproveQYZXNoPass();
-			TestBase.biz.financeDataApprove().OperatorApproveSWHTPass();
-			TestBase.biz.financeDataApprove().OperatorApproveFPPass();
-			TestBase.biz.financeDataApprove().OperatorApproveQTNoPass();
-			TestBase.biz.financeDataApprove().OperatorApproveZMWJNoPass();
+			TestBase.biz.financeDataApprove().operatorApproveGSZCNoPass();
+			TestBase.biz.financeDataApprove().operatorApproveGRZXNoPass();
+			TestBase.biz.financeDataApprove().operatorApproveQYZXNoPass();
+			TestBase.biz.financeDataApprove().operatorApproveSWHTPass();
+			TestBase.biz.financeDataApprove().operatorApproveFPPass();
+			TestBase.biz.financeDataApprove().operatorApproveQTNoPass();
+			TestBase.biz.financeDataApprove().operatorApproveZMWJNoPass();
 			Thread.sleep(2000);
 			// 确认初审完成
 			int opeApproveDoneBtnNum = TestBase.biz.financeDataApprove().operatorApproveDoneBtns.size() - 1;

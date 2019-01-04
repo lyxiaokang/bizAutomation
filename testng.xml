@@ -7,10 +7,10 @@
  	<test name="Team2Test" preserve-order="true">
         <groups>
             <run>
-                <include name="ReceivableIssue-test" />
-                <exclude name="FinanceDataApprove-test" />
-                <include name="RedeemNotice-test" />
-                <include name="PayrollCreditApply-test" />
+                <exclude name="ReceivableIssue-test" />
+                <include name="FinanceDataApprove-test" />
+                <exclude name="RedeemNotice-test" />
+                <exclude name="PayrollCreditApply-test" />
             </run>
         </groups>
         <classes>
