@@ -1,4 +1,4 @@
-target
-test-output
+target/*
+test-output/*
 screenshots
 Downloads
