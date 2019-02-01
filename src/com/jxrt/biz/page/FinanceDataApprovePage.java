@@ -1,6 +1,5 @@
 package com.jxrt.biz.page;
 
-import java.time.LocalDate;
 import java.util.List;
 
 import org.openqa.selenium.WebDriver;
@@ -39,7 +38,6 @@ public class FinanceDataApprovePage extends AbstractPage{
 	//平台产品选择
 	@FindBy(xpath="//span[contains(text(), '平台产品：')]/../descendant::ul[2]/li")
 	public WebElement ccbscfProductChose;
-//	TODO
 	//提交日期输入框开始
 	@FindBy(xpath="//span[contains(text(), '提交日期：')]/../descendant::input[1]")
 	public WebElement submitDateBeginInput;
@@ -516,10 +514,10 @@ public class FinanceDataApprovePage extends AbstractPage{
 	public WebElement managerApproveZMWJTab;
 	
 	//退回初审按钮
-	@FindBy(xpath="//button/span[contains(text(),'退回初审')]")
+	@FindBy(xpath="/html/body/div[22]/div[2]/div/div/div[2]/div/div/div/div[2]/div/div/div[2]/div[8]/div//button/span[contains(text(),'退回初审')]")
 	public WebElement manApproveBackToOpeBtn;
 	//复审提交
-	@FindBy(xpath="//button/span[contains(text(),'复审提交')]")
+	@FindBy(xpath="/html/body/div[22]/div[2]/div/div/div[2]/div/div/div/div[2]/div/div/div[2]/div[7]/div//button/span[contains(text(),'复审提交')]")
 	public WebElement manApproveSubtmitBtn;
 	
 	/*
@@ -554,7 +552,7 @@ public class FinanceDataApprovePage extends AbstractPage{
 				e.printStackTrace();
 			} 
 		element.click();
-		Thread.sleep(4000);
+		Thread.sleep(6000);
 	}
 	/*
 	 * 添加融资资料

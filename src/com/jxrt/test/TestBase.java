@@ -20,6 +20,7 @@ import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
 
 import com.jxrt.biz.Biz;
+import com.jxrt.corp.Corp;
 import com.jxrt.dbOperate.DBOperate;
 import com.jxrt.dbutil.DBUtil;
 import com.jxrt.dbutil.DataFactory;
@@ -32,11 +33,14 @@ import net.sf.json.JSONObject;
 
 public class TestBase {
 	public static  WebDriver driver = null;
-	public static  String BizUrl = "http://"+PropertiesUtil.getOptValue("server_ip")+"/biz/login";
+	public static  String bizUrl = "http://"+PropertiesUtil.getOptValue("server_ip")+"/biz/login";
+	public static  String corpUrl = "http://"+PropertiesUtil.getOptValue("server_ip")+"/corp/login/login.html";
+	public static  String financeUrl = "http://"+PropertiesUtil.getOptValue("server_ip")+"/finance/login/login.html";
 	public static  String browserType = PropertiesUtil.getOptValue("browserType");
 	public static String baseDir = System.getProperty("user.dir");
 	public static String downloadsPath = baseDir+"\\Downloads";
 	public static Biz biz;
+	public static Corp corp;
 	
 	public static String priority = PropertiesUtil.getOptValue("priority");	
 
@@ -199,17 +203,24 @@ public class TestBase {
 	public static String FinanceDataApproveCorpName="太平链条企业一";
 	public static String FinanceDataApproveCorpNameCore="盛世集团成员二";
 	/*
-	 * 浏览器初始化
+	 * 平台端浏览器初始化
 	 */
 	public static void setupBiz() {
-		driver = Browser.getDriver(browserType,BizUrl);
+		driver = Browser.getDriver(browserType,bizUrl);
 		biz = new Biz(driver);
 
 	}
 	/*
+	 * 企业端浏览器初始化
+	 */
+	public static void setupCorp() {
+		driver = Browser.getDriver("IE",corpUrl);
+		corp = new Corp(driver);
+	}
+	/*
 	 * 浏览器退出
 	 */
-	public static void tearDownBiz() {
+	public static void tearDownBrowser() {
 		if(driver != null) {
 			driver.quit();
 		}

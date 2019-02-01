@@ -215,7 +215,6 @@ public class RedeemNoticePage extends AbstractPage {
 		//翻到最后一页，获取该页条数
 		lastPageElement.click();
 		Thread.sleep(4000);
-		int lastPageCreditNum=redeemListIndexs.size();
 
 		//通过数据库查询付款列表中白条总数
 		ArrayList<String> creditList=new ArrayList<String>();

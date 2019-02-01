@@ -1,6 +1,5 @@
 package com.jxrt.dbutil;
 
-import java.io.File;
 import java.math.BigDecimal;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -15,9 +14,6 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.Random;
-
-import com.jxrt.test.TestBase;
 
 import net.sf.json.JSONObject;
 
@@ -1190,7 +1186,7 @@ public class OracleDataFactory implements DataFactory {
 		sqlBuffer.append(getPayrollCreditLoanedUtil(corpNameCore,corpName,payrollState,pkCredit,
 				createDateBegin,createDateEnd,loanTimeBegin,loanTimeEnd));
 		String sql=sqlBuffer.toString();
-		System.out.println(sql);
+		//System.out.println(sql);
 		try{
 			PreparedStatement pstm=connection.prepareStatement(sql);
 		    ResultSet rs=pstm.executeQuery(sql);
@@ -1221,7 +1217,7 @@ public class OracleDataFactory implements DataFactory {
 		sqlBuffer.append(getPayrollCreditLoanedUtil(corpNameCore,corpName,payrollState,pkCredit,
 				createDateBegin,createDateEnd,loanTimeBegin,loanTimeEnd));
 		String sql=sqlBuffer.toString();
-		System.out.println(sql);
+		//System.out.println(sql);
 		try{
 			PreparedStatement pstm=connection.prepareStatement(sql);
 		    ResultSet rs=pstm.executeQuery(sql);
@@ -1262,7 +1258,7 @@ public class OracleDataFactory implements DataFactory {
 		sqlBuffer.append(getPayrollCreditLoanedUtil(corpNameCore,corpName,payrollState,pkCredit,
 				createDateBegin,createDateEnd,loanTimeBegin,loanTimeEnd));
 		String sql=sqlBuffer.toString();
-		System.out.println(sql);
+		//System.out.println(sql);
 		try{
 			PreparedStatement pstm=connection.prepareStatement(sql);
 		    ResultSet rs=pstm.executeQuery(sql);

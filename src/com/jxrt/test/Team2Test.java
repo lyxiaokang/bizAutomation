@@ -23,10 +23,10 @@ public class Team2Test extends TestBase {
 	 */
 	@BeforeSuite(alwaysRun = true)
 	public void clearDownloadsPath() {
-		File downloadsFiles=new File(TestBase.downloadsPath);
-		for(File file:downloadsFiles.listFiles()){
-			file.delete();
-		}
+//		File downloadsFiles=new File(TestBase.downloadsPath);
+//		for(File file:downloadsFiles.listFiles()){
+//			file.delete();
+//		}
 	}
 	@BeforeMethod(alwaysRun = true)
 	public void setup_Biz() {
@@ -36,7 +36,7 @@ public class Team2Test extends TestBase {
 
 	@AfterMethod(alwaysRun = true)
 	public void tearDown_Biz() {
-		tearDownBiz();
+		tearDownBrowser();
 	}
 
 	/*
@@ -108,6 +108,7 @@ public class Team2Test extends TestBase {
 			String method = Thread.currentThread().getStackTrace()[1].getMethodName();
 			System.out.println(cls + "--" + method);
 			TestBase.getScreenShot(cls, method);
+			Thread.sleep(1000);
 			throw e;
 		}
 	}
@@ -120,7 +121,7 @@ public class Team2Test extends TestBase {
 		try {
 			// 调用签发
 			TestReceivableIssue();
-			tearDownBiz();
+			tearDownBrowser();
 			TestBase.setupBiz();
 			TestBase.biz.bizLoginPage().login(TestBase.operateManagerMobileTeam2,
 					TestBase.operateOperatorPasswordTeam2);
@@ -145,14 +146,14 @@ public class Team2Test extends TestBase {
 			TestBase.biz.homePage().gotoReceivableSearchPage();
 			Thread.sleep(3000);
 			TestBase.biz.receivableSearchPage().IssuedTab.click();
-			Thread.sleep(2000);
+			Thread.sleep(5000);
 			TestBase.biz.receivableSearchIssuedTabPage().corpNameCoreInput.sendKeys(corpNameCore);
 			TestBase.biz.receivableSearchIssuedTabPage().corpNameAcceptInput.sendKeys(corpNameAccept);
 			TestBase.biz.receivableSearchIssuedTabPage().approveDateBeginInput.sendKeys(today.toString());
 			TestBase.biz.receivableSearchIssuedTabPage().applyAmountMinInput.sendKeys(applyAmount);
 			TestBase.biz.receivableSearchIssuedTabPage().applyAmountMaxInput.sendKeys(applyAmount);
 			TestBase.biz.receivableSearchIssuedTabPage().searchBtn.click();
-			Thread.sleep(8000);
+			Thread.sleep(5000);
 			// 断言
 			Assert.assertEquals(TestBase.biz.receivableSearchIssuedTabPage().receivableListPkCredits.get(0).getText(),
 					pkCredit);
@@ -161,6 +162,7 @@ public class Team2Test extends TestBase {
 			String method = Thread.currentThread().getStackTrace()[1].getMethodName();
 			System.out.println(cls + "--" + method);
 			TestBase.getScreenShot(cls, method);
+			Thread.sleep(1000);
 			throw e;
 		}
 	}
@@ -173,7 +175,7 @@ public class Team2Test extends TestBase {
 		try {
 			// 调用签发
 			TestReceivableIssue();
-			tearDownBiz();
+			tearDownBrowser();
 
 			TestBase.setupBiz();
 			TestBase.biz.bizLoginPage().login(TestBase.operateManagerMobileTeam2, TestBase.operateManagerPasswordTeam2);
@@ -217,6 +219,7 @@ public class Team2Test extends TestBase {
 			String method = Thread.currentThread().getStackTrace()[1].getMethodName();
 			System.out.println(cls + "--" + method);
 			TestBase.getScreenShot(cls, method);
+			Thread.sleep(1000);
 			throw e;
 		}
 	}
@@ -228,7 +231,7 @@ public class Team2Test extends TestBase {
 	public void TestReceivableApproveNoPassModify() throws InterruptedException {
 		try {
 			TestReceivableApproveNoPass();
-			tearDownBiz();
+			tearDownBrowser();
 
 			TestBase.setupBiz();
 			TestBase.biz.bizLoginPage().login(TestBase.operateOperatorMobileTeam2,
@@ -264,6 +267,7 @@ public class Team2Test extends TestBase {
 			String method = Thread.currentThread().getStackTrace()[1].getMethodName();
 			System.out.println(cls + "--" + method);
 			TestBase.getScreenShot(cls, method);
+			Thread.sleep(1000);
 			throw e;
 		}
 	}
@@ -275,7 +279,7 @@ public class Team2Test extends TestBase {
 	public void TestReceivableApproveNoPassDelete() throws InterruptedException {
 		try {
 			TestReceivableApproveNoPass();
-			tearDownBiz();
+			tearDownBrowser();
 
 			TestBase.setupBiz();
 			TestBase.biz.bizLoginPage().login(TestBase.operateOperatorMobileTeam2,
@@ -313,6 +317,7 @@ public class Team2Test extends TestBase {
 			String method = Thread.currentThread().getStackTrace()[1].getMethodName();
 			System.out.println(cls + "--" + method);
 			TestBase.getScreenShot(cls, method);
+			Thread.sleep(1000);
 			throw e;
 		}
 	}
@@ -357,6 +362,7 @@ public class Team2Test extends TestBase {
 			String method = Thread.currentThread().getStackTrace()[1].getMethodName();
 			System.out.println(cls + "--" + method);
 			TestBase.getScreenShot(cls, method);
+			Thread.sleep(1000);
 			throw e;
 		}
 	}
@@ -401,7 +407,7 @@ public class Team2Test extends TestBase {
 			Assert.assertEquals(TestBase.biz.receivableIssuePage().InstructionResult.getText(),
 					"提交成功！请等待主管审核，您可以在账款查询中查看进度!");
 			TestBase.biz.receivableIssuePage().InstructionWindowConfirmBtn.click();
-			tearDownBiz();
+			tearDownBrowser();
 			TestBase.setupBiz();
 			TestBase.biz.bizLoginPage().login(TestBase.operateManagerMobileTeam2,
 					TestBase.operateOperatorPasswordTeam2);
@@ -426,6 +432,7 @@ public class Team2Test extends TestBase {
 			String method = Thread.currentThread().getStackTrace()[1].getMethodName();
 			System.out.println(cls + "--" + method);
 			TestBase.getScreenShot(cls, method);
+			Thread.sleep(1000);
 			throw e;
 		}
 	}
@@ -470,7 +477,7 @@ public class Team2Test extends TestBase {
 			Assert.assertEquals(TestBase.biz.receivableIssuePage().InstructionResult.getText(),
 					"提交成功！请等待主管审核，您可以在账款查询中查看进度!");
 			TestBase.biz.receivableIssuePage().InstructionWindowConfirmBtn.click();
-			tearDownBiz();
+			tearDownBrowser();
 			TestBase.setupBiz();
 			TestBase.biz.bizLoginPage().login(TestBase.operateManagerMobileTeam2,
 					TestBase.operateOperatorPasswordTeam2);
@@ -504,6 +511,7 @@ public class Team2Test extends TestBase {
 			String method = Thread.currentThread().getStackTrace()[1].getMethodName();
 			System.out.println(cls + "--" + method);
 			TestBase.getScreenShot(cls, method);
+			Thread.sleep(1000);
 			throw e;
 		}
 	}
@@ -516,9 +524,9 @@ public class Team2Test extends TestBase {
 		try {
 			TestBase.biz.bizLoginPage().login(TestBase.operateQueryMobileTeam2, TestBase.operateQueryPasswordTeam2);
 			TestBase.biz.homePage().gotoFinanceDataApprovePage();
-			Thread.sleep(5000);
+			Thread.sleep(3000);
 			TestBase.biz.financeDataApprove().financeDataAdd();
-			Thread.sleep(5000);
+			Thread.sleep(3000);
 			
 			//搜索状态为待审核的数据
 			TestBase.biz.financeDataApprove().getDataByWorkFlow(TestBase.biz.financeDataApprove().workFlowUN_AUDIT);
@@ -540,6 +548,7 @@ public class Team2Test extends TestBase {
 			String method = Thread.currentThread().getStackTrace()[1].getMethodName();
 			System.out.println(cls + "--" + method);
 			TestBase.getScreenShot(cls, method);
+			Thread.sleep(1000);
 			throw e;
 		}
 	}
@@ -553,9 +562,9 @@ public class Team2Test extends TestBase {
 
 			TestBase.biz.bizLoginPage().login(TestBase.operateQueryMobileTeam2, TestBase.operateQueryPasswordTeam2);
 			TestBase.biz.homePage().gotoFinanceDataApprovePage();
-			Thread.sleep(5000);
+			Thread.sleep(3000);
 			TestBase.biz.financeDataApprove().financeDataAdd();
-			Thread.sleep(5000);
+			Thread.sleep(3000);
 			
 			//搜索状态为待审核的数据
 			TestBase.biz.financeDataApprove().getDataByWorkFlow(TestBase.biz.financeDataApprove().workFlowUN_AUDIT);
@@ -571,6 +580,7 @@ public class Team2Test extends TestBase {
 			String method = Thread.currentThread().getStackTrace()[1].getMethodName();
 			System.out.println(cls + "--" + method);
 			TestBase.getScreenShot(cls, method);
+			Thread.sleep(1000);
 			throw e;
 		}
 	}
@@ -583,15 +593,15 @@ public class Team2Test extends TestBase {
 		try {
 			TestBase.biz.bizLoginPage().login(TestBase.operateQueryMobileTeam2, TestBase.operateQueryPasswordTeam2);
 			TestBase.biz.homePage().gotoFinanceDataApprovePage();
-			Thread.sleep(5000);
+			Thread.sleep(3000);
 			TestBase.biz.financeDataApprove().financeDataAdd();
-			TestBase.tearDownBiz();
+			TestBase.tearDownBrowser();
 
 			TestBase.setupBiz();
 			TestBase.biz.bizLoginPage().login(TestBase.operateOperatorMobileTeam2,
 					TestBase.operateOperatorPasswordTeam2);
 			TestBase.biz.homePage().gotoFinanceDataApprovePage();
-			Thread.sleep(5000);
+			Thread.sleep(3000);
 			
 			//搜索状态为待审核的数据
 			TestBase.biz.financeDataApprove().getDataByWorkFlow(TestBase.biz.financeDataApprove().workFlowUN_AUDIT);
@@ -633,29 +643,30 @@ public class Team2Test extends TestBase {
 			String method = Thread.currentThread().getStackTrace()[1].getMethodName();
 			System.out.println(cls + "--" + method);
 			TestBase.getScreenShot(cls, method);
+			Thread.sleep(1000);
 			throw e;
 		}
 	}
 
 	/*
-	 * 平台端融资资料审核-复审退回经办，经办重新提交，复审通过
+	 * 平台端融资资料审核-复审退回经办
 	 */
 	@Test(groups = "FinanceDataApprove-test",enabled = true, priority = 1)
-	public void TestFinanceDataAfterBackToOpeManApprovePass() throws InterruptedException {
+	public void TestFinanceDataBackToOpe() throws InterruptedException {
 		try {
 			// 客服新增
 			TestBase.biz.bizLoginPage().login(TestBase.operateQueryMobileTeam2, TestBase.operateQueryPasswordTeam2);
 			TestBase.biz.homePage().gotoFinanceDataApprovePage();
-			Thread.sleep(5000);
+			Thread.sleep(3000);
 			TestBase.biz.financeDataApprove().financeDataAdd();
-			TestBase.tearDownBiz();
+			TestBase.tearDownBrowser();
 
 			// 初审审核
 			TestBase.setupBiz();
 			TestBase.biz.bizLoginPage().login(TestBase.operateOperatorMobileTeam2,
 					TestBase.operateOperatorPasswordTeam2);
 			TestBase.biz.homePage().gotoFinanceDataApprovePage();
-			Thread.sleep(8000);
+			Thread.sleep(3000);
 			
 			//搜索状态为待审核的数据
 			TestBase.biz.financeDataApprove().getDataByWorkFlow(TestBase.biz.financeDataApprove().workFlowUN_AUDIT);
@@ -685,13 +696,13 @@ public class Team2Test extends TestBase {
 			Assert.assertEquals(TestBase.biz.financeDataApprove().message.getText(), "初审完成");
 			TestBase.biz.financeDataApprove().messageConfirmBtn.click();
 			Thread.sleep(3000);
-			TestBase.tearDownBiz();
+			TestBase.tearDownBrowser();
 
 			// 复审审核
 			TestBase.setupBiz();
 			TestBase.biz.bizLoginPage().login(TestBase.operateManagerMobileTeam2, TestBase.operateManagerPasswordTeam2);
 			TestBase.biz.homePage().gotoFinanceDataApprovePage();
-			Thread.sleep(8000);
+			Thread.sleep(3000);
 			//搜索状态为初审审核完成的数据
 			TestBase.biz.financeDataApprove().getDataByWorkFlow(TestBase.biz.financeDataApprove().workFlowFIRST_AUDITED);
 
@@ -699,51 +710,87 @@ public class Team2Test extends TestBase {
 			int manApproveBtnNum = TestBase.biz.financeDataApprove().managerApproveBtns.size() - 1;
 			TestBase.biz.financeDataApprove().managerGetTask(manApproveBtnNum);
 			TestBase.biz.financeDataApprove().managerApproveGSZCNoPass();
+			Thread.sleep(1000);
 			TestBase.biz.financeDataApprove().manApproveBackToOpeBtn.click();
 			Thread.sleep(1000);
-			TestBase.tearDownBiz();
+			TestBase.tearDownBrowser();
+		} catch (Exception e) {
+			String cls = this.getClass().getName();
+			String method = Thread.currentThread().getStackTrace()[1].getMethodName();
+			System.out.println(cls + "--" + method);
+			TestBase.getScreenShot(cls, method);
+			Thread.sleep(1000);
+			throw e;
+		}
+	}
+	
+	/*
+	 * 平台端融资资料审核-复审通过
+	 */
+	@Test(groups = "FinanceDataApprove-test",enabled = true, priority = 1)
+	public void TestFinanceDataManApprovePass() throws InterruptedException {
+		try {
+			// 客服新增
+			TestBase.biz.bizLoginPage().login(TestBase.operateQueryMobileTeam2, TestBase.operateQueryPasswordTeam2);
+			TestBase.biz.homePage().gotoFinanceDataApprovePage();
+			Thread.sleep(3000);
+			TestBase.biz.financeDataApprove().financeDataAdd();
+			TestBase.tearDownBrowser();
 
-			// 初审再次审核提交
+			// 初审审核
 			TestBase.setupBiz();
 			TestBase.biz.bizLoginPage().login(TestBase.operateOperatorMobileTeam2,
 					TestBase.operateOperatorPasswordTeam2);
 			TestBase.biz.homePage().gotoFinanceDataApprovePage();
-			Thread.sleep(5000);
-			//搜索状态为初审审核中的数据
-			TestBase.biz.financeDataApprove().getDataByWorkFlow(TestBase.biz.financeDataApprove().workFlowFIRST_AUDITING);
+			Thread.sleep(3000);
+			
+			//搜索状态为待审核的数据
+			TestBase.biz.financeDataApprove().getDataByWorkFlow(TestBase.biz.financeDataApprove().workFlowUN_AUDIT);
 
-			int opeNumNew = TestBase.biz.financeDataApprove().dataListIndexs.size() - 1;
+			int opeNum = TestBase.biz.financeDataApprove().dataListIndexs.size() - 1;
+			// 领取任务
+			int opeApproveBtnNum = TestBase.biz.financeDataApprove().operatorApproveBtns.size() - 1;
+			TestBase.biz.financeDataApprove().operatorGetTask(opeApproveBtnNum);
+			//搜索初审审核中数据
+			TestBase.biz.financeDataApprove().getDataByWorkFlow(TestBase.biz.financeDataApprove().workFlowFIRST_AUDITING);
+			opeNum = TestBase.biz.financeDataApprove().dataListIndexs.size() - 1;
 			// 点击下拉框对记录进行审核
-			TestBase.biz.financeDataApprove().dataListDropDownBtns.get(opeNumNew).click();
+			TestBase.biz.financeDataApprove().dataListDropDownBtns.get(opeNum).click();
 			Thread.sleep(2000);
 			TestBase.biz.financeDataApprove().operatorApproveGSZCPass();
+			TestBase.biz.financeDataApprove().operatorApproveGRZXPass();
+			TestBase.biz.financeDataApprove().operatorApproveQYZXPass();
+			TestBase.biz.financeDataApprove().operatorApproveSWHTPass();
+			TestBase.biz.financeDataApprove().operatorApproveFPPass();
+			TestBase.biz.financeDataApprove().operatorApproveQTPass();
+			TestBase.biz.financeDataApprove().operatorApproveZMWJPass();
 			Thread.sleep(2000);
 			// 确认初审完成
-			int operatorApproveDoneBtnNumNew = TestBase.biz.financeDataApprove().operatorApproveDoneBtns.size() - 1;
-			TestBase.biz.financeDataApprove().operatorApproveDoneBtns.get(operatorApproveDoneBtnNumNew).click();
+			int opeApproveDoneBtnNum = TestBase.biz.financeDataApprove().operatorApproveDoneBtns.size() - 1;
+			TestBase.biz.financeDataApprove().operatorApproveDoneBtns.get(opeApproveDoneBtnNum).click();
 			Thread.sleep(2000);
 			Assert.assertEquals(TestBase.biz.financeDataApprove().message.getText(), "初审完成");
 			TestBase.biz.financeDataApprove().messageConfirmBtn.click();
-			Thread.sleep(2000);
-			TestBase.tearDownBiz();
+			Thread.sleep(3000);
+			TestBase.tearDownBrowser();
 
 			// 复审审核
 			TestBase.setupBiz();
 			TestBase.biz.bizLoginPage().login(TestBase.operateManagerMobileTeam2, TestBase.operateManagerPasswordTeam2);
 			TestBase.biz.homePage().gotoFinanceDataApprovePage();
-			Thread.sleep(8000);
+			Thread.sleep(3000);
 			//搜索状态为初审审核完成的数据
 			TestBase.biz.financeDataApprove().getDataByWorkFlow(TestBase.biz.financeDataApprove().workFlowFIRST_AUDITED);
 
-			int manNumNew = TestBase.biz.financeDataApprove().dataListIndexs.size() - 1;
 			// 领取任务
-			int manApproveBtnNumNew = TestBase.biz.financeDataApprove().managerApproveBtns.size() - 1;
-			TestBase.biz.financeDataApprove().managerGetTask(manApproveBtnNumNew);
+			int manApproveBtnNum = TestBase.biz.financeDataApprove().managerApproveBtns.size() - 1;
+			TestBase.biz.financeDataApprove().managerGetTask(manApproveBtnNum);
+			Thread.sleep(1000);
 			TestBase.biz.financeDataApprove().manApproveSubtmitBtn.click();
 			Thread.sleep(3000);
 			//搜索复审审核完成数据
 			TestBase.biz.financeDataApprove().getDataByWorkFlow(TestBase.biz.financeDataApprove().workFlowFINAL_AUDITED);
-			manNumNew = TestBase.biz.financeDataApprove().dataListIndexs.size() - 1;
+			int manNumNew = TestBase.biz.financeDataApprove().dataListIndexs.size() - 1;
 			Assert.assertEquals(TestBase.biz.financeDataApprove().dataListWorkFlows.get(manNumNew).getText(), "复审审核完成");
 			Assert.assertEquals(TestBase.biz.financeDataApprove().dataListApproveResults.get(manNumNew).getText(),
 					"审核通过");
@@ -752,9 +799,11 @@ public class Team2Test extends TestBase {
 			String method = Thread.currentThread().getStackTrace()[1].getMethodName();
 			System.out.println(cls + "--" + method);
 			TestBase.getScreenShot(cls, method);
+			Thread.sleep(1000);
 			throw e;
 		}
 	}
+
 
 	/*
 	 * 平台端融资资料审核-复审审核不通过
@@ -765,16 +814,16 @@ public class Team2Test extends TestBase {
 			// 客服新增
 			TestBase.biz.bizLoginPage().login(TestBase.operateQueryMobileTeam2, TestBase.operateQueryPasswordTeam2);
 			TestBase.biz.homePage().gotoFinanceDataApprovePage();
-			Thread.sleep(5000);
+			Thread.sleep(3000);
 			TestBase.biz.financeDataApprove().financeDataAdd();
-			TestBase.tearDownBiz();
+			TestBase.tearDownBrowser();
 
 			// 初审审核
 			TestBase.setupBiz();
 			TestBase.biz.bizLoginPage().login(TestBase.operateOperatorMobileTeam2,
 					TestBase.operateOperatorPasswordTeam2);
 			TestBase.biz.homePage().gotoFinanceDataApprovePage();
-			Thread.sleep(5000);
+			Thread.sleep(3000);
 			//搜索状态为待审核的数据
 			TestBase.biz.financeDataApprove().getDataByWorkFlow(TestBase.biz.financeDataApprove().workFlowUN_AUDIT);
 
@@ -803,17 +852,16 @@ public class Team2Test extends TestBase {
 			Assert.assertEquals(TestBase.biz.financeDataApprove().message.getText(), "初审完成");
 			TestBase.biz.financeDataApprove().messageConfirmBtn.click();
 			Thread.sleep(3000);
-			TestBase.tearDownBiz();
+			TestBase.tearDownBrowser();
 
 			// 复审审核
 			TestBase.setupBiz();
 			TestBase.biz.bizLoginPage().login(TestBase.operateManagerMobileTeam2, TestBase.operateManagerPasswordTeam2);
 			TestBase.biz.homePage().gotoFinanceDataApprovePage();
-			Thread.sleep(5000);
+			Thread.sleep(3000);
 			//搜索状态为初审审核通过的数据
 			TestBase.biz.financeDataApprove().getDataByWorkFlow(TestBase.biz.financeDataApprove().workFlowFIRST_AUDITED);
 
-			int manApproveNum = TestBase.biz.financeDataApprove().dataListIndexs.size() - 1;
 			// 领取任务
 			int manApproveBtnNum = TestBase.biz.financeDataApprove().managerApproveBtns.size() - 1;
 			TestBase.biz.financeDataApprove().managerGetTask(manApproveBtnNum);
@@ -822,20 +870,16 @@ public class Team2Test extends TestBase {
 			TestBase.biz.financeDataApprove().managerApproveQYZXNoPass();
 			TestBase.biz.financeDataApprove().managerApproveQTNoPass();
 			TestBase.biz.financeDataApprove().managerApproveZMWJNoPass();
+			Thread.sleep(1000);
 			TestBase.biz.financeDataApprove().manApproveSubtmitBtn.click();
 			Thread.sleep(3000);
 			
-			TestBase.biz.financeDataApprove().getDataByWorkFlow(TestBase.biz.financeDataApprove().workFlowFINAL_AUDITED);
-			manApproveNum = TestBase.biz.financeDataApprove().dataListIndexs.size() - 1;
-			Assert.assertEquals(TestBase.biz.financeDataApprove().dataListWorkFlows.get(manApproveNum).getText(),
-					"复审审核完成");
-			Assert.assertEquals(TestBase.biz.financeDataApprove().dataListApproveResults.get(manApproveNum).getText(),
-					"审核不通过");
 		} catch (Exception e) {
 			String cls = this.getClass().getName();
 			String method = Thread.currentThread().getStackTrace()[1].getMethodName();
 			System.out.println(cls + "--" + method);
 			TestBase.getScreenShot(cls, method);
+			Thread.sleep(1000);
 			throw e;
 		}
 	}
@@ -849,16 +893,16 @@ public class Team2Test extends TestBase {
 			// 客服新增
 			TestBase.biz.bizLoginPage().login(TestBase.operateQueryMobileTeam2, TestBase.operateQueryPasswordTeam2);
 			TestBase.biz.homePage().gotoFinanceDataApprovePage();
-			Thread.sleep(5000);
+			Thread.sleep(3000);
 			TestBase.biz.financeDataApprove().financeDataAdd();
-			TestBase.tearDownBiz();
+			TestBase.tearDownBrowser();
 
 			// 初审审核
 			TestBase.setupBiz();
 			TestBase.biz.bizLoginPage().login(TestBase.operateOperatorMobileTeam2,
 					TestBase.operateOperatorPasswordTeam2);
 			TestBase.biz.homePage().gotoFinanceDataApprovePage();
-			Thread.sleep(8000);
+			Thread.sleep(3000);
 			//搜索状态为待审核的数据
 			TestBase.biz.financeDataApprove().getDataByWorkFlow(TestBase.biz.financeDataApprove().workFlowUN_AUDIT);
 
@@ -887,12 +931,12 @@ public class Team2Test extends TestBase {
 			Assert.assertEquals(TestBase.biz.financeDataApprove().message.getText(), "初审完成");
 			TestBase.biz.financeDataApprove().messageConfirmBtn.click();
 			Thread.sleep(3000);
-			TestBase.tearDownBiz();
+			TestBase.tearDownBrowser();
 			// 客服修改
 			TestBase.setupBiz();
 			TestBase.biz.bizLoginPage().login(TestBase.operateQueryMobileTeam2, TestBase.operateQueryPasswordTeam2);
 			TestBase.biz.homePage().gotoFinanceDataApprovePage();
-			Thread.sleep(5000);
+			Thread.sleep(3000);
 			//搜索状态为待审核的数据
 			TestBase.biz.financeDataApprove().getDataByWorkFlow(TestBase.biz.financeDataApprove().workFlowUN_AUDIT);
 
@@ -923,6 +967,7 @@ public class Team2Test extends TestBase {
 			String method = Thread.currentThread().getStackTrace()[1].getMethodName();
 			System.out.println(cls + "--" + method);
 			TestBase.getScreenShot(cls, method);
+			Thread.sleep(1000);
 			throw e;
 		}
 	}
@@ -993,6 +1038,7 @@ public class Team2Test extends TestBase {
 			String method = Thread.currentThread().getStackTrace()[1].getMethodName();
 			System.out.println(cls + "--" + method);
 			TestBase.getScreenShot(cls, method);
+			Thread.sleep(1000);
 			throw e;
 		}
 	}
@@ -1063,6 +1109,7 @@ public class Team2Test extends TestBase {
 			String method = Thread.currentThread().getStackTrace()[1].getMethodName();
 			System.out.println(cls + "--" + method);
 			TestBase.getScreenShot(cls, method);
+			Thread.sleep(1000);
 			throw e;
 		}
 	}
@@ -1111,6 +1158,7 @@ public class Team2Test extends TestBase {
 			String method = Thread.currentThread().getStackTrace()[1].getMethodName();
 			System.out.println(cls + "--" + method);
 			TestBase.getScreenShot(cls, method);
+			Thread.sleep(1000);
 			throw e;
 		}
 	}
@@ -1149,7 +1197,7 @@ public class Team2Test extends TestBase {
 			Assert.assertEquals(TestBase.biz.redeemNoticePage().selectAcountWindowCorpNameCore.getText(), corpNameCoreCredit);
 			Assert.assertEquals(TestBase.biz.redeemNoticePage().selectAcountWindowRedeemAmount.getText().replaceAll(",", ""), oracleList.get(0).get("redeemAmount"));
 			TestBase.biz.redeemNoticePage().selectAcountWindowConfirmBtn.click();
-			Thread.sleep(2000);
+			Thread.sleep(3000);
 			TestBase.biz.redeemNoticePage().checkBtn.click();
 			Thread.sleep(2000);
 			TestBase.biz.redeemNoticePage().sendEmailBtn.click();
@@ -1161,6 +1209,7 @@ public class Team2Test extends TestBase {
 			String method = Thread.currentThread().getStackTrace()[1].getMethodName();
 			System.out.println(cls + "--" + method);
 			TestBase.getScreenShot(cls, method);
+			Thread.sleep(1000);
 			throw e;
 		}
 	}
@@ -1209,6 +1258,7 @@ public class Team2Test extends TestBase {
 			String method = Thread.currentThread().getStackTrace()[1].getMethodName();
 			System.out.println(cls + "--" + method);
 			TestBase.getScreenShot(cls, method);
+			Thread.sleep(1000);
 			throw e;
 		}
 	}
@@ -1270,6 +1320,7 @@ public class Team2Test extends TestBase {
 			String method = Thread.currentThread().getStackTrace()[1].getMethodName();
 			System.out.println(cls + "--" + method);
 			TestBase.getScreenShot(cls, method);
+			Thread.sleep(1000);
 			throw e;
 		}
 	}
@@ -1336,6 +1387,7 @@ public class Team2Test extends TestBase {
 			String method = Thread.currentThread().getStackTrace()[1].getMethodName();
 			System.out.println(cls + "--" + method);
 			TestBase.getScreenShot(cls, method);
+			Thread.sleep(1000);
 			throw e;
 		}
 	}
@@ -1441,6 +1493,7 @@ public class Team2Test extends TestBase {
 			String method = Thread.currentThread().getStackTrace()[1].getMethodName();
 			System.out.println(cls + "--" + method);
 			TestBase.getScreenShot(cls, method);
+			Thread.sleep(1000);
 			throw e;
 		}	
 	}
@@ -1519,6 +1572,7 @@ public class Team2Test extends TestBase {
 			String method = Thread.currentThread().getStackTrace()[1].getMethodName();
 			System.out.println(cls + "--" + method);
 			TestBase.getScreenShot(cls, method);
+			Thread.sleep(1000);
 			throw e;
 		}
 	}
@@ -1626,6 +1680,7 @@ public class Team2Test extends TestBase {
 				String method = Thread.currentThread().getStackTrace()[1].getMethodName();
 				System.out.println(cls + "--" + method);
 				TestBase.getScreenShot(cls, method);
+				Thread.sleep(1000);
 				throw e;
 			}	
 	}
@@ -1750,6 +1805,7 @@ public class Team2Test extends TestBase {
 				String method = Thread.currentThread().getStackTrace()[1].getMethodName();
 				System.out.println(cls + "--" + method);
 				TestBase.getScreenShot(cls, method);
+				Thread.sleep(1000);
 				throw e;
 			}	
 	}

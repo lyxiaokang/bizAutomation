@@ -1,16 +1,9 @@
 package com.jxrt.api.web;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.Random;
 
-import com.jxrt.api.BizCorpApi;
 import com.jxrt.api.UaaApi;
-import com.jxrt.dbutil.*;
 import com.jxrt.test.TestBase;
-import com.jxrt.util.PropertiesUtil;
 import com.jxrt.util.ResultHelper;
 
 public class BizCredit extends TestBase{
@@ -43,7 +36,7 @@ public class BizCredit extends TestBase{
 	 */
 	public static void bizCreditSubmit(String params) {
 		
-		String request = requestUrl + "api/web/biz/v1/credits/issue/"+pkApplys;
+		String request = requestUrl + "api/web/biz/v1/credits/issue/"+"c6087ae4-cc34-4897-a86f-5ec45d52f1c9";
 
 		String result = "";
 		result = ResultHelper.sendPostRequest(protocolType, request, params, jsonheader);
@@ -105,8 +98,7 @@ public class BizCredit extends TestBase{
 	 * test主类
 	 */	
 	public static void main(String[] args) throws SQLException{
-		//UaaApi.login("17710253335", "a1111111", "CCBSCF_BUSINESS_WEB");
-		UaaApi.login("17710253335", "a1111111", "CCBSCF_CORP_WEB");
+		UaaApi.login("17710253335", "a1111111", "CCBSCF_BUSINESS_WEB");
 		bizCreditSubmit("");
 	}
 	

@@ -1,13 +1,8 @@
 package com.jxrt.biz.page;
 
-import java.util.List;
-
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
-
-import com.jxrt.biz.Biz;
-import com.jxrt.test.TestBase;
 
 public class LoginPage extends AbstractPage {
 
