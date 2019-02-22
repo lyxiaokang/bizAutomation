@@ -92,14 +92,17 @@ public class RedeemNoticePage extends AbstractPage {
 	//付款白条付款到期日
 	@FindBy(xpath="//table/tbody/tr/td[9]/div")
 	public List<WebElement> redeemListRedeemDates;
-	//付款白条已付款金额
+	//自持金额
 	@FindBy(xpath="//table/tbody/tr/td[10]/div")
+	public List<WebElement> redeemListSelfHoldAmounts;
+	//付款白条已付款金额
+	@FindBy(xpath="//table/tbody/tr/td[11]/div")
 	public List<WebElement> redeemListRedeemedAmounts;
 	//付款白条待付款金额
-	@FindBy(xpath="//table/tbody/tr/td[11]/div")
+	@FindBy(xpath="//table/tbody/tr/td[12]/div")
 	public List<WebElement> redeemListRedeemAmounts;
 	//付款白条白条状态
-	@FindBy(xpath="//table/tbody/tr/td[12]/div")
+	@FindBy(xpath="//table/tbody/tr/td[13]/div")
 	public List<WebElement> redeemListCreditStates;
 
 	//页码
@@ -211,11 +214,6 @@ public class RedeemNoticePage extends AbstractPage {
 		//确认付款通知书页面白条总数与元素
 		WebElement lastPageElement=getLastPageElement();
 		int lastPageNum=getLastPageNum();
-		
-		//翻到最后一页，获取该页条数
-		lastPageElement.click();
-		Thread.sleep(4000);
-
 		//通过数据库查询付款列表中白条总数
 		ArrayList<String> creditList=new ArrayList<String>();
 		creditList.add("ISD");
@@ -223,24 +221,33 @@ public class RedeemNoticePage extends AbstractPage {
 		creditList.add("RD1");
 		creditList.add("RD9");
 		List<Map<String, String>> oracleList=OracleDataFactory.listRedeemCredit(creditList,corpNameCore,corpName,productTypeCcbscf,reddemDateBegin, reddemDateEnd);
-		for(int i=0;i<redeemListCorpNameCores.size();i++){
-			Assert.assertEquals(redeemListPkCredits.get(i).getText(), oracleList.get((lastPageNum*10-10)+i).get("pkCredit"));
-			Assert.assertEquals(redeemListCorpNameCores.get(i).getText(), oracleList.get((lastPageNum*10-10)+i).get("corpNameCore"));
-			Assert.assertEquals(redeemListCorpNames.get(i).getText(), oracleList.get((lastPageNum*10-10)+i).get("corpName"));
-			Assert.assertEquals(redeemListProductTypes.get(i).getText(), ProductTypeCcbscfEnum.valueOfCode(oracleList.get((lastPageNum*10-10)+i).get("productTypeCcbscf")).getName());
-			Assert.assertEquals(redeemListIssueDates.get(i).getText(), oracleList.get((lastPageNum*10-10)+i).get("issueTime"));
-			Assert.assertEquals(redeemListMaturityAmounts.get(i).getText().replaceAll(",", ""), oracleList.get((lastPageNum*10-10)+i).get("maturityAmount"));
-			Assert.assertEquals(redeemListRedeemDates.get(i).getText(), oracleList.get((lastPageNum*10-10)+i).get("redeemDate"));
-			Assert.assertEquals(redeemListRedeemedAmounts.get(i).getText().replaceAll(",", ""), oracleList.get((lastPageNum*10-10)+i).get("redeemedAmount"));
-//			Assert.assertEquals(redeemListRedeemAmounts.get(i).getText().replaceAll(",", ""), oracleList.get((lastPageNum*10-10)+i).get("redeemAmount"));
-//			TODO(自持条部分需要去除)
-			Assert.assertEquals(redeemListCreditStates.get(i).getText(), CreditStateEnum.valueOfCode(oracleList.get((lastPageNum*10-10)+i).get("creditState")).getName());
-			
-		}
-		//恢复到第一页
+
 		
-		firstPage.click();
-		Thread.sleep(4000);
+		if(!(lastPageElement.getText().equals("1"))){
+			//翻到最后一页，获取该页条数
+			lastPageElement.click();
+			Thread.sleep(4000);
+
+			for(int i=0;i<redeemListCorpNameCores.size();i++){
+				Assert.assertEquals(redeemListPkCredits.get(i).getText(), oracleList.get((lastPageNum*10-10)+i).get("pkCredit"));
+				Assert.assertEquals(redeemListCorpNameCores.get(i).getText(), oracleList.get((lastPageNum*10-10)+i).get("corpNameCore"));
+				Assert.assertEquals(redeemListCorpNames.get(i).getText(), oracleList.get((lastPageNum*10-10)+i).get("corpName"));
+				Assert.assertEquals(redeemListProductTypes.get(i).getText(), ProductTypeCcbscfEnum.valueOfCode(oracleList.get((lastPageNum*10-10)+i).get("productTypeCcbscf")).getName());
+				Assert.assertEquals(redeemListIssueDates.get(i).getText(), oracleList.get((lastPageNum*10-10)+i).get("issueTime"));
+				Assert.assertEquals(redeemListMaturityAmounts.get(i).getText().replaceAll(",", ""), oracleList.get((lastPageNum*10-10)+i).get("maturityAmount"));
+				Assert.assertEquals(redeemListRedeemDates.get(i).getText(), oracleList.get((lastPageNum*10-10)+i).get("redeemDate"));
+				Assert.assertEquals(redeemListRedeemedAmounts.get(i).getText().replaceAll(",", ""), oracleList.get((lastPageNum*10-10)+i).get("redeemedAmount"));
+//				Assert.assertEquals(redeemListRedeemAmounts.get(i).getText().replaceAll(",", ""), oracleList.get((lastPageNum*10-10)+i).get("redeemAmount"));
+//				TODO(自持条部分需要去除)
+				Assert.assertEquals(redeemListCreditStates.get(i).getText(), CreditStateEnum.valueOfCode(oracleList.get((lastPageNum*10-10)+i).get("creditState")).getName());
+				
+			}
+			//恢复到第一页
+			
+			firstPage.click();
+			Thread.sleep(4000);
+		}
+
 		for(int i=0;i<redeemListCorpNameCores.size();i++){
 			Assert.assertEquals(redeemListPkCredits.get(i).getText(), oracleList.get(i).get("pkCredit"));
 			Assert.assertEquals(redeemListCorpNameCores.get(i).getText(), oracleList.get(i).get("corpNameCore"));
@@ -257,38 +264,6 @@ public class RedeemNoticePage extends AbstractPage {
 		}
 	}
 	public static void main(String[] args) throws InterruptedException, SQLException {
-		TestBase.setupBiz();
-		TestBase.biz.bizLoginPage().login(TestBase.productManagerMobileTeam2, TestBase.productManagerPasswordTeam2);
-		TestBase.biz.homePage().gotoRedeemNoticePage();
-		Thread.sleep(4000);
-		//搜索一条账款企业
-		TestBase.biz.redeemNoticePage().corpNameCoreInput.sendKeys(TestBase.corpNameCoreReceivableTeam2);
-		TestBase.biz.redeemNoticePage().corpNameInput.sendKeys(TestBase.corpNameReceivableTeam2);
-		TestBase.biz.redeemNoticePage().productType.click();
-		Thread.sleep(1000);
-		TestBase.biz.redeemNoticePage().productTypeReceivable.click();
-		TestBase.biz.redeemNoticePage().searchBtn.click();
-		Thread.sleep(4000);
-		TestBase.biz.redeemNoticePage().redeemListCheckBoxs.get(0).click();
-		TestBase.biz.redeemNoticePage().generateNoticeBtn.click();
-		Thread.sleep(2000);
-		
-		//通过数据库查询付款列表中白条总数
-		ArrayList<String> creditList=new ArrayList<String>();
-		creditList.add("ISD");
-		creditList.add("RD0");
-		creditList.add("RD1");
-		creditList.add("RD9");
-		List<Map<String, String>> oracleList=OracleDataFactory.listRedeemCredit(creditList,TestBase.corpNameCoreReceivableTeam2,TestBase.corpNameReceivableTeam2,"RECEIVABLE",null, null);
-
-		Assert.assertEquals(TestBase.biz.redeemNoticePage().selectAcountWindowCorpNameCore.getText(), TestBase.corpNameCoreReceivableTeam2);
-		Assert.assertEquals(TestBase.biz.redeemNoticePage().selectAcountWindowRedeemAmount.getText().replaceAll(",", ""), oracleList.get(0).get("redeemAmount"));
-		TestBase.biz.redeemNoticePage().selectAcountWindowConfirmBtn.click();
-		Thread.sleep(2000);
-		TestBase.biz.redeemNoticePage().sendEmailBtn.click();
-		Thread.sleep(2000);
-		Assert.assertEquals(TestBase.biz.redeemNoticePage().InstructionResult.getText(),"邮件已发送，请查收");
-		TestBase.biz.redeemNoticePage().InstructionWindowConfirmBtn.click();
 		
 	}
 

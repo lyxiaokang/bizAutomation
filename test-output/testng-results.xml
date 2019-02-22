@@ -2,27 +2,27 @@
 <testng-results skipped="0" failed="0" total="1" passed="1">
   <reporter-output>
   </reporter-output>
-  <suite name="Default suite" duration-ms="39283" started-at="2019-01-30T14:36:21Z" finished-at="2019-01-30T14:37:00Z">
+  <suite name="Default suite" duration-ms="198199" started-at="2019-02-22T12:40:16Z" finished-at="2019-02-22T12:43:34Z">
     <groups>
-      <group name="RedeemNotice-test">
-        <method signature="Team2Test.TestRedeemNotice206SendEmailReceivable()[pri:2, instance:com.jxrt.test.Team2Test@63440df3]" name="TestRedeemNotice206SendEmailReceivable" class="com.jxrt.test.Team2Test"/>
-      </group> <!-- RedeemNotice-test -->
+      <group name="FinanceDataApprove-test">
+        <method signature="Team2Test.TestFinanceDataOpeApprovePass()[pri:1, instance:com.jxrt.test.Team2Test@63440df3]" name="TestFinanceDataOpeApprovePass" class="com.jxrt.test.Team2Test"/>
+      </group> <!-- FinanceDataApprove-test -->
     </groups>
-    <test name="Default test" duration-ms="39283" started-at="2019-01-30T14:36:21Z" finished-at="2019-01-30T14:37:00Z">
+    <test name="Default test" duration-ms="198199" started-at="2019-02-22T12:40:16Z" finished-at="2019-02-22T12:43:34Z">
       <class name="com.jxrt.test.Team2Test">
-        <test-method status="PASS" signature="clearDownloadsPath()[pri:0, instance:com.jxrt.test.Team2Test@63440df3]" name="clearDownloadsPath" is-config="true" duration-ms="20" started-at="2019-01-30T22:36:21Z" finished-at="2019-01-30T22:36:21Z">
+        <test-method status="PASS" signature="clearDownloadsPath()[pri:0, instance:com.jxrt.test.Team2Test@63440df3]" name="clearDownloadsPath" is-config="true" duration-ms="11" started-at="2019-02-22T20:40:16Z" finished-at="2019-02-22T20:40:16Z">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- clearDownloadsPath -->
-        <test-method status="PASS" signature="setup_Biz()[pri:0, instance:com.jxrt.test.Team2Test@63440df3]" name="setup_Biz" is-config="true" duration-ms="11597" started-at="2019-01-30T22:36:21Z" finished-at="2019-01-30T22:36:32Z">
+        <test-method status="PASS" signature="setup_Biz()[pri:0, instance:com.jxrt.test.Team2Test@63440df3]" name="setup_Biz" is-config="true" duration-ms="6236" started-at="2019-02-22T20:40:16Z" finished-at="2019-02-22T20:40:22Z">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- setup_Biz -->
-        <test-method status="PASS" signature="TestRedeemNotice206SendEmailReceivable()[pri:2, instance:com.jxrt.test.Team2Test@63440df3]" name="TestRedeemNotice206SendEmailReceivable" duration-ms="26990" started-at="2019-01-30T22:36:32Z" finished-at="2019-01-30T22:36:59Z">
+        <test-method status="PASS" signature="TestFinanceDataOpeApprovePass()[pri:1, instance:com.jxrt.test.Team2Test@63440df3]" name="TestFinanceDataOpeApprovePass" duration-ms="191259" started-at="2019-02-22T20:40:22Z" finished-at="2019-02-22T20:43:34Z">
           <reporter-output>
           </reporter-output>
-        </test-method> <!-- TestRedeemNotice206SendEmailReceivable -->
-        <test-method status="PASS" signature="tearDown_Biz()[pri:0, instance:com.jxrt.test.Team2Test@63440df3]" name="tearDown_Biz" is-config="true" duration-ms="673" started-at="2019-01-30T22:36:59Z" finished-at="2019-01-30T22:37:00Z">
+        </test-method> <!-- TestFinanceDataOpeApprovePass -->
+        <test-method status="PASS" signature="tearDown_Biz()[pri:0, instance:com.jxrt.test.Team2Test@63440df3]" name="tearDown_Biz" is-config="true" duration-ms="692" started-at="2019-02-22T20:43:34Z" finished-at="2019-02-22T20:43:34Z">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- tearDown_Biz -->

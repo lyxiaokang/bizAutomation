@@ -1275,7 +1275,6 @@ public class OracleDataFactory implements DataFactory {
 	}
 	public static void main(String[] args) throws Exception {
 		System.out.println(OracleDataFactory.getPayrollCreditLoanedList(null, null,"失败", null, null, null,null, null));
-//		System.out.println(OracleDataFactory.getPayrollCreditLoanedAmount(null, null, null, null, null, null,null, null));
 		}
 
 }

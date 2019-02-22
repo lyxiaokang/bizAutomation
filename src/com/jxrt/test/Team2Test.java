@@ -23,10 +23,10 @@ public class Team2Test extends TestBase {
 	 */
 	@BeforeSuite(alwaysRun = true)
 	public void clearDownloadsPath() {
-//		File downloadsFiles=new File(TestBase.downloadsPath);
-//		for(File file:downloadsFiles.listFiles()){
-//			file.delete();
-//		}
+		File downloadsFiles=new File(TestBase.downloadsPath);
+		for(File file:downloadsFiles.listFiles()){
+			file.delete();
+		}
 	}
 	@BeforeMethod(alwaysRun = true)
 	public void setup_Biz() {
@@ -589,7 +589,7 @@ public class Team2Test extends TestBase {
 	 * 平台端融资资料审核-初审领取任务并审核通过
 	 */
 	@Test(groups = "FinanceDataApprove-test",enabled = true, priority = 1)
-	public void TestFinanceDataOpeApprovePass() throws InterruptedException {
+	public void TestFinanceDataOpeApprovePass() throws Exception {
 		try {
 			TestBase.biz.bizLoginPage().login(TestBase.operateQueryMobileTeam2, TestBase.operateQueryPasswordTeam2);
 			TestBase.biz.homePage().gotoFinanceDataApprovePage();
@@ -652,7 +652,7 @@ public class Team2Test extends TestBase {
 	 * 平台端融资资料审核-复审退回经办
 	 */
 	@Test(groups = "FinanceDataApprove-test",enabled = true, priority = 1)
-	public void TestFinanceDataBackToOpe() throws InterruptedException {
+	public void TestFinanceDataBackToOpe() throws Exception {
 		try {
 			// 客服新增
 			TestBase.biz.bizLoginPage().login(TestBase.operateQueryMobileTeam2, TestBase.operateQueryPasswordTeam2);
@@ -728,7 +728,7 @@ public class Team2Test extends TestBase {
 	 * 平台端融资资料审核-复审通过
 	 */
 	@Test(groups = "FinanceDataApprove-test",enabled = true, priority = 1)
-	public void TestFinanceDataManApprovePass() throws InterruptedException {
+	public void TestFinanceDataManApprovePass() throws Exception {
 		try {
 			// 客服新增
 			TestBase.biz.bizLoginPage().login(TestBase.operateQueryMobileTeam2, TestBase.operateQueryPasswordTeam2);
@@ -809,7 +809,7 @@ public class Team2Test extends TestBase {
 	 * 平台端融资资料审核-复审审核不通过
 	 */
 	@Test(groups = "FinanceDataApprove-test",enabled = true, priority = 1)
-	public void TestFinanceDataManApproveNoPass() throws InterruptedException {
+	public void TestFinanceDataManApproveNoPass() throws Exception {
 		try {
 			// 客服新增
 			TestBase.biz.bizLoginPage().login(TestBase.operateQueryMobileTeam2, TestBase.operateQueryPasswordTeam2);
@@ -888,7 +888,7 @@ public class Team2Test extends TestBase {
 	 * 平台端融资资料审核-初审审核不通过-客服修改
 	 */
 	@Test(groups = "FinanceDataApprove-test",enabled = true, priority = 1)
-	public void TestFinanceDataOpeApproveNoPass() throws InterruptedException {
+	public void TestFinanceDataOpeApproveNoPass() throws Exception {
 		try {
 			// 客服新增
 			TestBase.biz.bizLoginPage().login(TestBase.operateQueryMobileTeam2, TestBase.operateQueryPasswordTeam2);

@@ -192,40 +192,43 @@ public class PayrollCreditApplySearchFinancingTabPage extends AbstractPage {
 		//确认融资处理中页面白条总数与元素
 		WebElement lastPageElement=getLastPageElement();
 		int lastPageNum=getLastPageNum();
-		
-		//翻到最后一页，获取该页条数
-		lastPageElement.click();
-		Thread.sleep(4000);
-
 		//通过数据库查询融资处理中白条总数
-		List<Map<String, String>> oracleList=OracleDataFactory.getPayrollCreditFinancingList(corpNameCore,corpName,pkCredit,partnerName,
-				financeApplyDateBegin,financeApplyDateEnd,creditState);
-		for(int i=0;i<payrollListCorpNameCores.size();i++){
-			Assert.assertEquals(payrollListCorpNameCores.get(i).getText(), oracleList.get((lastPageNum*10-10)+i).get("corpNameCore"));
-			Assert.assertEquals(payrollListCorpNames.get(i).getText(), oracleList.get((lastPageNum*10-10)+i).get("corpName"));
-			Assert.assertEquals(payrollListProductTypeCcbscfs.get(i).getText(), ProductTypeCcbscfEnum.valueOfCode(oracleList.get((lastPageNum*10-10)+i).get("productTypeCcbscf")).getName());
-			Assert.assertEquals(payrollListPartnerNames.get(i).getText(), oracleList.get((lastPageNum*10-10)+i).get("partnerName"));
-			if(oracleList.get((lastPageNum*10-10)+i).get("financeApplyDate")!=null){
-				Assert.assertTrue(oracleList.get((lastPageNum*10-10)+i).get("financeApplyDate").contains(payrollListFinanceApplyDates.get(i).getText()));
-			}else{
-				Assert.assertEquals(payrollListFinanceApplyDates.get(i).getText(),"");
+				List<Map<String, String>> oracleList=OracleDataFactory.getPayrollCreditFinancingList(corpNameCore,corpName,pkCredit,partnerName,
+						financeApplyDateBegin,financeApplyDateEnd,creditState);
+		if(!(lastPageElement.getText().equals("1"))){
+			//翻到最后一页，获取该页条数
+			lastPageElement.click();
+			Thread.sleep(4000);
+
+			
+			for(int i=0;i<payrollListCorpNameCores.size();i++){
+				Assert.assertEquals(payrollListCorpNameCores.get(i).getText(), oracleList.get((lastPageNum*10-10)+i).get("corpNameCore"));
+				Assert.assertEquals(payrollListCorpNames.get(i).getText(), oracleList.get((lastPageNum*10-10)+i).get("corpName"));
+				Assert.assertEquals(payrollListProductTypeCcbscfs.get(i).getText(), ProductTypeCcbscfEnum.valueOfCode(oracleList.get((lastPageNum*10-10)+i).get("productTypeCcbscf")).getName());
+				Assert.assertEquals(payrollListPartnerNames.get(i).getText(), oracleList.get((lastPageNum*10-10)+i).get("partnerName"));
+				if(oracleList.get((lastPageNum*10-10)+i).get("financeApplyDate")!=null){
+					Assert.assertTrue(oracleList.get((lastPageNum*10-10)+i).get("financeApplyDate").contains(payrollListFinanceApplyDates.get(i).getText()));
+				}else{
+					Assert.assertEquals(payrollListFinanceApplyDates.get(i).getText(),"");
+				}
+				Assert.assertEquals(payrollListPaymentDetailCounts.get(i).getText(), oracleList.get((lastPageNum*10-10)+i).get("payrollDetailCount"));
+				Assert.assertEquals(payrollListPaymentDetailTotalAmounts.get(i).getText().replaceAll(",", ""), oracleList.get((lastPageNum*10-10)+i).get("paymentDetailTotalAmount"));
+				Assert.assertEquals(payrollListPkCredits.get(i).getText(), oracleList.get((lastPageNum*10-10)+i).get("pkCredit"));
+				Assert.assertEquals(payrollListCreditStates.get(i).getText(), CreditStateEnum.valueOfCode(oracleList.get((lastPageNum*10-10)+i).get("creditState")).getName());
+		
 			}
-			Assert.assertEquals(payrollListPaymentDetailCounts.get(i).getText(), oracleList.get((lastPageNum*10-10)+i).get("payrollDetailCount"));
-			Assert.assertEquals(payrollListPaymentDetailTotalAmounts.get(i).getText().replaceAll(",", ""), oracleList.get((lastPageNum*10-10)+i).get("paymentDetailTotalAmount"));
-			Assert.assertEquals(payrollListPkCredits.get(i).getText(), oracleList.get((lastPageNum*10-10)+i).get("pkCredit"));
-			Assert.assertEquals(payrollListCreditStates.get(i).getText(), CreditStateEnum.valueOfCode(oracleList.get((lastPageNum*10-10)+i).get("creditState")).getName());
-	
+			//断言数据库查询总笔数和金额与页面左下角一致
+			if(oracleList.size()!=0){
+				Assert.assertEquals(getPayrollTotalAmount(), OracleDataFactory.getPayrollCreditFinancingAmount(corpNameCore,corpName,pkCredit,partnerName,
+						financeApplyDateBegin,financeApplyDateEnd,creditState));
+				Assert.assertEquals(getPayrollTotalCount(), OracleDataFactory.getPayrollCreditFinancingCount(corpNameCore,corpName,pkCredit,partnerName,
+						financeApplyDateBegin,financeApplyDateEnd,creditState));
+			}
+			//恢复到第一页
+			firstPage.click();
+			Thread.sleep(4000);
 		}
-		//断言数据库查询总笔数和金额与页面左下角一致
-		if(oracleList.size()!=0){
-			Assert.assertEquals(getPayrollTotalAmount(), OracleDataFactory.getPayrollCreditFinancingAmount(corpNameCore,corpName,pkCredit,partnerName,
-					financeApplyDateBegin,financeApplyDateEnd,creditState));
-			Assert.assertEquals(getPayrollTotalCount(), OracleDataFactory.getPayrollCreditFinancingCount(corpNameCore,corpName,pkCredit,partnerName,
-					financeApplyDateBegin,financeApplyDateEnd,creditState));
-		}
-		//恢复到第一页
-		firstPage.click();
-		Thread.sleep(4000);
+		
 		for(int i=0;i<payrollListCorpNameCores.size();i++){
 			Assert.assertEquals(payrollListCorpNameCores.get(i).getText(), oracleList.get(i).get("corpNameCore"));
 			Assert.assertEquals(payrollListCorpNames.get(i).getText(), oracleList.get(i).get("corpName"));

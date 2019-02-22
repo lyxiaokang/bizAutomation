@@ -1,6 +1,9 @@
 package com.jxrt.biz.page;
 
+import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -8,6 +11,9 @@ import org.openqa.selenium.support.FindBy;
 import org.testng.Assert;
 
 import com.jxrt.test.TestBase;
+import com.jxrt.util.ExcelUtil;
+
+import jxl.write.Label;
 
 public class FinanceDataApprovePage extends AbstractPage{
 	/*
@@ -441,8 +447,13 @@ public class FinanceDataApprovePage extends AbstractPage{
 	@FindBy(xpath="//table/tbody/tr/td/div/span[contains(text(),'发票')]/../../../td[6]//button/span[contains(text(),'审核')]")
 	public WebElement dataListChildFPApproveBtn;
 //	发票
+	//导入发票格式化数据按钮
+	@FindBy(xpath="/html/body/div[10]/div[2]/div/div/div[2]/div[2]/div[1]/div/div/button")
+	public WebElement opeApproveFPImportBtn;
+	//批量删除发票按钮
 	@FindBy(xpath="/html/body/div[10]/div[2]/div/div/div[2]/div[5]/div[1]/button/span")
 	public WebElement opeApproveFPDeleteAllBtn;
+	//提交按钮                   
 	@FindBy(xpath="/html/body/div[10]/div[2]/div/div/div[3]/div/button[1]/span")
 	public WebElement opeApproveFPSubmitBtn;
 	@FindBy(xpath="/html/body/div[10]/div[2]/div/div/div[3]/div/button[2]/span")
@@ -519,6 +530,34 @@ public class FinanceDataApprovePage extends AbstractPage{
 	//复审提交
 	@FindBy(xpath="/html/body/div[22]/div[2]/div/div/div[2]/div/div/div/div[2]/div/div/div[2]/div[7]/div//button/span[contains(text(),'复审提交')]")
 	public WebElement manApproveSubtmitBtn;
+	public static void writeExcelImportInvoice() throws Exception {
+		Random rand=new Random();
+		Integer rand8=rand.nextInt(90000000)+10000000;
+		List<Label> labelList = new ArrayList<Label>();
+		// 添加表头
+		labelList.add(new Label(0, 0, "供应商名称"));
+		labelList.add(new Label(1, 0, "交易对手名称"));
+		labelList.add(new Label(2, 0, "发票类型"));
+		labelList.add(new Label(3, 0, "发票代码"));
+		labelList.add(new Label(4, 0, "发票号码"));
+		labelList.add(new Label(5, 0, "发票日期"));
+		labelList.add(new Label(6, 0, "发票金额"));
+		labelList.add(new Label(7, 0, "校验码"));
+		labelList.add(new Label(8, 0, "价税合计"));
+		labelList.add(new Label(9, 0, "外部批次号"));
+		// 添加内容
+		labelList.add(new Label(0, 1, TestBase.FinanceDataApproveCorpName));
+		labelList.add(new Label(1, 1, TestBase.FinanceDataApproveCorpNameCore));
+		labelList.add(new Label(2, 1, "增值税专用发票"));
+		labelList.add(new Label(3, 1, rand8.toString()+"01"));
+		labelList.add(new Label(4, 1, rand8.toString()));
+		labelList.add(new Label(5, 1, LocalDate.now().toString()));
+		labelList.add(new Label(6, 1, "9999"));
+		labelList.add(new Label(7, 1, "12345678901234567890"));
+		labelList.add(new Label(8, 1, "9999"));
+		labelList.add(new Label(9, 1, "123"));
+		ExcelUtil.writeExcel("D:\\autoit\\融资资料审核发票导入明细.xlsx", labelList);
+	}
 	
 	/*
 	 * 上传文件
@@ -649,8 +688,11 @@ public class FinanceDataApprovePage extends AbstractPage{
 		element.click();
 		searchBtn.click();
 		Thread.sleep(5000);
-		pageNums.get(pageNums.size() - 1).click();
-		Thread.sleep(5000);
+		//如果最后一页页码不为1，则翻页
+		if(!(pageNums.get(pageNums.size() - 1)).getText().equals("1")){
+			pageNums.get(pageNums.size() - 1).click();
+			Thread.sleep(5000);
+		}
 	}
 	/*
 	 * 初审领取任务
@@ -807,8 +849,14 @@ public class FinanceDataApprovePage extends AbstractPage{
 	/*
 	 * 初审审核发票通过
 	 */
-	public void operatorApproveFPPass() throws InterruptedException{
+	public void operatorApproveFPPass() throws Exception{
 		dataListChildFPApproveBtn.click();
+		Thread.sleep(2000);
+		writeExcelImportInvoice();
+		uploadFile(opeApproveFPImportBtn, "importInvoiceForGoogle.exe");
+		Thread.sleep(2000);
+		Assert.assertEquals(message.getText(), "导入发票格式化数据成功");
+		messageConfirmBtn.click();
 		Thread.sleep(2000);
 		scrollIntoView(opeApproveFPDeleteAllBtn);
 		opeApproveFPSubmitBtn.click();
