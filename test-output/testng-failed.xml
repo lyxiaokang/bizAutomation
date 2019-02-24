@@ -1,16 +1,30 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
-<suite guice-stage="DEVELOPMENT" name="Failed suite [Default suite]">
-  <test name="Default test(failed)">
+<suite guice-stage="DEVELOPMENT" verbose="2" name="Failed suite [End2EndAutomation]">
+  <listeners>
+    <listener class-name="com.jxrt.listener.DotTestListener"/>
+    <listener class-name="org.uncommons.reportng.HTMLReporter"/>
+    <listener class-name="com.jxrt.util.RetryListener"/>
+  </listeners>
+  <test name="Team2Test(failed)">
+    <groups>
+      <run>
+        <include name="PayrollCreditApply-test"/>
+        <exclude name="ReceivableIssue-test"/>
+        <exclude name="FinanceDataApprove-test"/>
+        <exclude name="RedeemNotice-test"/>
+      </run>
+    </groups>
     <classes>
       <class name="com.jxrt.test.Team2Test">
         <methods>
+          <include name="TestPayrollCreditApplySearchFinancingTabPage"/>
           <include name="setup_Biz"/>
-          <include name="TestFinanceDataOpeApprovePass"/>
           <include name="tearDown_Biz"/>
+          <include name="TestPayrollCreditApplySearchIssuingTabPage"/>
           <include name="clearDownloadsPath"/>
         </methods>
       </class> <!-- com.jxrt.test.Team2Test -->
     </classes>
-  </test> <!-- Default test(failed) -->
-</suite> <!-- Failed suite [Default suite] -->
+  </test> <!-- Team2Test(failed) -->
+</suite> <!-- Failed suite [End2EndAutomation] -->

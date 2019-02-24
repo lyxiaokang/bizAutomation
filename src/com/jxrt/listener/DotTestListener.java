@@ -26,21 +26,7 @@ public class DotTestListener extends TestListenerAdapter {
 		tr.getThrowable().printStackTrace();
 		String instanceName = tr.getInstanceName();
 		String name = tr.getName();
-		System.err.println(timeString() + "FAILED: "+ instanceName + "." + name);
-		
-//        try {
-//    		//屏幕截图
-//    		//指定了OutputType.FILE做为参数传递给getScreenshotAs()方法，
-//            // 其含义是将截取的屏幕以文件形式返回。
-//            File srcFile = TestBase.appInt.getDriver().getScreenshotAs(OutputType.FILE);
-//            //利用FileUtils工具类的copyFile()方法保存getScreenshotAs()返回的文件对象。
-//            String fileName = instanceName.split("\\.")[instanceName.split("\\.").length-1] + "_" + name + "_" + TestBase.caseId  + "_"  +  TestBase.generateDateTime2() + ".jpg";
-//			FileUtils.copyFile(srcFile, new File(TestBase.baseDir + "/screenshots" + "/"+fileName));
-//		} catch (IOException e) {
-//			// TODO Auto-generated catch block
-//			e.printStackTrace();
-//		}
-        
+		System.err.println(timeString() + "FAILED: "+ instanceName + "." + name);        
         
 		FileHelper fileHelper = new FileHelper();
 		fileHelper.writeDataToFile(TestBase.rerunFile, TestBase.caseId);
