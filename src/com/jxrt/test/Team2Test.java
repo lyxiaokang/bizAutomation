@@ -1251,7 +1251,7 @@ public class Team2Test extends TestBase {
 			Thread.sleep(2000);
 			TestBase.biz.redeemNoticePage().sendEmailBtn.click();
 			Thread.sleep(2000);
-			Assert.assertEquals(TestBase.biz.redeemNoticePage().InstructionResult.getText(),"邮件已发送，请查收");
+			Assert.assertEquals(TestBase.biz.redeemNoticePage().InstructionResult.getText(),"邮件未发送，请查收");
 			TestBase.biz.redeemNoticePage().InstructionWindowConfirmBtn.click();
 		} catch (Exception e) {
 			String cls = this.getClass().getName();
@@ -1313,7 +1313,7 @@ public class Team2Test extends TestBase {
 			Thread.sleep(2000);
 			TestBase.biz.redeemNoticePage().sendEmailBtn.click();
 			Thread.sleep(2000);
-			Assert.assertEquals(TestBase.biz.redeemNoticePage().InstructionResult.getText(),"邮件已发送，请查收");
+			Assert.assertEquals(TestBase.biz.redeemNoticePage().InstructionResult.getText(),"邮件未发送，请查收");
 			TestBase.biz.redeemNoticePage().InstructionWindowConfirmBtn.click();
 		} catch (Exception e) {
 			String cls = this.getClass().getName();

@@ -26,8 +26,15 @@ public class DotTestListener extends TestListenerAdapter {
 		tr.getThrowable().printStackTrace();
 		String instanceName = tr.getInstanceName();
 		String name = tr.getName();
-		System.err.println(timeString() + "FAILED: "+ instanceName + "." + name);        
-        
+		System.err.println(timeString() + "FAILED: "+ instanceName + "." + name);  		
+		try{
+			String cls = this.getClass().getName();
+			String method = Thread.currentThread().getStackTrace()[1].getMethodName();
+			System.out.println(cls + "--" + method);
+			TestBase.getScreenShot(cls, method);
+		}catch (Exception e){
+			e.printStackTrace();
+		}
 		FileHelper fileHelper = new FileHelper();
 		fileHelper.writeDataToFile(TestBase.rerunFile, TestBase.caseId);
 		

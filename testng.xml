@@ -1,17 +1,17 @@
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
-<suite name="End2EndAutomation" verbose="2">
+<suite name="bizAutomation" verbose="2">
 	<listeners>
 		<listener class-name="com.jxrt.listener.DotTestListener" />
 		<listener class-name="org.uncommons.reportng.HTMLReporter" />
-		<listener class-name="com.jxrt.util.RetryListener" />
+		<listener class-name="com.jxrt.listener.RetryListener" />
 	</listeners>
  	<test name="Team2Test" preserve-order="true">
         <groups>
             <run>
                 <exclude name="ReceivableIssue-test" />
                 <exclude name="FinanceDataApprove-test" />
-                <exclude name="RedeemNotice-test" />
-                <include name="PayrollCreditApply-test" />
+                <include name="RedeemNotice-test" />
+                <exclude name="PayrollCreditApply-test" />
             </run>
         </groups>
         <classes>

@@ -14,7 +14,7 @@ public class TestngRetry implements IRetryAnalyzer {
 
 	static {
 		// 外围文件配置最大运行次数
-		maxRetryCount = 2;
+		maxRetryCount = 1;
 	}
 
 	@Override
