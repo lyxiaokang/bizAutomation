@@ -7,6 +7,8 @@ public enum ProductTypeCcbscfEnum {
     CREDIT("CREDIT", "融信"),
     /** 账款 */
     RECEIVABLE("RECEIVABLE", "账款融资"),
+    /** 云条 */
+    NOTE("NOTE", "云条"),
     /** 未知 */
     UNKNOWN("UNKNOWN", "未知");
 

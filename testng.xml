@@ -8,9 +8,9 @@
  	<test name="Team2Test" preserve-order="true">
         <groups>
             <run>
-                <include name="ReceivableIssue-test" />
-                <include name="FinanceDataApprove-test" />
-                <include name="RedeemNotice-test" />
+                <exclude name="ReceivableIssue-test" />
+                <exclude name="FinanceDataApprove-test" />
+                <exclude name="RedeemNotice-test" />
                 <include name="PayrollCreditApply-test" />
             </run>
         </groups>

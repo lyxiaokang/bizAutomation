@@ -982,7 +982,7 @@ public class Team2Test extends TestBase {
 			TestBase.biz.homePage().gotoRedeemNoticePage();
 			Thread.sleep(4000);
 			// 测试全量的白条数量
-			TestBase.biz.redeemNoticePage().redeemNoticeCreditNum(null, null, null, null, null);
+			TestBase.biz.redeemNoticePage().redeemNoticeCreditNum(null, null, null, null, LocalDate.now().plusDays(45));
 			Thread.sleep(2000);
 
 			LocalDate today = LocalDate.now();
@@ -995,7 +995,7 @@ public class Team2Test extends TestBase {
 			TestBase.biz.redeemNoticePage().corpNameCoreInput.sendKeys(corpNameCore);
 			TestBase.biz.redeemNoticePage().searchBtn.click();
 			Thread.sleep(4000);
-			TestBase.biz.redeemNoticePage().redeemNoticeCreditNum(corpNameCore, null, null, null, null);
+			TestBase.biz.redeemNoticePage().redeemNoticeCreditNum(corpNameCore, null, null, null, LocalDate.now().plusDays(45));
 			TestBase.driver.navigate().refresh();
 			Thread.sleep(2000);
 
@@ -1003,7 +1003,7 @@ public class Team2Test extends TestBase {
 			TestBase.biz.redeemNoticePage().corpNameInput.sendKeys(corpName);
 			TestBase.biz.redeemNoticePage().searchBtn.click();
 			Thread.sleep(4000);
-			TestBase.biz.redeemNoticePage().redeemNoticeCreditNum(null, corpName, null, null, null);
+			TestBase.biz.redeemNoticePage().redeemNoticeCreditNum(null, corpName, null, null, LocalDate.now().plusDays(45));
 			TestBase.driver.navigate().refresh();
 			Thread.sleep(2000);
 
@@ -1013,7 +1013,7 @@ public class Team2Test extends TestBase {
 			TestBase.biz.redeemNoticePage().productTypeCredit.click();
 			TestBase.biz.redeemNoticePage().searchBtn.click();
 			Thread.sleep(4000);
-			TestBase.biz.redeemNoticePage().redeemNoticeCreditNum(null, null, "CREDIT", null, null);
+			TestBase.biz.redeemNoticePage().redeemNoticeCreditNum(null, null, "CREDIT", null, LocalDate.now().plusDays(45));
 			Thread.sleep(2000);
 
 			// 测试搜索RECEIVABLE类型白条数量
@@ -1022,17 +1022,17 @@ public class Team2Test extends TestBase {
 			TestBase.biz.redeemNoticePage().productTypeReceivable.click();
 			TestBase.biz.redeemNoticePage().searchBtn.click();
 			Thread.sleep(4000);
-			TestBase.biz.redeemNoticePage().redeemNoticeCreditNum(null, null, "RECEIVABLE", null, null);
+			TestBase.biz.redeemNoticePage().redeemNoticeCreditNum(null, null, "RECEIVABLE", null, LocalDate.now().plusDays(45));
 			TestBase.driver.navigate().refresh();
 			Thread.sleep(2000);
 
 			// 测试付款到期日范围内的白条数量
 			TestBase.biz.redeemNoticePage().redeemDateBeginInput.sendKeys(redeemDateBegin.toString());
+			TestBase.biz.redeemNoticePage().redeemDateEndInput.clear();
 			TestBase.biz.redeemNoticePage().redeemDateEndInput.sendKeys(redeemDateEnd.toString());
 			TestBase.biz.redeemNoticePage().searchBtn.click();
 			Thread.sleep(4000);
 			TestBase.biz.redeemNoticePage().redeemNoticeCreditNum(null, null, null, redeemDateBegin, redeemDateEnd);
-			Thread.sleep(2000);
 		} catch (Exception e) {
 			String cls = this.getClass().getName();
 			String method = Thread.currentThread().getStackTrace()[1].getMethodName();
@@ -1053,12 +1053,12 @@ public class Team2Test extends TestBase {
 			TestBase.biz.homePage().gotoRedeemNoticePage();
 			Thread.sleep(4000);
 			// 测试全量的白条list
-			TestBase.biz.redeemNoticePage().redeemNoticeCreditList(null, null, null, null, null);
+			TestBase.biz.redeemNoticePage().redeemNoticeCreditList(null, null, null, null, LocalDate.now().plusDays(45));
 			Thread.sleep(2000);
 
 			LocalDate today = LocalDate.now();
 			LocalDate redeemDateBegin = today.minusDays(25);
-			LocalDate redeemDateEnd = today.minusDays(5);
+			LocalDate redeemDateEnd = LocalDate.now().plusDays(45);
 			String corpNameCore = TestBase.corpNameCoreReceivableTeam2;
 			String corpName = TestBase.corpNameReceivableTeam2;
 
@@ -1066,7 +1066,7 @@ public class Team2Test extends TestBase {
 			TestBase.biz.redeemNoticePage().corpNameCoreInput.sendKeys(corpNameCore);
 			TestBase.biz.redeemNoticePage().searchBtn.click();
 			Thread.sleep(4000);
-			TestBase.biz.redeemNoticePage().redeemNoticeCreditList(corpNameCore, null, null, null, null);
+			TestBase.biz.redeemNoticePage().redeemNoticeCreditList(corpNameCore, null, null, null, LocalDate.now().plusDays(45));
 			TestBase.driver.navigate().refresh();
 			Thread.sleep(2000);
 
@@ -1074,7 +1074,7 @@ public class Team2Test extends TestBase {
 			TestBase.biz.redeemNoticePage().corpNameInput.sendKeys(corpName);
 			TestBase.biz.redeemNoticePage().searchBtn.click();
 			Thread.sleep(4000);
-			TestBase.biz.redeemNoticePage().redeemNoticeCreditList(null, corpName, null, null, null);
+			TestBase.biz.redeemNoticePage().redeemNoticeCreditList(null, corpName, null, null, LocalDate.now().plusDays(45));
 			TestBase.driver.navigate().refresh();
 			Thread.sleep(2000);
 
@@ -1084,7 +1084,7 @@ public class Team2Test extends TestBase {
 			TestBase.biz.redeemNoticePage().productTypeCredit.click();
 			TestBase.biz.redeemNoticePage().searchBtn.click();
 			Thread.sleep(4000);
-			TestBase.biz.redeemNoticePage().redeemNoticeCreditList(null, null, "CREDIT", null, null);
+			TestBase.biz.redeemNoticePage().redeemNoticeCreditList(null, null, "CREDIT", null, LocalDate.now().plusDays(45));
 			Thread.sleep(2000);
 
 			// 测试搜索RECEIVABLE类型白条list
@@ -1093,7 +1093,7 @@ public class Team2Test extends TestBase {
 			TestBase.biz.redeemNoticePage().productTypeReceivable.click();
 			TestBase.biz.redeemNoticePage().searchBtn.click();
 			Thread.sleep(4000);
-			TestBase.biz.redeemNoticePage().redeemNoticeCreditList(null, null, "RECEIVABLE", null, null);
+			TestBase.biz.redeemNoticePage().redeemNoticeCreditList(null, null, "RECEIVABLE", null, LocalDate.now().plusDays(45));
 			TestBase.driver.navigate().refresh();
 			Thread.sleep(2000);
 
@@ -1129,6 +1129,7 @@ public class Team2Test extends TestBase {
 			TestBase.biz.redeemNoticePage().productType.click();
 			Thread.sleep(1000);
 			TestBase.biz.redeemNoticePage().productTypeReceivable.click();
+			TestBase.biz.redeemNoticePage().redeemDateEndInput.clear();
 			TestBase.biz.redeemNoticePage().searchBtn.click();
 			Thread.sleep(4000);
 			TestBase.biz.redeemNoticePage().redeemListCheckBoxs.get(0).click();
@@ -1180,6 +1181,7 @@ public class Team2Test extends TestBase {
 			TestBase.biz.redeemNoticePage().productType.click();
 			Thread.sleep(1000);
 			TestBase.biz.redeemNoticePage().productTypeCredit.click();
+			TestBase.biz.redeemNoticePage().redeemDateEndInput.clear();
 			TestBase.biz.redeemNoticePage().searchBtn.click();
 			Thread.sleep(4000);
 			TestBase.biz.redeemNoticePage().redeemListCheckBoxs.get(0).click();
@@ -1229,6 +1231,7 @@ public class Team2Test extends TestBase {
 			TestBase.biz.redeemNoticePage().productType.click();
 			Thread.sleep(1000);
 			TestBase.biz.redeemNoticePage().productTypeReceivable.click();
+			TestBase.biz.redeemNoticePage().redeemDateEndInput.clear();
 			TestBase.biz.redeemNoticePage().searchBtn.click();
 			Thread.sleep(4000);
 			TestBase.biz.redeemNoticePage().redeemListCheckBoxs.get(0).click();
@@ -1251,7 +1254,7 @@ public class Team2Test extends TestBase {
 			Thread.sleep(2000);
 			TestBase.biz.redeemNoticePage().sendEmailBtn.click();
 			Thread.sleep(2000);
-			Assert.assertEquals(TestBase.biz.redeemNoticePage().InstructionResult.getText(),"邮件未发送，请查收");
+			Assert.assertEquals(TestBase.biz.redeemNoticePage().InstructionResult.getText(),"邮件已发送，请查收");
 			TestBase.biz.redeemNoticePage().InstructionWindowConfirmBtn.click();
 		} catch (Exception e) {
 			String cls = this.getClass().getName();
@@ -1286,6 +1289,7 @@ public class Team2Test extends TestBase {
 			TestBase.biz.redeemNoticePage().productType.click();
 			Thread.sleep(1000);
 			TestBase.biz.redeemNoticePage().productTypeReceivable.click();
+			TestBase.biz.redeemNoticePage().redeemDateEndInput.clear();
 			TestBase.biz.redeemNoticePage().redeemDateBeginInput.sendKeys(oracleList.get(0).get("redeemDate"));
 			TestBase.biz.redeemNoticePage().redeemDateEndInput.sendKeys(oracleList.get(0).get("redeemDate"));
 			TestBase.biz.redeemNoticePage().searchBtn.click();
@@ -1313,7 +1317,7 @@ public class Team2Test extends TestBase {
 			Thread.sleep(2000);
 			TestBase.biz.redeemNoticePage().sendEmailBtn.click();
 			Thread.sleep(2000);
-			Assert.assertEquals(TestBase.biz.redeemNoticePage().InstructionResult.getText(),"邮件未发送，请查收");
+			Assert.assertEquals(TestBase.biz.redeemNoticePage().InstructionResult.getText(),"邮件已发送，请查收");
 			TestBase.biz.redeemNoticePage().InstructionWindowConfirmBtn.click();
 		} catch (Exception e) {
 			String cls = this.getClass().getName();
@@ -1353,6 +1357,7 @@ public class Team2Test extends TestBase {
 			Thread.sleep(1000);
 			TestBase.biz.redeemNoticePage().productTypeCredit.click();
 			Thread.sleep(1000);
+			TestBase.biz.redeemNoticePage().redeemDateEndInput.clear();
 			TestBase.biz.redeemNoticePage().redeemDateBeginInput.sendKeys(oracleList.get(0).get("redeemDate"));
 			TestBase.biz.redeemNoticePage().redeemDateEndInput.sendKeys(oracleList.get(0).get("redeemDate"));
 			TestBase.biz.redeemNoticePage().searchBtn.click();
@@ -1407,7 +1412,7 @@ public class Team2Test extends TestBase {
 			String corpName="太平链条企业一";
 			LocalDate today = LocalDate.now();
 			LocalDate createDateBegin = today.minusDays(25);
-			LocalDate createDateEnd = today.minusDays(5);
+			LocalDate createDateEnd = LocalDate.now().plusDays(45);
 			//核心企业筛选
 			TestBase.biz.payrollCreditApplySearchPage().corpNameCoreInput.sendKeys(corpNameCore);
 			TestBase.biz.payrollCreditApplySearchPage().searchBtn.click();
@@ -1701,7 +1706,7 @@ public class Team2Test extends TestBase {
 				String corpName="代发工资链条企业杨桢桢";
 				LocalDate today = LocalDate.now();
 				LocalDate createDateBegin = today.minusDays(30);
-				LocalDate createDateEnd = today.minusDays(5);
+				LocalDate createDateEnd = LocalDate.now().plusDays(45);
 				LocalDate loanTimeBegin = today.minusDays(25);
 				LocalDate loanTimeEnd = today;
 				//核心企业筛选
