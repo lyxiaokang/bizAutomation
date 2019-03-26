@@ -7,7 +7,7 @@
         <methods>
           <include name="setup_Biz"/>
           <include name="tearDown_Biz"/>
-          <include name="TestRedeemNoticeCreditList"/>
+          <include name="TestReceivableApprovePass"/>
           <include name="clearDownloadsPath"/>
         </methods>
       </class> <!-- com.jxrt.test.Team2Test -->

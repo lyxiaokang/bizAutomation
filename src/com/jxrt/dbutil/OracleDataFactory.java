@@ -1168,7 +1168,7 @@ public class OracleDataFactory implements DataFactory {
 		if(loanTimeEnd!=null){
 			sqlBuffer.append(" and f.LOAN_TIME <date'"+loanTimeEnd+"' +1");
 		}
-		sqlBuffer.append(" order by c.PK_CREDIT desc");
+		sqlBuffer.append(" order by f.LOAN_TIME desc nulls last,c.SEQUENCE_NO desc");
 		return sqlBuffer.toString();
 	}
 	

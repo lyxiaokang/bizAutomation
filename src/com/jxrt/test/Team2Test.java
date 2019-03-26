@@ -153,7 +153,7 @@ public class Team2Test extends TestBase {
 			TestBase.biz.receivableSearchIssuedTabPage().applyAmountMinInput.sendKeys(applyAmount);
 			TestBase.biz.receivableSearchIssuedTabPage().applyAmountMaxInput.sendKeys(applyAmount);
 			TestBase.biz.receivableSearchIssuedTabPage().searchBtn.click();
-			Thread.sleep(5000);
+			Thread.sleep(10000);
 			// 断言
 			Assert.assertEquals(TestBase.biz.receivableSearchIssuedTabPage().receivableListPkCredits.get(0).getText(),
 					pkCredit);
