@@ -448,7 +448,7 @@ public class FinanceDataApprovePage extends AbstractPage{
 	public WebElement dataListChildFPApproveBtn;
 //	发票
 	//导入发票格式化数据按钮
-	@FindBy(xpath="/html/body/div[10]/div[2]/div/div/div[2]/div[2]/div[1]/div/div/button")
+	@FindBy(xpath="/html/body/div[10]/div[2]/div/div/div[2]/div[2]/div[1]/div/div/div/button/span")
 	public WebElement opeApproveFPImportBtn;
 	//批量删除发票按钮
 	@FindBy(xpath="/html/body/div[10]/div[2]/div/div/div[2]/div[5]/div[1]/button/span")

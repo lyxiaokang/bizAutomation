@@ -519,7 +519,7 @@ public class Team2Test extends TestBase {
 	/*
 	 * 平台端融资资料审核添加
 	 */
-	@Test(groups = "FinanceDataApprove-test",enabled = true, priority = 1)
+	@Test(groups = "FinanceDataApprove-test",enabled = false, priority = 1)
 	public void TestFinanceDataAdd() throws InterruptedException {
 		try {
 			TestBase.biz.bizLoginPage().login(TestBase.operateQueryMobileTeam2, TestBase.operateQueryPasswordTeam2);
