@@ -39,6 +39,7 @@ public class TestBase {
 	public static  String browserType = PropertiesUtil.getOptValue("browserType");
 	public static String baseDir = System.getProperty("user.dir");
 	public static String downloadsPath = baseDir+"\\Downloads";
+	public static String chromeDriverPath = baseDir+"\\chromedriver.exe";
 	public static Biz biz;
 	public static Corp corp;
 	
@@ -206,6 +207,7 @@ public class TestBase {
 	 * 平台端浏览器初始化
 	 */
 	public static void setupBiz() {
+		System.setProperty("webdriver.chrome.driver", TestBase.chromeDriverPath);
 		driver = Browser.getDriver(browserType,bizUrl);
 		biz = new Biz(driver);
 
